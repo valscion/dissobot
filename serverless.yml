@@ -1,10 +1,14 @@
 service: dissobot
 
 plugins:
-  - serverless-offline
+  - serverless-dynamodb-local
+  - serverless-offline # this needs to be last in the list
 
 custom:
   tableName: 'users-table-${self:provider.stage}'
+  dynamodb:
+    start:
+      migrate: true
 
 provider:
   name: aws
