@@ -5,6 +5,7 @@ provider:
   runtime: nodejs6.10
   stage: dev
   region: eu-central-1
+  profile: nurmilaakso-dissonanssi
 
 functions:
   app:
