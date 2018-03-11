@@ -1,0 +1,14 @@
+service: dissobot
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  stage: dev
+  region: eu-central-1
+
+functions:
+  app:
+    handler: index.handler
+    events:
+      - http: ANY /
+      - http: 'ANY {proxy+}'
