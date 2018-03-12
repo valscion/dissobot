@@ -39,8 +39,8 @@ app.get('/users/:userId', function (req, res) {
       res.status(400).json({ error: 'Could not get user' });
     }
     if (result.Item) {
-      const {userId, name} = result.Item;
-      res.json({ userId, name });
+      const {userId, name, foo} = result.Item;
+      res.json({ userId, name, foo });
     } else {
       res.status(404).json({ error: "User not found" });
     }
@@ -70,7 +70,7 @@ app.post('/users', function (req, res) {
       console.log(error);
       res.status(400).json({ error: 'Could not create user' });
     }
-    res.json({ userId, name });
+    res.json({ userId, name, foo });
   });
 })
 
