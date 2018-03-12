@@ -49,7 +49,7 @@ app.get('/users/:userId', function (req, res) {
 
 // Create User endpoint
 app.post('/users', function (req, res) {
-  const { userId, name } = req.body;
+  const { userId, name, foo } = req.body;
   if (typeof userId !== 'string') {
     res.status(400).json({ error: '"userId" must be a string' });
   } else if (typeof name !== 'string') {
@@ -61,6 +61,7 @@ app.post('/users', function (req, res) {
     Item: {
       userId: userId,
       name: name,
+      foo: foo,
     },
   };
 
