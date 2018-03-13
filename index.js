@@ -11,9 +11,11 @@ let dynamoDb;
 if (IS_OFFLINE === 'true') {
   dynamoDb = new AWS.DynamoDB.DocumentClient({
     region: 'localhost',
-    endpoint: 'http://localhost:8000'
+    endpoint: 'http://localhost:8000',
+    accessKeyId: 'indifferent',
+    secretAccessKey: 'lul im a sekrit'
   })
-  console.log(dynamoDb);
+  // console.log(dynamoDb);
 } else {
   dynamoDb = new AWS.DynamoDB.DocumentClient();
 };
