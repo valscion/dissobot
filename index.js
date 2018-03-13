@@ -27,6 +27,11 @@ app.get('/', function (req, res) {
   res.send('Hello World!')
 })
 
+const TELEGRAM_URL = `/telegram/${process.env.TELEGRAM_URL_SECRET}`;
+app.get(TELEGRAM_URL, function (req, res) {
+  console.log(req.params);
+})
+
 // Get User endpoint
 app.get('/users/:userId', function (req, res) {
   const params = {

@@ -32,6 +32,7 @@ provider:
     # aws --profile nurmilaakso-dissonanssi \
     #   ssm put-parameter --name telegramToken --type String --value abc123
     TELEGRAM_TOKEN: ${ssm:telegramToken}
+    TELEGRAM_URL_SECRET: ${ssm:telegramUrlSecret}
 
 
 functions:
