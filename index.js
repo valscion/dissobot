@@ -28,7 +28,7 @@ app.get('/', function (req, res) {
 })
 
 const TELEGRAM_URL = '/telegram/' + process.env.TELEGRAM_URL_SECRET;
-app.get(TELEGRAM_URL, function (req, res) {
+app.post(TELEGRAM_URL, function (req, res) {
   console.log('Telegram URL called')
   console.log(JSON.stringify(req && req.params));
   res.send('OK')
