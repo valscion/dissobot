@@ -23,6 +23,7 @@ if (IS_OFFLINE === 'true') {
 app.use(bodyParser.json({ strict: false }));
 
 app.get('/', function (req, res) {
+  console.log('Hello from root');
   res.send('Hello World!')
 })
 
