@@ -53,6 +53,9 @@ app.post(TELEGRAM_URL, function(req, res) {
         .then(res => res.json())
         .then(json =>
           console.log("Response back from Telegram: " + JSON.stringify(json))
+        )
+        .catch(err =>
+          console.log("Replying did not go so smooth: " + JSON.stringify(err))
         );
     }
   }
