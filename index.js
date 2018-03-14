@@ -41,6 +41,7 @@ app.post(TELEGRAM_URL, function(req, res) {
     if (chat && chat.id && chat.type == "private") {
       console.log("Replying back to private message");
       fetch(TELEGRAM_API_ROOT + "/sendMessage", {
+        method: 'POST',
         headers: {
           "user-agent": "DissoBot v0.0.0",
           "content-type": "application/json"
