@@ -1,6 +1,7 @@
 const serverless = require("serverless-http");
 const bodyParser = require("body-parser");
 const express = require("express");
+const fetch = require("node-fetch");
 const app = express();
 const AWS = require("aws-sdk");
 
@@ -28,9 +29,33 @@ app.get("/", function(req, res) {
 });
 
 const TELEGRAM_URL = "/telegram/" + process.env.TELEGRAM_URL_SECRET;
+const TELEGRAM_API_ROOT =
+  "https://api.telegram.org/bot" + process.env.TELEGRAM_TOKEN;
 app.post(TELEGRAM_URL, function(req, res) {
   console.log("Telegram URL called");
   console.log(JSON.stringify(req.body));
+
+  const { message } = req.body;
+  if (message) {
+    const { chat } = message;
+    if (chat && chat.id && chat.type == "private") {
+      console.log("Replying back to private message");
+      fetch(TELEGRAM_API_ROOT + "/sendMessage", {
+        headers: {
+          "user-agent": "DissoBot v0.0.0",
+          "content-type": "application/json"
+        },
+        body: JSON.stringify({
+          chat_id: chat.id,
+          text: message.text
+        })
+      })
+        .then(res => res.json())
+        .then(json =>
+          console.log("Response back from Telegram: " + JSON.stringify(json))
+        );
+    }
+  }
   res.send("OK");
 });
 
