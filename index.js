@@ -39,9 +39,10 @@ app.post(TELEGRAM_URL, function(req, res) {
   if (message) {
     const { chat } = message;
     if (chat && chat.id && chat.type == "private") {
+      const url = TELEGRAM_API_ROOT + "/sendMessage";
       console.log("Replying back to private message");
-      fetch(TELEGRAM_API_ROOT + "/sendMessage", {
-        method: 'POST',
+      fetch(url, {
+        method: "POST",
         headers: {
           "user-agent": "DissoBot v0.0.0",
           "content-type": "application/json"
@@ -52,15 +53,18 @@ app.post(TELEGRAM_URL, function(req, res) {
         })
       })
         .then(res => res.json())
-        .then(json =>
-          console.log("Response back from Telegram: " + JSON.stringify(json))
-        )
-        .catch(err =>
-          console.log("Replying did not go so smooth: " + JSON.stringify(err))
-        );
+        .then(json => {
+          console.log("Response back from Telegram: " + JSON.stringify(json));
+          res.send("OK");
+        })
+        .catch(err => {
+          console.log("Replying did not go so smooth: " + JSON.stringify(err));
+          res.status(500).json({ error: JSON.stringify(err) });
+        });
     }
+  } else {
+    res.status(404).json({ error: "No message received" });
   }
-  res.send("OK");
 });
 
 // Get User endpoint
