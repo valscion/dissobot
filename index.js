@@ -1,3 +1,5 @@
+// @flow
+
 require("babel-polyfill");
 
 const serverless = require("serverless-http");
@@ -26,6 +28,7 @@ if (IS_OFFLINE === "true") {
 
 app.use(bodyParser.json({ strict: false }));
 
+// $FlowFixMe process.env.XYZ might be undefined
 const TELEGRAM_URL = "/telegram/" + process.env.TELEGRAM_URL_SECRET;
 app.post(TELEGRAM_URL, async function(req, res) {
   console.log("Telegram URL called");
