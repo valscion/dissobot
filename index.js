@@ -1,3 +1,5 @@
+require("babel-polyfill");
+
 const serverless = require("serverless-http");
 const bodyParser = require("body-parser");
 const express = require("express");
