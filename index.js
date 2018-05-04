@@ -27,7 +27,7 @@ if (IS_OFFLINE === "true") {
 app.use(bodyParser.json({ strict: false }));
 
 const TELEGRAM_URL = "/telegram/" + process.env.TELEGRAM_URL_SECRET;
-app.post(TELEGRAM_URL, function(req, res) {
+app.post(TELEGRAM_URL, async function(req, res) {
   console.log("Telegram URL called");
   console.log(JSON.stringify(req.body));
 
@@ -35,12 +35,15 @@ app.post(TELEGRAM_URL, function(req, res) {
   if (message) {
     const { chat } = message;
     if (chat && chat.id && chat.type == "private") {
-      telegram
-        .sendMessage({
+      try {
+        await telegram.sendMessage({
           chat_id: chat.id,
           text: message.text
-        })
-        .then(() => res.send("OK"), err => res.status(500).json(err));
+        });
+        res.send("OK");
+      } catch (err) {
+        res.status(500).json(err);
+      }
     }
   } else {
     res.status(404).json({ error: "No message received" });
