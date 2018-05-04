@@ -16,7 +16,8 @@
     "express": "^4.16.2",
     "google-spreadsheet": "^2.0.4",
     "node-fetch": "^2.1.1",
-    "serverless-http": "^1.5.3"
+    "serverless-http": "^1.5.3",
+    "telegram-typings": "^3.6.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",

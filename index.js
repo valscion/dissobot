@@ -6,6 +6,7 @@ import serverless from "serverless-http";
 import bodyParser from "body-parser";
 import express from "express";
 import AWS from "aws-sdk";
+import type { Update } from "telegram-typings";
 
 import { USERS_TABLE, IS_OFFLINE, TELEGRAM_URL_SECRET } from "./environment";
 import * as telegram from "./telegram";
@@ -32,10 +33,11 @@ app.post(TELEGRAM_URL, async function(req, res) {
   console.log("Telegram URL called");
   console.log(JSON.stringify(req.body));
 
-  const { message } = req.body;
+  const update: Update = req.body;
+  const message = update.message;
   if (message) {
     const { chat } = message;
-    if (chat && chat.id && chat.type == "private") {
+    if (chat.type == "private") {
       try {
         await telegram.sendMessage({
           chat_id: chat.id,
