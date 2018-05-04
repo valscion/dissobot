@@ -2,13 +2,13 @@
 
 const fetch = require("node-fetch");
 
+const { TELEGRAM_TOKEN } = require("./environment");
+
 module.exports = {
   sendMessage
 };
 
-const TELEGRAM_API_ROOT =
-  // $FlowFixMe process.env.XYZ might be undefined
-  "https://api.telegram.org/bot" + process.env.TELEGRAM_TOKEN;
+const TELEGRAM_API_ROOT = "https://api.telegram.org/bot" + TELEGRAM_TOKEN;
 
 // TODO: Improve the type of bodyJson
 async function sendMessage(bodyJson: Object) {

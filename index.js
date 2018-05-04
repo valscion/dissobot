@@ -8,11 +8,13 @@ const express = require("express");
 const app = express();
 const AWS = require("aws-sdk");
 
+const {
+  USERS_TABLE,
+  IS_OFFLINE,
+  TELEGRAM_URL_SECRET
+} = require("./environment");
 const telegram = require("./telegram");
 
-const USERS_TABLE = process.env.USERS_TABLE;
-
-const IS_OFFLINE = process.env.IS_OFFLINE;
 let dynamoDb;
 if (IS_OFFLINE === "true") {
   dynamoDb = new AWS.DynamoDB.DocumentClient({
@@ -28,8 +30,7 @@ if (IS_OFFLINE === "true") {
 
 app.use(bodyParser.json({ strict: false }));
 
-// $FlowFixMe process.env.XYZ might be undefined
-const TELEGRAM_URL = "/telegram/" + process.env.TELEGRAM_URL_SECRET;
+const TELEGRAM_URL = "/telegram/" + TELEGRAM_URL_SECRET;
 app.post(TELEGRAM_URL, async function(req, res) {
   console.log("Telegram URL called");
   console.log(JSON.stringify(req.body));
