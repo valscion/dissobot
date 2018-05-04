@@ -18,7 +18,7 @@ async function sendMessage(bodyJson) {
         "content-type": "application/json"
       },
       body: JSON.stringify(bodyJson)
-    })
+    });
     const json = await response.json();
     console.log("Response back from Telegram: " + JSON.stringify(json));
     return json;
