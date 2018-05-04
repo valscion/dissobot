@@ -1,6 +1,7 @@
 service: dissobot
 
 plugins:
+  - serverless-webpack
   - serverless-dynamodb-local
   - serverless-offline # this needs to be last in the list
 
@@ -9,6 +10,8 @@ custom:
   dynamodb:
     start:
       migrate: true
+  webpack:
+    includeModules: true # enable auto-packing of external modules
 
 provider:
   name: aws
