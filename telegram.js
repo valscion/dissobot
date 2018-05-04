@@ -16,10 +16,7 @@ function sendMessage(bodyJson) {
       "user-agent": "DissoBot v0.0.0",
       "content-type": "application/json"
     },
-    body: JSON.stringify({
-      chat_id: chat.id,
-      text: message.text
-    })
+    body: JSON.stringify(bodyJson)
   })
     .then(res => res.json())
     .then(json => {
