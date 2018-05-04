@@ -1,17 +1,13 @@
 // @flow
 
-const fetch = require("node-fetch");
+import fetch from "node-fetch";
 
-const { TELEGRAM_TOKEN } = require("./environment");
-
-module.exports = {
-  sendMessage
-};
+import { TELEGRAM_TOKEN } from "./environment";
 
 const TELEGRAM_API_ROOT = "https://api.telegram.org/bot" + TELEGRAM_TOKEN;
 
 // TODO: Improve the type of bodyJson
-async function sendMessage(bodyJson: Object) {
+export async function sendMessage(bodyJson: Object) {
   const url = TELEGRAM_API_ROOT + "/sendMessage";
 
   try {

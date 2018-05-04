@@ -1,19 +1,16 @@
 // @flow
 
-require("babel-polyfill");
+import "babel-polyfill";
 
-const serverless = require("serverless-http");
-const bodyParser = require("body-parser");
-const express = require("express");
+import serverless from "serverless-http";
+import bodyParser from "body-parser";
+import express from "express";
+import AWS from "aws-sdk";
+
+import { USERS_TABLE, IS_OFFLINE, TELEGRAM_URL_SECRET } from "./environment";
+import * as telegram from "./telegram";
+
 const app = express();
-const AWS = require("aws-sdk");
-
-const {
-  USERS_TABLE,
-  IS_OFFLINE,
-  TELEGRAM_URL_SECRET
-} = require("./environment");
-const telegram = require("./telegram");
 
 let dynamoDb;
 if (IS_OFFLINE === "true") {
