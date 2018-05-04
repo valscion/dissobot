@@ -18,6 +18,7 @@
     "serverless-http": "^1.5.3"
   },
   "devDependencies": {
+    "flow-bin": "^0.71.0",
     "serverless-dynamodb-local": "^0.2.28",
     "serverless-offline": "^3.18.0"
   }
