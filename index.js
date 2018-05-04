@@ -25,11 +25,6 @@ if (IS_OFFLINE === "true") {
 
 app.use(bodyParser.json({ strict: false }));
 
-app.get("/", function(req, res) {
-  console.log("Hello from root");
-  res.send("Hello World!");
-});
-
 const TELEGRAM_URL = "/telegram/" + process.env.TELEGRAM_URL_SECRET;
 app.post(TELEGRAM_URL, function(req, res) {
   console.log("Telegram URL called");
