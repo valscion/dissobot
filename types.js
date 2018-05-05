@@ -34,3 +34,12 @@ export type APIGatewayEvent = {
   },
   resource: string
 };
+
+export type ProxyResult = {
+  statusCode: number,
+  headers?: {
+    [header: string]: boolean | number | string
+  },
+  body: string,
+  isBase64Encoded?: boolean
+};

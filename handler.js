@@ -3,14 +3,15 @@
 import type { Update } from "telegram-typings";
 
 import { TELEGRAM_URL_SECRET } from "./environment";
-import type { APIGatewayEvent } from "./types";
-import * as telegram from "./telegram";
+import type { APIGatewayEvent, ProxyResult } from "./types";
+
+import handleMessage from "./handleMessage";
 
 const TELEGRAM_URL = "/telegram/" + TELEGRAM_URL_SECRET;
 export default async function handler(
   event: APIGatewayEvent,
   _context: empty,
-  callback: Function
+  callback: (error: null | Error, result?: ProxyResult) => void
 ) {
   if (event.path !== TELEGRAM_URL) {
     console.log("Not a telegram path, skipping: " + event.path);
@@ -23,7 +24,8 @@ export default async function handler(
   if (!event.body) {
     console.error("No body for telegram request!");
     callback(null, {
-      statusCode: 500
+      statusCode: 500,
+      body: "No body for telegram request"
     });
     return;
   }
@@ -32,21 +34,11 @@ export default async function handler(
   console.log("Handling telegram update: " + JSON.stringify(update));
   const message = update.message;
   if (message) {
-    const { chat } = message;
-    if (chat.type == "private") {
-      try {
-        await telegram.sendMessage({
-          chat_id: chat.id,
-          text: message.text
-        });
-        callback(null, {
-          statusCode: 200,
-          body: "OK"
-        });
-        return;
-      } catch (err) {
-        callback(err);
-      }
+    try {
+      const result = await handleMessage(message);
+      return callback(null, result);
+    } catch (err) {
+      return callback(err);
     }
   } else {
     callback(null, {
