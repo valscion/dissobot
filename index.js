@@ -1,17 +1,10 @@
 // @flow
 
 import "babel-polyfill";
-
-import serverless from "serverless-http";
-import bodyParser from "body-parser";
-import express from "express";
 import AWS from "aws-sdk";
-import type { Update } from "telegram-typings";
 
-import { USERS_TABLE, IS_OFFLINE, TELEGRAM_URL_SECRET } from "./environment";
-import * as telegram from "./telegram";
-
-const app = express();
+import { IS_OFFLINE } from "./environment";
+import handler from "./handler";
 
 let dynamoDb;
 if (IS_OFFLINE === "true") {
@@ -26,31 +19,4 @@ if (IS_OFFLINE === "true") {
   dynamoDb = new AWS.DynamoDB.DocumentClient();
 }
 
-app.use(bodyParser.json({ strict: false }));
-
-const TELEGRAM_URL = "/telegram/" + TELEGRAM_URL_SECRET;
-app.post(TELEGRAM_URL, async function(req, res) {
-  console.log("Telegram URL called");
-  console.log(JSON.stringify(req.body));
-
-  const update: Update = req.body;
-  const message = update.message;
-  if (message) {
-    const { chat } = message;
-    if (chat.type == "private") {
-      try {
-        await telegram.sendMessage({
-          chat_id: chat.id,
-          text: message.text
-        });
-        res.send("OK");
-      } catch (err) {
-        res.status(500).json(err);
-      }
-    }
-  } else {
-    res.status(404).json({ error: "No message received" });
-  }
-});
-
-module.exports.handler = serverless(app);
+module.exports.handler = handler;
