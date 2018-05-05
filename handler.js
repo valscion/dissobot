@@ -12,9 +12,8 @@ export default async function handler(
   _context: empty,
   callback: Function
 ) {
-  console.log("Handler called " + JSON.stringify(event));
   if (event.path !== TELEGRAM_URL) {
-    console.log("Not a telegram path, skipping");
+    console.log("Not a telegram path, skipping: " + event.path);
     callback(null, {
       statusCode: 404,
       body: "Not Found"
@@ -30,6 +29,7 @@ export default async function handler(
   }
 
   const update: Update = JSON.parse(event.body);
+  console.log("Handling telegram update: " + JSON.stringify(update));
   const message = update.message;
   if (message) {
     const { chat } = message;
