@@ -10,7 +10,7 @@ export default async function handleMessage(
 ): Promise<ProxyResult> {
   const { chat } = message;
 
-  if (chat.type == "private") {
+  if (chat.type == "private" && message.text) {
     await telegram.sendMessage({
       chat_id: chat.id,
       text: message.text

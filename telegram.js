@@ -1,13 +1,13 @@
 // @flow
 
 import fetch from "node-fetch";
+import type { SendMessagePayload } from "telegram-typings";
 
 import { TELEGRAM_TOKEN } from "./environment";
 
 const TELEGRAM_API_ROOT = "https://api.telegram.org/bot" + TELEGRAM_TOKEN;
 
-// TODO: Improve the type of bodyJson
-export async function sendMessage(bodyJson: Object) {
+export async function sendMessage(bodyJson: SendMessagePayload) {
   const url = TELEGRAM_API_ROOT + "/sendMessage";
 
   try {
