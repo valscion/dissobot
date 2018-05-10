@@ -39,13 +39,13 @@ provider:
 
 
 functions:
-  app:
-    handler: index.handler
+  telegram:
+    handler: telegram.handler
     events:
       - http: ANY /telegram
       - http: 'ANY /telegram/{proxy+}'
   gsheet:
-    handler: updateSpreadsheetHandler.handler
+    handler: gsheet.handler
     events:
       - http: ANY /refresh_treeni_ilmoke
 
