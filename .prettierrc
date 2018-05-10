@@ -1,0 +1,10 @@
+{
+  "overrides": [
+    {
+      "files": "flow-typed/**/*",
+      "options": {
+        "trailingComma": "all"
+      }
+    }
+  ]
+}
