@@ -2,7 +2,7 @@
 
 import type { Message } from "telegram-typings";
 
-import type { ProxyResult } from "./types";
+import type { ProxyResult } from "../common/types";
 import * as telegram from "./telegram";
 
 export default async function handleMessage(

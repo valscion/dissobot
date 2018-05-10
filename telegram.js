@@ -3,8 +3,8 @@
 import "babel-polyfill";
 import AWS from "aws-sdk";
 
-import { IS_OFFLINE } from "./src/environment";
-import handler from "./src/handler";
+import { IS_OFFLINE } from "./src/common/environment";
+import handler from "./src/telegram/handler";
 
 let dynamoDb;
 if (IS_OFFLINE === "true") {

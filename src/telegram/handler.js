@@ -2,8 +2,8 @@
 
 import type { Update } from "telegram-typings";
 
-import { TELEGRAM_URL_SECRET } from "./environment";
-import type { APIGatewayEvent, ProxyResult } from "./types";
+import { TELEGRAM_URL_SECRET } from "../common/environment";
+import type { APIGatewayEvent, ProxyResult } from "../common/types";
 
 import handleMessage from "./handleMessage";
 

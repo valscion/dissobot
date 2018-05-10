@@ -3,7 +3,7 @@
 import fetch from "node-fetch";
 import type { SendMessagePayload } from "telegram-typings";
 
-import { TELEGRAM_TOKEN } from "./environment";
+import { TELEGRAM_TOKEN } from "../common/environment";
 
 const TELEGRAM_API_ROOT = "https://api.telegram.org/bot" + TELEGRAM_TOKEN;
 
