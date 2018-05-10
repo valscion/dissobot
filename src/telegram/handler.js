@@ -8,7 +8,7 @@ import type { APIGatewayEvent, ProxyResult } from "../common/types";
 import handleMessage from "./handleMessage";
 
 const TELEGRAM_URL = "/telegram/" + TELEGRAM_URL_SECRET;
-export default async function handler(
+export default async function telegramHandler(
   event: APIGatewayEvent,
   _context: empty,
   callback: (error: null | Error, result?: ProxyResult) => void
