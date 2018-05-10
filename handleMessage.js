@@ -11,10 +11,15 @@ export default async function handleMessage(
   const { chat } = message;
 
   if (chat.type == "private" && message.text) {
-    await telegram.sendMessage({
-      chat_id: chat.id,
-      text: message.text
-    });
+    const text = message.text;
+
+    if (/^\/ping$/.test(text)) {
+      await telegram.sendMessage({
+        chat_id: chat.id,
+        text: "PONG"
+      });
+    }
+
     return {
       statusCode: 200,
       body: "OK"
