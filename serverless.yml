@@ -42,8 +42,12 @@ functions:
   app:
     handler: index.handler
     events:
-      - http: ANY /
-      - http: 'ANY {proxy+}'
+      - http: ANY /telegram
+      - http: 'ANY /telegram/{proxy+}'
+  gsheet:
+    handler: updateSpreadsheetHandler.handler
+    events:
+      - http: ANY /refresh_treeni_ilmoke
 
 resources:
   Resources:
