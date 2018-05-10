@@ -1,28 +1,32 @@
 declare module "telegram-typings" {
   /**
-   * A placeholder, currently holds no information. Use BotFather to set up 
+   * A placeholder, currently holds no information. Use BotFather to set up
    * your game.
    */
   declare type CallbackGame = {};
 
   /**
-   * This object represents the content of a message to be sent as a result 
+   * This object represents the content of a message to be sent as a result
    * of an inline query.
    */
-  declare type InputMessageContent = InputTextMessageContent | InputLocationMessageContent | InputVenueMessageContent | InputContactMessageContent;
+  declare type InputMessageContent =
+    | InputTextMessageContent
+    | InputLocationMessageContent
+    | InputVenueMessageContent
+    | InputContactMessageContent;
 
   /**
-   * This object represents an incoming update.At most one of the optional 
+   * This object represents an incoming update.At most one of the optional
    * parameters can be present in any given update.
    * @see https://core.telegram.org/bots/api#available-types
    */
   declare type Update = {
     /**
-     * The update‘s unique identifier. Update identifiers start from a certain 
-     * positive number and increase sequentially. This ID becomes especially 
-     * handy if you’re using Webhooks, since it allows you to ignore repeated 
-     * updates or to restore the correct update sequence, should they get out 
-     * of order. If there are no new updates for at least a week, then 
+     * The update‘s unique identifier. Update identifiers start from a certain
+     * positive number and increase sequentially. This ID becomes especially
+     * handy if you’re using Webhooks, since it allows you to ignore repeated
+     * updates or to restore the correct update sequence, should they get out
+     * of order. If there are no new updates for at least a week, then
      * identifier of the next update will be chosen randomly instead of sequentially.
      * @see https://core.telegram.org/bots/api#setwebhook
      */
@@ -55,8 +59,8 @@ declare module "telegram-typings" {
     inline_query?: InlineQuery,
 
     /**
-     * The result of an inline query that was chosen by a user and sent to 
-     * their chat partner. Please see our documentation on the feedback 
+     * The result of an inline query that was chosen by a user and sent to
+     * their chat partner. Please see our documentation on the feedback
      * collecting for details on how to enable these updates for your bot.
      * @see https://core.telegram.org/bots/api#inline-mode
      * @see https://core.telegram.org/bots/api/bots/inline#collecting-feedback
@@ -99,19 +103,19 @@ declare module "telegram-typings" {
     pending_update_count: number,
 
     /**
-     * Unix time for the most recent error that happened when trying to deliver 
+     * Unix time for the most recent error that happened when trying to deliver
      * an update via webhook
      */
     last_error_date?: number,
 
     /**
-     * Error message in human-readable format for the most recent error that 
+     * Error message in human-readable format for the most recent error that
      * happened when trying to deliver an update via webhook
      */
     last_error_message?: string,
 
     /**
-     * Maximum allowed number of simultaneous HTTPS connections to the webhook 
+     * Maximum allowed number of simultaneous HTTPS connections to the webhook
      * for update delivery
      */
     max_connections?: number,
@@ -163,9 +167,9 @@ declare module "telegram-typings" {
    */
   declare type Chat = {
     /**
-     * Unique identifier for this chat. This number may be greater than 32 bits 
-     * and some programming languages may have difficulty/silent defects in 
-     * interpreting it. But it is smaller than 52 bits, so a signed 64 bit 
+     * Unique identifier for this chat. This number may be greater than 32 bits
+     * and some programming languages may have difficulty/silent defects in
+     * interpreting it. But it is smaller than 52 bits, so a signed 64 bit
      * integer or double-precision float type are safe for storing this identifier.
      */
     id: number,
@@ -272,7 +276,7 @@ declare module "telegram-typings" {
     forward_from_chat?: Chat,
 
     /**
-     * For messages forwarded from channels, identifier of the original message 
+     * For messages forwarded from channels, identifier of the original message
      * in the channel
      */
     forward_from_message_id?: number,
@@ -288,8 +292,8 @@ declare module "telegram-typings" {
     forward_date?: number,
 
     /**
-     * For replies, the original message. Note that the Message object in this 
-     * field will not contain further reply_to_message fields even if it itself 
+     * For replies, the original message. Note that the Message object in this
+     * field will not contain further reply_to_message fields even if it itself
      * is a reply.
      */
     reply_to_message?: Message,
@@ -315,13 +319,13 @@ declare module "telegram-typings" {
     text?: string,
 
     /**
-     * For text messages, special entities like usernames, URLs, bot commands, 
+     * For text messages, special entities like usernames, URLs, bot commands,
      * etc. that appear in the text
      */
     entities?: MessageEntity[],
 
     /**
-     * For messages with a caption, special entities like usernames, URLs, bot 
+     * For messages with a caption, special entities like usernames, URLs, bot
      * commands, etc. that appear in the caption
      */
     caption_entities?: MessageEntity[],
@@ -389,13 +393,13 @@ declare module "telegram-typings" {
     venue?: Venue,
 
     /**
-     * New members that were added to the group or supergroup and information 
+     * New members that were added to the group or supergroup and information
      * about them (the bot itself may be one of these members)
      */
     new_chat_members?: User[],
 
     /**
-     * A member was removed from the group, information about them (this member 
+     * A member was removed from the group, information about them (this member
      * may be the bot itself)
      */
     left_chat_member?: User,
@@ -421,62 +425,62 @@ declare module "telegram-typings" {
     group_chat_created?: true,
 
     /**
-     * Service message: the supergroup has been created. This field can‘t be 
-     * received in a message coming through updates, because bot can’t be a 
-     * member of a supergroup when it is created. It can only be found in 
-     * reply_to_message if someone replies to a very first message in a 
+     * Service message: the supergroup has been created. This field can‘t be
+     * received in a message coming through updates, because bot can’t be a
+     * member of a supergroup when it is created. It can only be found in
+     * reply_to_message if someone replies to a very first message in a
      * directly created supergroup.
      */
     supergroup_chat_created?: true,
 
     /**
-     * Service message: the channel has been created. This field can‘t be 
-     * received in a message coming through updates, because bot can’t be a 
-     * member of a channel when it is created. It can only be found in 
+     * Service message: the channel has been created. This field can‘t be
+     * received in a message coming through updates, because bot can’t be a
+     * member of a channel when it is created. It can only be found in
      * reply_to_message if someone replies to a very first message in a channel.
      */
     channel_chat_created?: true,
 
     /**
-     * The group has been migrated to a supergroup with the specified 
-     * identifier. This number may be greater than 32 bits and some programming 
-     * languages may have difficulty/silent defects in interpreting it. But it 
-     * is smaller than 52 bits, so a signed 64 bit integer or double-precision 
+     * The group has been migrated to a supergroup with the specified
+     * identifier. This number may be greater than 32 bits and some programming
+     * languages may have difficulty/silent defects in interpreting it. But it
+     * is smaller than 52 bits, so a signed 64 bit integer or double-precision
      * float type are safe for storing this identifier.
      */
     migrate_to_chat_id?: number,
 
     /**
-     * The supergroup has been migrated from a group with the specified 
-     * identifier. This number may be greater than 32 bits and some programming 
-     * languages may have difficulty/silent defects in interpreting it. But it 
-     * is smaller than 52 bits, so a signed 64 bit integer or double-precision 
+     * The supergroup has been migrated from a group with the specified
+     * identifier. This number may be greater than 32 bits and some programming
+     * languages may have difficulty/silent defects in interpreting it. But it
+     * is smaller than 52 bits, so a signed 64 bit integer or double-precision
      * float type are safe for storing this identifier.
      */
     migrate_from_chat_id?: number,
 
     /**
-     * Specified message was pinned. Note that the Message object in this field 
+     * Specified message was pinned. Note that the Message object in this field
      * will not contain further reply_to_message fields even if it is itself a reply.
      */
     pinned_message?: Message,
 
     /**
-     * Message is an invoice for a payment, information about the invoice. More 
+     * Message is an invoice for a payment, information about the invoice. More
      * about payments »
      * @see https://core.telegram.org/bots/api#payments
      */
     invoice?: Invoice,
 
     /**
-     * Message is a service message about a successful payment, information 
+     * Message is a service message about a successful payment, information
      * about the payment. More about payments »
      * @see https://core.telegram.org/bots/api#payments
      */
     successful_payment?: SuccessfulPayment,
 
     /**
-     * The domain name of the website on which the user has logged in. More 
+     * The domain name of the website on which the user has logged in. More
      * about Telegram Login »
      * @see https://core.telegram.org/bots/api/widgets/login
      */
@@ -484,14 +488,14 @@ declare module "telegram-typings" {
   };
 
   /**
-   * This object represents one special entity in a text message. For 
+   * This object represents one special entity in a text message. For
    * example, hashtags, usernames, URLs, etc.
    */
   declare type MessageEntity = {
     /**
-     * Type of the entity. Can be mention (@username), hashtag, bot_command, 
-     * url, email, bold (bold text), italic (italic text), code (monowidth 
-     * string), pre (monowidth block), text_link (for clickable text URLs), 
+     * Type of the entity. Can be mention (@username), hashtag, bot_command,
+     * url, email, bold (bold text), italic (italic text), code (monowidth
+     * string), pre (monowidth block), text_link (for clickable text URLs),
      * text_mention (for users without usernames)
      * @see https://telegram.org/blog/edit#new-mentions
      */
@@ -546,7 +550,7 @@ declare module "telegram-typings" {
   };
 
   /**
-   * This object represents an audio file to be treated as music by the 
+   * This object represents an audio file to be treated as music by the
    * Telegram clients.
    */
   declare type Audio = {
@@ -582,7 +586,7 @@ declare module "telegram-typings" {
   };
 
   /**
-   * This object represents a general file (as opposed to photos, voice 
+   * This object represents a general file (as opposed to photos, voice
    * messages and audio files).
    * @see https://core.telegram.org/bots/api#photosize
    * @see https://core.telegram.org/bots/api#voice
@@ -792,10 +796,10 @@ declare module "telegram-typings" {
   };
 
   /**
-   * This object represents a file ready to be downloaded. The file can be 
-   * downloaded via the link 
-   * https://api.telegram.org/file/bot<token>/<file_path>. It is guaranteed 
-   * that the link will be valid for at least 1 hour. When the link expires, 
+   * This object represents a file ready to be downloaded. The file can be
+   * downloaded via the link
+   * https://api.telegram.org/file/bot<token>/<file_path>. It is guaranteed
+   * that the link will be valid for at least 1 hour. When the link expires,
    * a new one can be requested by calling getFile.
    * @see https://core.telegram.org/bots/api#getfile
    */
@@ -811,14 +815,14 @@ declare module "telegram-typings" {
     file_size?: number,
 
     /**
-     * File path. Use https://api.telegram.org/file/bot<token>/<file_path> to 
+     * File path. Use https://api.telegram.org/file/bot<token>/<file_path> to
      * get the file.
      */
     file_path?: string,
   };
 
   /**
-   * This object represents a custom keyboard with reply options (see 
+   * This object represents a custom keyboard with reply options (see
    * Introduction to bots for details and examples).
    * @see https://core.telegram.org/bots#keyboards
    */
@@ -830,27 +834,27 @@ declare module "telegram-typings" {
     keyboard: KeyboardButton[][],
 
     /**
-     * Requests clients to resize the keyboard vertically for optimal fit 
-     * (e.g., make the keyboard smaller if there are just two rows of buttons). 
-     * Defaults to false, in which case the custom keyboard is always of the 
+     * Requests clients to resize the keyboard vertically for optimal fit
+     * (e.g., make the keyboard smaller if there are just two rows of buttons).
+     * Defaults to false, in which case the custom keyboard is always of the
      * same height as the app's standard keyboard.
      */
     resize_keyboard?: boolean,
 
     /**
-     * Requests clients to hide the keyboard as soon as it's been used. The 
-     * keyboard will still be available, but clients will automatically display 
-     * the usual letter-keyboard in the chat – the user can press a special 
+     * Requests clients to hide the keyboard as soon as it's been used. The
+     * keyboard will still be available, but clients will automatically display
+     * the usual letter-keyboard in the chat – the user can press a special
      * button in the input field to see the custom keyboard again. Defaults to false.
      */
     one_time_keyboard?: boolean,
 
     /**
-     * Use this parameter if you want to show the keyboard to specific users 
-     * only. Targets: 1) users that are @mentioned in the text of the Message 
-     * object; 2) if the bot's message is a reply (has reply_to_message_id), 
-     * sender of the original message.Example: A user requests to change the 
-     * bot‘s language, bot replies to the request with a keyboard to select the 
+     * Use this parameter if you want to show the keyboard to specific users
+     * only. Targets: 1) users that are @mentioned in the text of the Message
+     * object; 2) if the bot's message is a reply (has reply_to_message_id),
+     * sender of the original message.Example: A user requests to change the
+     * bot‘s language, bot replies to the request with a keyboard to select the
      * new language. Other users in the group don’t see the keyboard.
      * @see https://core.telegram.org/bots/api#message
      */
@@ -858,54 +862,54 @@ declare module "telegram-typings" {
   };
 
   /**
-   * This object represents one button of the reply keyboard. For simple text 
-   * buttons String can be used instead of this object to specify text of the 
+   * This object represents one button of the reply keyboard. For simple text
+   * buttons String can be used instead of this object to specify text of the
    * button. Optional fields are mutually exclusive.
    */
   declare type KeyboardButton = {
     /**
-     * Text of the button. If none of the optional fields are used, it will be 
+     * Text of the button. If none of the optional fields are used, it will be
      * sent as a message when the button is pressed
      */
     text: string,
 
     /**
-     * If True, the user's phone number will be sent as a contact when the 
+     * If True, the user's phone number will be sent as a contact when the
      * button is pressed. Available in private chats only
      */
     request_contact?: boolean,
 
     /**
-     * If True, the user's current location will be sent when the button is 
+     * If True, the user's current location will be sent when the button is
      * pressed. Available in private chats only
      */
     request_location?: boolean,
   };
 
   /**
-   * Upon receiving a message with this object, Telegram clients will remove 
-   * the current custom keyboard and display the default letter-keyboard. By 
-   * default, custom keyboards are displayed until a new keyboard is sent by 
-   * a bot. An exception is made for one-time keyboards that are hidden 
+   * Upon receiving a message with this object, Telegram clients will remove
+   * the current custom keyboard and display the default letter-keyboard. By
+   * default, custom keyboards are displayed until a new keyboard is sent by
+   * a bot. An exception is made for one-time keyboards that are hidden
    * immediately after the user presses a button (see ReplyKeyboardMarkup).
    * @see https://core.telegram.org/bots/api#replykeyboardmarkup
    */
   declare type ReplyKeyboardRemove = {
     /**
-     * Requests clients to remove the custom keyboard (user will not be able to 
-     * summon this keyboard; if you want to hide the keyboard from sight but 
+     * Requests clients to remove the custom keyboard (user will not be able to
+     * summon this keyboard; if you want to hide the keyboard from sight but
      * keep it accessible, use one_time_keyboard in ReplyKeyboardMarkup)
      * @see https://core.telegram.org/bots/api#replykeyboardmarkup
      */
     remove_keyboard: true,
 
     /**
-     * Use this parameter if you want to remove the keyboard for specific users 
-     * only. Targets: 1) users that are @mentioned in the text of the Message 
-     * object; 2) if the bot's message is a reply (has reply_to_message_id), 
-     * sender of the original message.Example: A user votes in a poll, bot 
-     * returns confirmation message in reply to the vote and removes the 
-     * keyboard for that user, while still showing the keyboard with poll 
+     * Use this parameter if you want to remove the keyboard for specific users
+     * only. Targets: 1) users that are @mentioned in the text of the Message
+     * object; 2) if the bot's message is a reply (has reply_to_message_id),
+     * sender of the original message.Example: A user votes in a poll, bot
+     * returns confirmation message in reply to the vote and removes the
+     * keyboard for that user, while still showing the keyboard with poll
      * options to users who haven't voted yet.
      * @see https://core.telegram.org/bots/api#message
      */
@@ -913,21 +917,21 @@ declare module "telegram-typings" {
   };
 
   /**
-   * This object represents an inline keyboard that appears right next to the 
+   * This object represents an inline keyboard that appears right next to the
    * message it belongs to.
    * @see https://core.telegram.org/bots#inline-keyboards-and-on-the-fly-updating
    */
   declare type InlineKeyboardMarkup = {
     /**
-     * Array of button rows, each represented by an Array of 
+     * Array of button rows, each represented by an Array of
      * InlineKeyboardButton objects
      * @see https://core.telegram.org/bots/api#inlinekeyboardbutton
      */
-    inline_keyboard: InlineKeyboardButton[][]
+    inline_keyboard: InlineKeyboardButton[][],
   };
 
   /**
-   * This object represents one button of an inline keyboard. You must use 
+   * This object represents one button of an inline keyboard. You must use
    * exactly one of the optional fields.
    */
   declare type InlineKeyboardButton = {
@@ -942,20 +946,20 @@ declare module "telegram-typings" {
     url?: string,
 
     /**
-     * Data to be sent in a callback query to the bot when button is pressed, 
+     * Data to be sent in a callback query to the bot when button is pressed,
      * 1-64 bytes
      * @see https://core.telegram.org/bots/api#callbackquery
      */
     callback_data?: string,
 
     /**
-     * If set, pressing the button will prompt the user to select one of their 
-     * chats, open that chat and insert the bot‘s username and the specified 
-     * inline query in the input field. Can be empty, in which case just the 
-     * bot’s username will be inserted.Note: This offers an easy way for users 
-     * to start using your bot in inline mode when they are currently in a 
-     * private chat with it. Especially useful when combined with switch_pm… 
-     * actions – in this case the user will be automatically returned to the 
+     * If set, pressing the button will prompt the user to select one of their
+     * chats, open that chat and insert the bot‘s username and the specified
+     * inline query in the input field. Can be empty, in which case just the
+     * bot’s username will be inserted.Note: This offers an easy way for users
+     * to start using your bot in inline mode when they are currently in a
+     * private chat with it. Especially useful when combined with switch_pm…
+     * actions – in this case the user will be automatically returned to the
      * chat they switched from, skipping the chat selection screen.
      * @see https://core.telegram.org/bots/api/bots/inline
      * @see https://core.telegram.org/bots/api#answerinlinequery
@@ -963,23 +967,23 @@ declare module "telegram-typings" {
     switch_inline_query?: string,
 
     /**
-     * If set, pressing the button will insert the bot‘s username and the 
-     * specified inline query in the current chat's input field. Can be empty, 
-     * in which case only the bot’s username will be inserted.This offers a 
-     * quick way for the user to open your bot in inline mode in the same chat 
+     * If set, pressing the button will insert the bot‘s username and the
+     * specified inline query in the current chat's input field. Can be empty,
+     * in which case only the bot’s username will be inserted.This offers a
+     * quick way for the user to open your bot in inline mode in the same chat
      * – good for selecting something from multiple options.
      */
     switch_inline_query_current_chat?: string,
 
     /**
-     * Description of the game that will be launched when the user presses the 
-     * button.NOTE: This type of button must always be the first button in the 
+     * Description of the game that will be launched when the user presses the
+     * button.NOTE: This type of button must always be the first button in the
      * first row.
      */
     callback_game?: CallbackGame,
 
     /**
-     * Specify True, to send a Pay button.NOTE: This type of button must always 
+     * Specify True, to send a Pay button.NOTE: This type of button must always
      * be the first button in the first row.
      * @see https://core.telegram.org/bots/api#payments
      */
@@ -987,11 +991,11 @@ declare module "telegram-typings" {
   };
 
   /**
-   * This object represents an incoming callback query from a callback button 
-   * in an inline keyboard. If the button that originated the query was 
-   * attached to a message sent by the bot, the field message will be 
-   * present. If the button was attached to a message sent via the bot (in 
-   * inline mode), the field inline_message_id will be present. Exactly one 
+   * This object represents an incoming callback query from a callback button
+   * in an inline keyboard. If the button that originated the query was
+   * attached to a message sent by the bot, the field message will be
+   * present. If the button was attached to a message sent via the bot (in
+   * inline mode), the field inline_message_id will be present. Exactly one
    * of the fields data or game_short_name will be present.
    * @see https://core.telegram.org/bots/api/bots#inline-keyboards-and-on-the-fly-updating
    * @see https://core.telegram.org/bots/api#inline-mode
@@ -1008,33 +1012,33 @@ declare module "telegram-typings" {
     from: User,
 
     /**
-     * Message with the callback button that originated the query. Note that 
-     * message content and message date will not be available if the message is 
+     * Message with the callback button that originated the query. Note that
+     * message content and message date will not be available if the message is
      * too old
      */
     message?: Message,
 
     /**
-     * Identifier of the message sent via the bot in inline mode, that 
+     * Identifier of the message sent via the bot in inline mode, that
      * originated the query.
      */
     inline_message_id?: string,
 
     /**
-     * Global identifier, uniquely corresponding to the chat to which the 
+     * Global identifier, uniquely corresponding to the chat to which the
      * message with the callback button was sent. Useful for high scores in games.
      * @see https://core.telegram.org/bots/api#games
      */
     chat_instance: string,
 
     /**
-     * Data associated with the callback button. Be aware that a bad client can 
+     * Data associated with the callback button. Be aware that a bad client can
      * send arbitrary data in this field.
      */
     data?: string,
 
     /**
-     * Short name of a Game to be returned, serves as the unique identifier for 
+     * Short name of a Game to be returned, serves as the unique identifier for
      * the game
      * @see https://core.telegram.org/bots/api#games
      */
@@ -1042,24 +1046,24 @@ declare module "telegram-typings" {
   };
 
   /**
-   * Upon receiving a message with this object, Telegram clients will display 
-   * a reply interface to the user (act as if the user has selected the bot‘s 
-   * message and tapped ’Reply'). This can be extremely useful if you want to 
-   * create user-friendly step-by-step interfaces without having to sacrifice 
+   * Upon receiving a message with this object, Telegram clients will display
+   * a reply interface to the user (act as if the user has selected the bot‘s
+   * message and tapped ’Reply'). This can be extremely useful if you want to
+   * create user-friendly step-by-step interfaces without having to sacrifice
    * privacy mode.
    * @see https://core.telegram.org/bots/api/bots#privacy-mode
    */
   declare type ForceReply = {
     /**
-     * Shows reply interface to the user, as if they manually selected the 
+     * Shows reply interface to the user, as if they manually selected the
      * bot‘s message and tapped ’Reply'
      */
     force_reply: true,
 
     /**
-     * Use this parameter if you want to force reply from specific users only. 
-     * Targets: 1) users that are @mentioned in the text of the Message object; 
-     * 2) if the bot's message is a reply (has reply_to_message_id), sender of 
+     * Use this parameter if you want to force reply from specific users only.
+     * Targets: 1) users that are @mentioned in the text of the Message object;
+     * 2) if the bot's message is a reply (has reply_to_message_id), sender of
      * the original message.
      * @see https://core.telegram.org/bots/api#message
      */
@@ -1071,13 +1075,13 @@ declare module "telegram-typings" {
    */
   declare type ChatPhoto = {
     /**
-     * Unique file identifier of small (160x160) chat photo. This file_id can 
+     * Unique file identifier of small (160x160) chat photo. This file_id can
      * be used only for photo download.
      */
     small_file_id: string,
 
     /**
-     * Unique file identifier of big (640x640) chat photo. This file_id can be 
+     * Unique file identifier of big (640x640) chat photo. This file_id can be
      * used only for photo download.
      */
     big_file_id: string,
@@ -1093,93 +1097,93 @@ declare module "telegram-typings" {
     user: User,
 
     /**
-     * The member's status in the chat. Can be “creator”, “administrator”, 
+     * The member's status in the chat. Can be “creator”, “administrator”,
      * “member”, “restricted”, “left” or “kicked”
      */
     status: string,
 
     /**
-     * Restricted and kicked only. Date when restrictions will be lifted for 
+     * Restricted and kicked only. Date when restrictions will be lifted for
      * this user, unix time
      */
     until_date?: number,
 
     /**
-     * Administrators only. True, if the bot is allowed to edit administrator 
+     * Administrators only. True, if the bot is allowed to edit administrator
      * privileges of that user
      */
     can_be_edited?: boolean,
 
     /**
-     * Administrators only. True, if the administrator can change the chat 
+     * Administrators only. True, if the administrator can change the chat
      * title, photo and other settings
      */
     can_change_info?: boolean,
 
     /**
-     * Administrators only. True, if the administrator can post in the channel, 
+     * Administrators only. True, if the administrator can post in the channel,
      * channels only
      */
     can_post_messages?: boolean,
 
     /**
-     * Administrators only. True, if the administrator can edit messages of 
+     * Administrators only. True, if the administrator can edit messages of
      * other users and can pin messages, channels only
      */
     can_edit_messages?: boolean,
 
     /**
-     * Administrators only. True, if the administrator can delete messages of 
+     * Administrators only. True, if the administrator can delete messages of
      * other users
      */
     can_delete_messages?: boolean,
 
     /**
-     * Administrators only. True, if the administrator can invite new users to 
+     * Administrators only. True, if the administrator can invite new users to
      * the chat
      */
     can_invite_users?: boolean,
 
     /**
-     * Administrators only. True, if the administrator can restrict, ban or 
+     * Administrators only. True, if the administrator can restrict, ban or
      * unban chat members
      */
     can_restrict_members?: boolean,
 
     /**
-     * Administrators only. True, if the administrator can pin messages, 
+     * Administrators only. True, if the administrator can pin messages,
      * supergroups only
      */
     can_pin_messages?: boolean,
 
     /**
-     * Administrators only. True, if the administrator can add new 
-     * administrators with a subset of his own privileges or demote 
-     * administrators that he has promoted, directly or indirectly (promoted by 
+     * Administrators only. True, if the administrator can add new
+     * administrators with a subset of his own privileges or demote
+     * administrators that he has promoted, directly or indirectly (promoted by
      * administrators that were appointed by the user)
      */
     can_promote_members?: boolean,
 
     /**
-     * Restricted only. True, if the user can send text messages, contacts, 
+     * Restricted only. True, if the user can send text messages, contacts,
      * locations and venues
      */
     can_send_messages?: boolean,
 
     /**
-     * Restricted only. True, if the user can send audios, documents, photos, 
+     * Restricted only. True, if the user can send audios, documents, photos,
      * videos, video notes and voice notes, implies can_send_messages
      */
     can_send_media_messages?: boolean,
 
     /**
-     * Restricted only. True, if the user can send animations, games, stickers 
+     * Restricted only. True, if the user can send animations, games, stickers
      * and use inline bots, implies can_send_media_messages
      */
     can_send_other_messages?: boolean,
 
     /**
-     * Restricted only. True, if user may add web page previews to his 
+     * Restricted only. True, if user may add web page previews to his
      * messages, implies can_send_media_messages
      */
     can_add_web_page_previews?: boolean,
@@ -1190,16 +1194,16 @@ declare module "telegram-typings" {
    */
   declare type ResponseParameters = {
     /**
-     * The group has been migrated to a supergroup with the specified 
-     * identifier. This number may be greater than 32 bits and some programming 
-     * languages may have difficulty/silent defects in interpreting it. But it 
-     * is smaller than 52 bits, so a signed 64 bit integer or double-precision 
+     * The group has been migrated to a supergroup with the specified
+     * identifier. This number may be greater than 32 bits and some programming
+     * languages may have difficulty/silent defects in interpreting it. But it
+     * is smaller than 52 bits, so a signed 64 bit integer or double-precision
      * float type are safe for storing this identifier.
      */
     migrate_to_chat_id?: number,
 
     /**
-     * In case of exceeding flood control, the number of seconds left to wait 
+     * In case of exceeding flood control, the number of seconds left to wait
      * before the request can be repeated
      */
     retry_after?: number,
@@ -1215,10 +1219,10 @@ declare module "telegram-typings" {
     type: string,
 
     /**
-     * File to send. Pass a file_id to send a file that exists on the Telegram 
-     * servers (recommended), pass an HTTP URL for Telegram to get a file from 
-     * the Internet, or pass "attach://<file_attach_name>" to upload a new one 
-     * using multipart/form-data under <file_attach_name> name. More info on 
+     * File to send. Pass a file_id to send a file that exists on the Telegram
+     * servers (recommended), pass an HTTP URL for Telegram to get a file from
+     * the Internet, or pass "attach://<file_attach_name>" to upload a new one
+     * using multipart/form-data under <file_attach_name> name. More info on
      * Sending Files »
      * @see https://core.telegram.org/bots/api#sending-files
      */
@@ -1230,7 +1234,7 @@ declare module "telegram-typings" {
     caption?: string,
 
     /**
-     * Send Markdown or HTML, if you want Telegram apps to show bold, italic, 
+     * Send Markdown or HTML, if you want Telegram apps to show bold, italic,
      * fixed-width text or inline URLs in the media caption.
      * @see https://core.telegram.org/bots/api#markdown-style
      * @see https://core.telegram.org/bots/api#html-style
@@ -1249,10 +1253,10 @@ declare module "telegram-typings" {
     type: string,
 
     /**
-     * File to send. Pass a file_id to send a file that exists on the Telegram 
-     * servers (recommended), pass an HTTP URL for Telegram to get a file from 
-     * the Internet, or pass "attach://<file_attach_name>" to upload a new one 
-     * using multipart/form-data under <file_attach_name> name. More info on 
+     * File to send. Pass a file_id to send a file that exists on the Telegram
+     * servers (recommended), pass an HTTP URL for Telegram to get a file from
+     * the Internet, or pass "attach://<file_attach_name>" to upload a new one
+     * using multipart/form-data under <file_attach_name> name. More info on
      * Sending Files »
      * @see https://core.telegram.org/bots/api#sending-files
      */
@@ -1264,7 +1268,7 @@ declare module "telegram-typings" {
     caption?: string,
 
     /**
-     * Send Markdown or HTML, if you want Telegram apps to show bold, italic, 
+     * Send Markdown or HTML, if you want Telegram apps to show bold, italic,
      * fixed-width text or inline URLs in the media caption.
      * @see https://core.telegram.org/bots/api#markdown-style
      * @see https://core.telegram.org/bots/api#html-style
@@ -1364,26 +1368,26 @@ declare module "telegram-typings" {
   };
 
   /**
-   * This object describes the position on faces where a mask should be 
+   * This object describes the position on faces where a mask should be
    * placed by default.
    */
   declare type MaskPosition = {
     /**
-     * The part of the face relative to which the mask should be placed. One of 
+     * The part of the face relative to which the mask should be placed. One of
      * “forehead”, “eyes”, “mouth”, or “chin”.
      */
     point: string,
 
     /**
-     * Shift by X-axis measured in widths of the mask scaled to the face size, 
-     * from left to right. For example, choosing -1.0 will place mask just to 
+     * Shift by X-axis measured in widths of the mask scaled to the face size,
+     * from left to right. For example, choosing -1.0 will place mask just to
      * the left of the default mask position.
      */
     x_shift: number,
 
     /**
-     * Shift by Y-axis measured in heights of the mask scaled to the face size, 
-     * from top to bottom. For example, 1.0 will place the mask just below the 
+     * Shift by Y-axis measured in heights of the mask scaled to the face size,
+     * from top to bottom. For example, 1.0 will place the mask just below the
      * default mask position.
      */
     y_shift: number,
@@ -1395,7 +1399,7 @@ declare module "telegram-typings" {
   };
 
   /**
-   * This object represents an incoming inline query. When the user sends an 
+   * This object represents an incoming inline query. When the user sends an
    * empty query, your bot could return some default or trending results.
    */
   declare type InlineQuery = {
@@ -1487,9 +1491,9 @@ declare module "telegram-typings" {
   };
 
   /**
-   * Represents a link to a photo. By default, this photo will be sent by the 
-   * user with optional caption. Alternatively, you can use 
-   * input_message_content to send a message with the specified content 
+   * Represents a link to a photo. By default, this photo will be sent by the
+   * user with optional caption. Alternatively, you can use
+   * input_message_content to send a message with the specified content
    * instead of the photo.
    */
   declare type InlineQueryResultPhoto = {
@@ -1504,7 +1508,7 @@ declare module "telegram-typings" {
     id: string,
 
     /**
-     * A valid URL of the photo. Photo must be in jpeg format. Photo size must 
+     * A valid URL of the photo. Photo must be in jpeg format. Photo size must
      * not exceed 5MB
      */
     photo_url: string,
@@ -1540,7 +1544,7 @@ declare module "telegram-typings" {
     caption?: string,
 
     /**
-     * Send Markdown or HTML, if you want Telegram apps to show bold, italic, 
+     * Send Markdown or HTML, if you want Telegram apps to show bold, italic,
      * fixed-width text or inline URLs in the media caption.
      * @see https://core.telegram.org/bots/api#markdown-style
      * @see https://core.telegram.org/bots/api#html-style
@@ -1561,9 +1565,9 @@ declare module "telegram-typings" {
   };
 
   /**
-   * Represents a link to an animated GIF file. By default, this animated GIF 
-   * file will be sent by the user with optional caption. Alternatively, you 
-   * can use input_message_content to send a message with the specified 
+   * Represents a link to an animated GIF file. By default, this animated GIF
+   * file will be sent by the user with optional caption. Alternatively, you
+   * can use input_message_content to send a message with the specified
    * content instead of the animation.
    */
   declare type InlineQueryResultGif = {
@@ -1613,7 +1617,7 @@ declare module "telegram-typings" {
     caption?: string,
 
     /**
-     * Send Markdown or HTML, if you want Telegram apps to show bold, italic, 
+     * Send Markdown or HTML, if you want Telegram apps to show bold, italic,
      * fixed-width text or inline URLs in the media caption.
      * @see https://core.telegram.org/bots/api#markdown-style
      * @see https://core.telegram.org/bots/api#html-style
@@ -1634,9 +1638,9 @@ declare module "telegram-typings" {
   };
 
   /**
-   * Represents a link to a video animation (H.264/MPEG-4 AVC video without 
-   * sound). By default, this animated MPEG-4 file will be sent by the user 
-   * with optional caption. Alternatively, you can use input_message_content 
+   * Represents a link to a video animation (H.264/MPEG-4 AVC video without
+   * sound). By default, this animated MPEG-4 file will be sent by the user
+   * with optional caption. Alternatively, you can use input_message_content
    * to send a message with the specified content instead of the animation.
    */
   declare type InlineQueryResultMpeg4Gif = {
@@ -1686,7 +1690,7 @@ declare module "telegram-typings" {
     caption?: string,
 
     /**
-     * Send Markdown or HTML, if you want Telegram apps to show bold, italic, 
+     * Send Markdown or HTML, if you want Telegram apps to show bold, italic,
      * fixed-width text or inline URLs in the media caption.
      * @see https://core.telegram.org/bots/api#markdown-style
      * @see https://core.telegram.org/bots/api#html-style
@@ -1707,9 +1711,9 @@ declare module "telegram-typings" {
   };
 
   /**
-   * Represents a link to a page containing an embedded video player or a 
-   * video file. By default, this video file will be sent by the user with an 
-   * optional caption. Alternatively, you can use input_message_content to 
+   * Represents a link to a page containing an embedded video player or a
+   * video file. By default, this video file will be sent by the user with an
+   * optional caption. Alternatively, you can use input_message_content to
    * send a message with the specified content instead of the video.
    */
   declare type InlineQueryResultVideo = {
@@ -1749,7 +1753,7 @@ declare module "telegram-typings" {
     caption?: string,
 
     /**
-     * Send Markdown or HTML, if you want Telegram apps to show bold, italic, 
+     * Send Markdown or HTML, if you want Telegram apps to show bold, italic,
      * fixed-width text or inline URLs in the media caption.
      * @see https://core.telegram.org/bots/api#markdown-style
      * @see https://core.telegram.org/bots/api#html-style
@@ -1784,16 +1788,16 @@ declare module "telegram-typings" {
     reply_markup?: InlineKeyboardMarkup,
 
     /**
-     * Content of the message to be sent instead of the video. This field is 
-     * required if InlineQueryResultVideo is used to send an HTML-page as a 
+     * Content of the message to be sent instead of the video. This field is
+     * required if InlineQueryResultVideo is used to send an HTML-page as a
      * result (e.g., a YouTube video).
      */
     input_message_content?: InputMessageContent,
   };
 
   /**
-   * Represents a link to an mp3 audio file. By default, this audio file will 
-   * be sent by the user. Alternatively, you can use input_message_content to 
+   * Represents a link to an mp3 audio file. By default, this audio file will
+   * be sent by the user. Alternatively, you can use input_message_content to
    * send a message with the specified content instead of the audio.
    */
   declare type InlineQueryResultAudio = {
@@ -1823,7 +1827,7 @@ declare module "telegram-typings" {
     caption?: string,
 
     /**
-     * Send Markdown or HTML, if you want Telegram apps to show bold, italic, 
+     * Send Markdown or HTML, if you want Telegram apps to show bold, italic,
      * fixed-width text or inline URLs in the media caption.
      * @see https://core.telegram.org/bots/api#markdown-style
      * @see https://core.telegram.org/bots/api#html-style
@@ -1854,9 +1858,9 @@ declare module "telegram-typings" {
   };
 
   /**
-   * Represents a link to a voice recording in an .ogg container encoded with 
-   * OPUS. By default, this voice recording will be sent by the user. 
-   * Alternatively, you can use input_message_content to send a message with 
+   * Represents a link to a voice recording in an .ogg container encoded with
+   * OPUS. By default, this voice recording will be sent by the user.
+   * Alternatively, you can use input_message_content to send a message with
    * the specified content instead of the the voice message.
    */
   declare type InlineQueryResultVoice = {
@@ -1886,7 +1890,7 @@ declare module "telegram-typings" {
     caption?: string,
 
     /**
-     * Send Markdown or HTML, if you want Telegram apps to show bold, italic, 
+     * Send Markdown or HTML, if you want Telegram apps to show bold, italic,
      * fixed-width text or inline URLs in the media caption.
      * @see https://core.telegram.org/bots/api#markdown-style
      * @see https://core.telegram.org/bots/api#html-style
@@ -1912,10 +1916,10 @@ declare module "telegram-typings" {
   };
 
   /**
-   * Represents a link to a file. By default, this file will be sent by the 
-   * user with an optional caption. Alternatively, you can use 
-   * input_message_content to send a message with the specified content 
-   * instead of the file. Currently, only .PDF and .ZIP files can be sent 
+   * Represents a link to a file. By default, this file will be sent by the
+   * user with an optional caption. Alternatively, you can use
+   * input_message_content to send a message with the specified content
+   * instead of the file. Currently, only .PDF and .ZIP files can be sent
    * using this method.
    */
   declare type InlineQueryResultDocument = {
@@ -1940,7 +1944,7 @@ declare module "telegram-typings" {
     caption?: string,
 
     /**
-     * Send Markdown or HTML, if you want Telegram apps to show bold, italic, 
+     * Send Markdown or HTML, if you want Telegram apps to show bold, italic,
      * fixed-width text or inline URLs in the media caption.
      * @see https://core.telegram.org/bots/api#markdown-style
      * @see https://core.telegram.org/bots/api#html-style
@@ -1990,8 +1994,8 @@ declare module "telegram-typings" {
   };
 
   /**
-   * Represents a location on a map. By default, the location will be sent by 
-   * the user. Alternatively, you can use input_message_content to send a 
+   * Represents a location on a map. By default, the location will be sent by
+   * the user. Alternatively, you can use input_message_content to send a
    * message with the specified content instead of the location.
    */
   declare type InlineQueryResultLocation = {
@@ -2021,7 +2025,7 @@ declare module "telegram-typings" {
     title: string,
 
     /**
-     * Period in seconds for which the location can be updated, should be 
+     * Period in seconds for which the location can be updated, should be
      * between 60 and 86400.
      */
     live_period?: number,
@@ -2054,8 +2058,8 @@ declare module "telegram-typings" {
   };
 
   /**
-   * Represents a venue. By default, the venue will be sent by the user. 
-   * Alternatively, you can use input_message_content to send a message with 
+   * Represents a venue. By default, the venue will be sent by the user.
+   * Alternatively, you can use input_message_content to send a message with
    * the specified content instead of the venue.
    */
   declare type InlineQueryResultVenue = {
@@ -2122,8 +2126,8 @@ declare module "telegram-typings" {
   };
 
   /**
-   * Represents a contact with a phone number. By default, this contact will 
-   * be sent by the user. Alternatively, you can use input_message_content to 
+   * Represents a contact with a phone number. By default, this contact will
+   * be sent by the user. Alternatively, you can use input_message_content to
    * send a message with the specified content instead of the contact.
    */
   declare type InlineQueryResultContact = {
@@ -2207,9 +2211,9 @@ declare module "telegram-typings" {
   };
 
   /**
-   * Represents a link to a photo stored on the Telegram servers. By default, 
-   * this photo will be sent by the user with an optional caption. 
-   * Alternatively, you can use input_message_content to send a message with 
+   * Represents a link to a photo stored on the Telegram servers. By default,
+   * this photo will be sent by the user with an optional caption.
+   * Alternatively, you can use input_message_content to send a message with
    * the specified content instead of the photo.
    */
   declare type InlineQueryResultCachedPhoto = {
@@ -2244,7 +2248,7 @@ declare module "telegram-typings" {
     caption?: string,
 
     /**
-     * Send Markdown or HTML, if you want Telegram apps to show bold, italic, 
+     * Send Markdown or HTML, if you want Telegram apps to show bold, italic,
      * fixed-width text or inline URLs in the media caption.
      * @see https://core.telegram.org/bots/api#markdown-style
      * @see https://core.telegram.org/bots/api#html-style
@@ -2265,10 +2269,10 @@ declare module "telegram-typings" {
   };
 
   /**
-   * Represents a link to an animated GIF file stored on the Telegram 
-   * servers. By default, this animated GIF file will be sent by the user 
-   * with an optional caption. Alternatively, you can use 
-   * input_message_content to send a message with specified content instead 
+   * Represents a link to an animated GIF file stored on the Telegram
+   * servers. By default, this animated GIF file will be sent by the user
+   * with an optional caption. Alternatively, you can use
+   * input_message_content to send a message with specified content instead
    * of the animation.
    */
   declare type InlineQueryResultCachedGif = {
@@ -2298,7 +2302,7 @@ declare module "telegram-typings" {
     caption?: string,
 
     /**
-     * Send Markdown or HTML, if you want Telegram apps to show bold, italic, 
+     * Send Markdown or HTML, if you want Telegram apps to show bold, italic,
      * fixed-width text or inline URLs in the media caption.
      * @see https://core.telegram.org/bots/api#markdown-style
      * @see https://core.telegram.org/bots/api#html-style
@@ -2319,10 +2323,10 @@ declare module "telegram-typings" {
   };
 
   /**
-   * Represents a link to a video animation (H.264/MPEG-4 AVC video without 
-   * sound) stored on the Telegram servers. By default, this animated MPEG-4 
-   * file will be sent by the user with an optional caption. Alternatively, 
-   * you can use input_message_content to send a message with the specified 
+   * Represents a link to a video animation (H.264/MPEG-4 AVC video without
+   * sound) stored on the Telegram servers. By default, this animated MPEG-4
+   * file will be sent by the user with an optional caption. Alternatively,
+   * you can use input_message_content to send a message with the specified
    * content instead of the animation.
    */
   declare type InlineQueryResultCachedMpeg4Gif = {
@@ -2352,7 +2356,7 @@ declare module "telegram-typings" {
     caption?: string,
 
     /**
-     * Send Markdown or HTML, if you want Telegram apps to show bold, italic, 
+     * Send Markdown or HTML, if you want Telegram apps to show bold, italic,
      * fixed-width text or inline URLs in the media caption.
      * @see https://core.telegram.org/bots/api#markdown-style
      * @see https://core.telegram.org/bots/api#html-style
@@ -2373,9 +2377,9 @@ declare module "telegram-typings" {
   };
 
   /**
-   * Represents a link to a sticker stored on the Telegram servers. By 
-   * default, this sticker will be sent by the user. Alternatively, you can 
-   * use input_message_content to send a message with the specified content 
+   * Represents a link to a sticker stored on the Telegram servers. By
+   * default, this sticker will be sent by the user. Alternatively, you can
+   * use input_message_content to send a message with the specified content
    * instead of the sticker.
    */
   declare type InlineQueryResultCachedSticker = {
@@ -2407,9 +2411,9 @@ declare module "telegram-typings" {
   };
 
   /**
-   * Represents a link to a file stored on the Telegram servers. By default, 
-   * this file will be sent by the user with an optional caption. 
-   * Alternatively, you can use input_message_content to send a message with 
+   * Represents a link to a file stored on the Telegram servers. By default,
+   * this file will be sent by the user with an optional caption.
+   * Alternatively, you can use input_message_content to send a message with
    * the specified content instead of the file.
    */
   declare type InlineQueryResultCachedDocument = {
@@ -2444,7 +2448,7 @@ declare module "telegram-typings" {
     caption?: string,
 
     /**
-     * Send Markdown or HTML, if you want Telegram apps to show bold, italic, 
+     * Send Markdown or HTML, if you want Telegram apps to show bold, italic,
      * fixed-width text or inline URLs in the media caption.
      * @see https://core.telegram.org/bots/api#markdown-style
      * @see https://core.telegram.org/bots/api#html-style
@@ -2465,9 +2469,9 @@ declare module "telegram-typings" {
   };
 
   /**
-   * Represents a link to a video file stored on the Telegram servers. By 
-   * default, this video file will be sent by the user with an optional 
-   * caption. Alternatively, you can use input_message_content to send a 
+   * Represents a link to a video file stored on the Telegram servers. By
+   * default, this video file will be sent by the user with an optional
+   * caption. Alternatively, you can use input_message_content to send a
    * message with the specified content instead of the video.
    */
   declare type InlineQueryResultCachedVideo = {
@@ -2502,7 +2506,7 @@ declare module "telegram-typings" {
     caption?: string,
 
     /**
-     * Send Markdown or HTML, if you want Telegram apps to show bold, italic, 
+     * Send Markdown or HTML, if you want Telegram apps to show bold, italic,
      * fixed-width text or inline URLs in the media caption.
      * @see https://core.telegram.org/bots/api#markdown-style
      * @see https://core.telegram.org/bots/api#html-style
@@ -2523,9 +2527,9 @@ declare module "telegram-typings" {
   };
 
   /**
-   * Represents a link to a voice message stored on the Telegram servers. By 
-   * default, this voice message will be sent by the user. Alternatively, you 
-   * can use input_message_content to send a message with the specified 
+   * Represents a link to a voice message stored on the Telegram servers. By
+   * default, this voice message will be sent by the user. Alternatively, you
+   * can use input_message_content to send a message with the specified
    * content instead of the voice message.
    */
   declare type InlineQueryResultCachedVoice = {
@@ -2555,7 +2559,7 @@ declare module "telegram-typings" {
     caption?: string,
 
     /**
-     * Send Markdown or HTML, if you want Telegram apps to show bold, italic, 
+     * Send Markdown or HTML, if you want Telegram apps to show bold, italic,
      * fixed-width text or inline URLs in the media caption.
      * @see https://core.telegram.org/bots/api#markdown-style
      * @see https://core.telegram.org/bots/api#html-style
@@ -2576,9 +2580,9 @@ declare module "telegram-typings" {
   };
 
   /**
-   * Represents a link to an mp3 audio file stored on the Telegram servers. 
-   * By default, this audio file will be sent by the user. Alternatively, you 
-   * can use input_message_content to send a message with the specified 
+   * Represents a link to an mp3 audio file stored on the Telegram servers.
+   * By default, this audio file will be sent by the user. Alternatively, you
+   * can use input_message_content to send a message with the specified
    * content instead of the audio.
    */
   declare type InlineQueryResultCachedAudio = {
@@ -2603,7 +2607,7 @@ declare module "telegram-typings" {
     caption?: string,
 
     /**
-     * Send Markdown or HTML, if you want Telegram apps to show bold, italic, 
+     * Send Markdown or HTML, if you want Telegram apps to show bold, italic,
      * fixed-width text or inline URLs in the media caption.
      * @see https://core.telegram.org/bots/api#markdown-style
      * @see https://core.telegram.org/bots/api#html-style
@@ -2624,7 +2628,7 @@ declare module "telegram-typings" {
   };
 
   /**
-   * Represents the content of a text message to be sent as the result of an 
+   * Represents the content of a text message to be sent as the result of an
    * inline query.
    * @see https://core.telegram.org/bots/api#inputmessagecontent
    */
@@ -2635,7 +2639,7 @@ declare module "telegram-typings" {
     message_text: string,
 
     /**
-     * Send Markdown or HTML, if you want Telegram apps to show bold, italic, 
+     * Send Markdown or HTML, if you want Telegram apps to show bold, italic,
      * fixed-width text or inline URLs in your bot's message.
      * @see https://core.telegram.org/bots/api#markdown-style
      * @see https://core.telegram.org/bots/api#html-style
@@ -2650,7 +2654,7 @@ declare module "telegram-typings" {
   };
 
   /**
-   * Represents the content of a location message to be sent as the result of 
+   * Represents the content of a location message to be sent as the result of
    * an inline query.
    * @see https://core.telegram.org/bots/api#inputmessagecontent
    */
@@ -2666,14 +2670,14 @@ declare module "telegram-typings" {
     longitude: number,
 
     /**
-     * Period in seconds for which the location can be updated, should be 
+     * Period in seconds for which the location can be updated, should be
      * between 60 and 86400.
      */
     live_period?: number,
   };
 
   /**
-   * Represents the content of a venue message to be sent as the result of an 
+   * Represents the content of a venue message to be sent as the result of an
    * inline query.
    * @see https://core.telegram.org/bots/api#inputmessagecontent
    */
@@ -2705,7 +2709,7 @@ declare module "telegram-typings" {
   };
 
   /**
-   * Represents the content of a contact message to be sent as the result of 
+   * Represents the content of a contact message to be sent as the result of
    * an inline query.
    * @see https://core.telegram.org/bots/api#inputmessagecontent
    */
@@ -2727,7 +2731,7 @@ declare module "telegram-typings" {
   };
 
   /**
-   * Represents a result of an inline query that was chosen by the user and 
+   * Represents a result of an inline query that was chosen by the user and
    * sent to their chat partner.
    * @see https://core.telegram.org/bots/api#inlinequeryresult
    */
@@ -2748,8 +2752,8 @@ declare module "telegram-typings" {
     location?: Location,
 
     /**
-     * Identifier of the sent inline message. Available only if there is an 
-     * inline keyboard attached to the message. Will be also received in 
+     * Identifier of the sent inline message. Available only if there is an
+     * inline keyboard attached to the message. Will be also received in
      * callback queries and can be used to edit the message.
      * @see https://core.telegram.org/bots/api#inlinekeyboardmarkup
      * @see https://core.telegram.org/bots/api#callbackquery
@@ -2773,9 +2777,9 @@ declare module "telegram-typings" {
     label: string,
 
     /**
-     * Price of the product in the smallest units of the currency (integer, not 
-     * float/double). For example, for a price of US$ 1.45 pass amount = 145. 
-     * See the exp parameter in currencies.json, it shows the number of digits 
+     * Price of the product in the smallest units of the currency (integer, not
+     * float/double). For example, for a price of US$ 1.45 pass amount = 145.
+     * See the exp parameter in currencies.json, it shows the number of digits
      * past the decimal point for each currency (2 for the majority of currencies).
      * @see https://core.telegram.org/bots/api/bots/payments#supported-currencies
      * @see https://core.telegram.org/bots/payments/currencies.json
@@ -2809,9 +2813,9 @@ declare module "telegram-typings" {
     currency: string,
 
     /**
-     * Total price in the smallest units of the currency (integer, not 
-     * float/double). For example, for a price of US$ 1.45 pass amount = 145. 
-     * See the exp parameter in currencies.json, it shows the number of digits 
+     * Total price in the smallest units of the currency (integer, not
+     * float/double). For example, for a price of US$ 1.45 pass amount = 145.
+     * See the exp parameter in currencies.json, it shows the number of digits
      * past the decimal point for each currency (2 for the majority of currencies).
      * @see https://core.telegram.org/bots/payments/currencies.json
      */
@@ -2909,9 +2913,9 @@ declare module "telegram-typings" {
     currency: string,
 
     /**
-     * Total price in the smallest units of the currency (integer, not 
-     * float/double). For example, for a price of US$ 1.45 pass amount = 145. 
-     * See the exp parameter in currencies.json, it shows the number of digits 
+     * Total price in the smallest units of the currency (integer, not
+     * float/double). For example, for a price of US$ 1.45 pass amount = 145.
+     * See the exp parameter in currencies.json, it shows the number of digits
      * past the decimal point for each currency (2 for the majority of currencies).
      * @see https://core.telegram.org/bots/payments/currencies.json
      */
@@ -2989,9 +2993,9 @@ declare module "telegram-typings" {
     currency: string,
 
     /**
-     * Total price in the smallest units of the currency (integer, not 
-     * float/double). For example, for a price of US$ 1.45 pass amount = 145. 
-     * See the exp parameter in currencies.json, it shows the number of digits 
+     * Total price in the smallest units of the currency (integer, not
+     * float/double). For example, for a price of US$ 1.45 pass amount = 145.
+     * See the exp parameter in currencies.json, it shows the number of digits
      * past the decimal point for each currency (2 for the majority of currencies).
      * @see https://core.telegram.org/bots/payments/currencies.json
      */
@@ -3014,7 +3018,7 @@ declare module "telegram-typings" {
   };
 
   /**
-   * This object represents a game. Use BotFather to create and edit games, 
+   * This object represents a game. Use BotFather to create and edit games,
    * their short names will act as unique identifiers.
    */
   declare type Game = {
@@ -3034,9 +3038,9 @@ declare module "telegram-typings" {
     photo: PhotoSize[],
 
     /**
-     * Brief description of the game or high scores included in the game 
-     * message. Can be automatically edited to include current high scores for 
-     * the game when the bot calls setGameScore, or manually edited using 
+     * Brief description of the game or high scores included in the game
+     * message. Can be automatically edited to include current high scores for
+     * the game when the bot calls setGameScore, or manually edited using
      * editMessageText. 0-4096 characters.
      * @see https://core.telegram.org/bots/api#setgamescore
      * @see https://core.telegram.org/bots/api#editmessagetext
@@ -3044,13 +3048,13 @@ declare module "telegram-typings" {
     text?: string,
 
     /**
-     * Special entities that appear in text, such as usernames, URLs, bot 
+     * Special entities that appear in text, such as usernames, URLs, bot
      * commands, etc.
      */
     text_entities?: MessageEntity[],
 
     /**
-     * Animation that will be displayed in the game message in chats. Upload 
+     * Animation that will be displayed in the game message in chats. Upload
      * via BotFather
      * @see https://t.me/botfather
      */
@@ -3058,8 +3062,8 @@ declare module "telegram-typings" {
   };
 
   /**
-   * You can provide an animation for your game so that it looks stylish in 
-   * chats (check out Lumberjack for an example). This object represents an 
+   * You can provide an animation for your game so that it looks stylish in
+   * chats (check out Lumberjack for an example). This object represents an
    * animation file to be displayed in the message containing a game.
    * @see https://core.telegram.org/bots/api#game
    * @see https://t.me/gamebot
