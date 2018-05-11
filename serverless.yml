@@ -36,6 +36,8 @@ provider:
     #   ssm put-parameter --name telegramToken --type String --value abc123
     TELEGRAM_TOKEN: ${ssm:telegramToken}
     TELEGRAM_URL_SECRET: ${ssm:telegramUrlSecret}
+    SPREADSHEET_SERVICE_ACCOUNT_CLIENT_EMAIL: ${ssm:gsheetClientEmail}
+    SPREADSHEET_SERVICE_ACCOUNT_PRIVATE_KEY: ${ssm:gsheetPrivateKey}
 
 
 functions:
