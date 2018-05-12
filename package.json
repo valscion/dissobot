@@ -12,7 +12,6 @@
   "dependencies": {
     "aws-sdk": "^2.207.0",
     "babel-polyfill": "^6.26.0",
-    "date-fns": "^1.29.0",
     "google-spreadsheet": "^2.0.4",
     "node-fetch": "^2.1.1",
     "telegram-typings": "^3.6.0"
