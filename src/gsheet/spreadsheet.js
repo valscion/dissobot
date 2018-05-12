@@ -98,7 +98,7 @@ export async function getInfo(): Promise<Info> {
   });
 }
 
-type SpreadsheetRow = {|
+export type SpreadsheetRow = {|
   save: (callback: Callback<any>) => void,
   del: (callback: Callback<any>) => void,
   [columnId: string]: any
@@ -135,7 +135,7 @@ export async function addRow(
 }
 
 opaque type CellId: string = string;
-type SpreadsheetCell = {|
+export type SpreadsheetCell = {|
   id: CellId,
   row: number,
   col: number,
@@ -152,7 +152,7 @@ type GetCellsOptions = {|
   "max-row"?: number,
   "min-col"?: number,
   "max-col"?: number,
-  "return-empty"?: number
+  "return-empty"?: boolean
 |};
 export async function getCells(
   worksheetId: WorksheetId,
