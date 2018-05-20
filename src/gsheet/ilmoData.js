@@ -2,31 +2,48 @@
 
 import moment from "moment";
 
+type SingleIlmoObject = {|
+  dateAsWritten: string,
+  songs: string | null,
+  attendingList: Array<string>,
+  notAttendingList: Array<string>,
+  unknownList: Array<string>
+|};
+
 type IlmoObject = {
-  [dateTime: string]: {
-    dateAsWritten: string,
-    songs: string | null,
-    attendingList: Array<string>,
-    notAttendingList: Array<string>,
-    unknownList: Array<string>
-  }
+  [dateTime: string]: SingleIlmoObject
 };
 
 export function ilmoDataToObject(rawData: Array<Array<string>>): IlmoObject {
   const columns = rawData[0];
-  const songsColumn = columns.indexOf("Biisit");
-  const rawDateList = rawData.slice(1).map(row => row[0]);
-  return rawDateList.reduce((acc, rawDate, rowIdx) => {
-    if (!rawDate) return acc;
-    const parsedDate = moment.utc(rawDate, "D.M.");
-    const rowData = rawData[rowIdx + 1];
+  const toSingleIlmo = makeToSingleIlmo(columns);
 
-    return {
-      ...acc,
-      [parsedDate.format("YYYY-MM-DD")]: {
-        dateAsWritten: rawDate,
-        songs: rowData[songsColumn] || null
-      }
-    };
+  return rawData.slice(1).reduce((acc, row) => {
+    const [dateStr, ilmoObj] = toSingleIlmo(row);
+    acc[dateStr] = ilmoObj;
+    return acc;
   }, {});
+}
+
+function makeToSingleIlmo(
+  columns
+): (row: Array<string>) => [string, SingleIlmoObject] {
+  const dateColumn = columns.indexOf("Pvm");
+  const songsColumn = columns.indexOf("Biisit");
+
+  return row => {
+    const dateAsWritten = row[dateColumn];
+    const parsedDate = moment.utc(dateAsWritten, "D.M.");
+
+    return [
+      parsedDate.format("YYYY-MM-DD"),
+      {
+        dateAsWritten,
+        songs: row[songsColumn] || null,
+        attendingList: [],
+        notAttendingList: [],
+        unknownList: []
+      }
+    ];
+  };
 }
