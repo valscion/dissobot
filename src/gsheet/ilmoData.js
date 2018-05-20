@@ -30,6 +30,20 @@ function makeToSingleIlmo(
 ): (row: Array<string>) => [string, SingleIlmoObject] {
   const dateColumn = columns.indexOf("Pvm");
   const songsColumn = columns.indexOf("Biisit");
+  const singerNames = columns.filter(col => {
+    if (col === "Pvm") return false;
+    if (col === "Biisit") return false;
+    if (col === "Tulossa (x)") return false;
+    if (!col) return false;
+    return true;
+  });
+  const singerNamesToColumns = singerNames.reduce(
+    (acc, name) => ({
+      ...acc,
+      [name]: columns.indexOf(name)
+    }),
+    {}
+  );
 
   return row => {
     const dateAsWritten = row[dateColumn];
@@ -40,10 +54,38 @@ function makeToSingleIlmo(
       {
         dateAsWritten,
         songs: row[songsColumn] || null,
-        attendingList: [],
-        notAttendingList: [],
-        unknownList: []
+        ...getAttendees(row, singerNamesToColumns)
       }
     ];
+  };
+}
+
+function getAttendees(
+  row,
+  singerNamesToColumns: {
+    [name: string]: number
+  }
+): {
+  attendingList: Array<string>,
+  notAttendingList: Array<string>,
+  unknownList: Array<string>
+} {
+  const attendingList = [];
+  const notAttendingList = [];
+  const unknownList = [];
+
+  for (const [name, colIdx] of Object.entries(singerNamesToColumns)) {
+    const value = row[(colIdx: any)];
+    switch (value.toLowerCase()[0]) {
+      case "x":
+        attendingList.push(name);
+        break;
+    }
+  }
+
+  return {
+    attendingList,
+    notAttendingList,
+    unknownList
   };
 }

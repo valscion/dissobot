@@ -27,3 +27,26 @@ test("returns missing songs as null", () => {
   const result = ilmoDataToObject(fakePayload);
   expect(result["2018-02-20"].songs).toEqual(null);
 });
+
+test("calculates attendingList", () => {
+  const result = ilmoDataToObject(fakePayload);
+  expect(result["2018-01-16"].attendingList).toEqual([
+    "Singer A",
+    "Singer B",
+    "Singer C",
+    "Singer F",
+    "Singer G",
+    "Singer H",
+    "Singer K",
+    "Singer N",
+    "Singer R",
+    "Singer S",
+    "Singer T",
+    "Singer U",
+    "Singer X",
+    "Singer Y",
+    "Singer Z",
+    "Singer 1",
+    "Singer 2"
+  ]);
+});
