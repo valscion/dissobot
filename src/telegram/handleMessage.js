@@ -30,7 +30,7 @@ export default async function handleMessage(
       const data = await scan({
         TableName: ILMOS_TABLE
       });
-      const items: Array<SingleIlmoObject> = data.items;
+      const items: Array<SingleIlmoObject> = data.Items;
       await api.sendMessage({
         chat_id: chat.id,
         text: items[0].attendingList.join("\n")
