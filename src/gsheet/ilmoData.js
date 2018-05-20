@@ -18,17 +18,13 @@ export function ilmoDataToObject(rawData: Array<Array<string>>): IlmoObject {
   return rawDateList.reduce((acc, rawDate) => {
     if (!rawDate) return acc;
 
-    let parsedDate = moment.utc(rawDate, moment.ISO_8601);
-    if (!parsedDate.isValid()) {
-      parsedDate = moment(rawDate, "D.M.");
-    } else {
-      // Hard-code Europe/Helsinki DST offset to get correct date
-      parsedDate.utcOffset("+03:00");
-    }
+    const parsedDate = moment.utc(rawDate, "D.M.");
 
     return {
       ...acc,
-      [parsedDate.format("YYYY-MM-DD")]: null
+      [parsedDate.format("YYYY-MM-DD")]: {
+        dateAsWritten: rawDate
+      }
     };
   }, {});
 }
