@@ -7,8 +7,6 @@ const fakePayload = [
     "Tulossa (x)",
     "Singer A",
     "Singer B",
-    "Singer A",
-    "Singer B",
     "Singer C",
     "Singer D",
     "Singer E",
@@ -20,6 +18,7 @@ const fakePayload = [
     "Singer K",
     "Singer L",
     "Singer M",
+    "Singer N",
     "Singer O",
     "Singer P",
     "Singer Q",
@@ -32,14 +31,15 @@ const fakePayload = [
     "Singer X",
     "Singer Y",
     "Singer Z",
-    "Singer Å",
-    "Singer Ä",
-    "Singer Ö"
+    "Singer 0",
+    "Singer 1",
+    "Singer 2",
+    "Singer 3"
   ],
   [
-    "2018-01-15T22:00:00.000Z",
+    "ti 16.1.",
     "Under häggarna\nWeep, o mine eyes\nLauantai-ilta",
-    "17\nSinger A\nSinger B\nSinger A\nSinger D\nSinger E\nSinger F\nSinger I\nSinger L\nSinger Q\nSinger R\nSinger S\nSinger T\nSinger W\nSinger X\nSinger Y\nSinger Å\nSinger Ä",
+    "17\nSinger A\nSinger B\nSinger C\nSinger F\nSinger G\nSinger H\nSinger K\nSinger N\nSinger R\nSinger S\nSinger T\nSinger U\nSinger X\nSinger Y\nSinger Z\nSinger 1\nSinger 2",
     "x [OxuBot]",
     "x",
     "x",
@@ -72,9 +72,9 @@ const fakePayload = [
     ""
   ],
   [
-    "2018-01-22T22:00:00.000Z",
+    "ti 23.1.",
     "Under Häggarna\nWeep o mine eyes\nOnly you",
-    "11\nSinger B\nSinger C\nSinger F\nSinger I\nSinger L\nSinger M\nSinger Q\nSinger R\nSinger S\nSinger T\nSinger Z",
+    "11\nSinger B\nSinger E\nSinger H\nSinger K\nSinger N\nSinger O\nSinger R\nSinger S\nSinger T\nSinger U\nSinger 0",
     "?",
     "x",
     "-",
@@ -107,9 +107,9 @@ const fakePayload = [
     ""
   ],
   [
-    "2018-01-29T22:00:00.000Z",
+    "ti 30.1.",
     "Io ti voria\nDaydream lullaby\nViva la musica",
-    "15\nSinger B\nSinger C\nSinger D\nSinger E\nSinger F\nSinger I\nSinger L\nSinger P\nSinger Q\nSinger S\nSinger U\nSinger W\nSinger X\nSinger Y\nSinger Ö",
+    "15\nSinger B\nSinger E\nSinger F\nSinger G\nSinger H\nSinger K\nSinger N\nSinger Q\nSinger R\nSinger T\nSinger V\nSinger X\nSinger Y\nSinger Z\nSinger 3",
     "?",
     "x",
     "-",
@@ -142,9 +142,9 @@ const fakePayload = [
     "x"
   ],
   [
-    "2018-02-05T22:00:00.000Z",
+    "ti 6.2.",
     "Under häggarna\nviva la musica\nDaydream lullaby",
-    "12\nSinger B\nSinger A\nSinger C\nSinger E\nSinger I\nSinger J\nSinger L\nSinger Q\nSinger S\nSinger T\nSinger X\nSinger Ö",
+    "12\nSinger B\nSinger C\nSinger E\nSinger G\nSinger K\nSinger L\nSinger N\nSinger R\nSinger T\nSinger U\nSinger Y\nSinger 3",
     "?",
     "x",
     "x",
@@ -177,9 +177,9 @@ const fakePayload = [
     "x [OxuBot]"
   ],
   [
-    "2018-02-12T22:00:00.000Z",
+    "ti 13.2.",
     "Lauantai-ilta\nWeep o mine eyes\nIo ti voria\nviva la musica",
-    "11\nSinger B\nSinger D\nSinger F\nSinger I\nSinger M\nSinger Q\nSinger R\nSinger S\nSinger T\nSinger X\nSinger Z",
+    "11\nSinger B\nSinger F\nSinger H\nSinger K\nSinger O\nSinger R\nSinger S\nSinger T\nSinger U\nSinger Y\nSinger 0",
     "?",
     "x",
     "-",
@@ -212,9 +212,9 @@ const fakePayload = [
     "-"
   ],
   [
-    "2018-02-19T22:00:00.000Z",
+    "ti 20.2.",
     "",
-    "9\nSinger B\nSinger A\nSinger E\nSinger I\nSinger L\nSinger Q\nSinger S\nSinger Z\nSinger Ö",
+    "9\nSinger B\nSinger C\nSinger G\nSinger K\nSinger N\nSinger R\nSinger T\nSinger 0\nSinger 3",
     "?",
     "x",
     "x",
@@ -247,9 +247,9 @@ const fakePayload = [
     "x [OxuBot]"
   ],
   [
-    "2018-02-26T22:00:00.000Z",
+    "ti 27.2.",
     "",
-    "14\nSinger A\nSinger B\nSinger A\nSinger D\nSinger E\nSinger H\nSinger I\nSinger L\nSinger M\nSinger Q\nSinger T\nSinger U\nSinger Y\nSinger Z",
+    "14\nSinger A\nSinger B\nSinger C\nSinger F\nSinger G\nSinger J\nSinger K\nSinger N\nSinger O\nSinger R\nSinger U\nSinger V\nSinger Z\nSinger 0",
     "x [OxuBot]",
     "x",
     "x",
@@ -282,9 +282,9 @@ const fakePayload = [
     "- [OxuBot]"
   ],
   [
-    "2018-03-05T22:00:00.000Z",
+    "ti 6.3.",
     "",
-    "12\nSinger B\nSinger C\nSinger D\nSinger E\nSinger L\nSinger Q\nSinger R\nSinger S\nSinger T\nSinger U\nSinger Y\nSinger Ö",
+    "12\nSinger B\nSinger E\nSinger F\nSinger G\nSinger N\nSinger R\nSinger S\nSinger T\nSinger U\nSinger V\nSinger Z\nSinger 3",
     "?",
     "x",
     "-",
@@ -317,9 +317,9 @@ const fakePayload = [
     "x [OxuBot]"
   ],
   [
-    "2018-03-12T22:00:00.000Z",
+    "ti 13.3.",
     "Only You\nYesterday\nVIva la musica\nLauantai-ilta",
-    "15\nSinger B\nSinger B\nSinger D\nSinger E\nSinger F\nSinger H\nSinger I\nSinger Q\nSinger S\nSinger T\nSinger U\nSinger X\nSinger Y\nSinger Ä\nSinger Ö",
+    "15\nSinger B\nSinger D\nSinger F\nSinger G\nSinger H\nSinger J\nSinger K\nSinger R\nSinger T\nSinger U\nSinger V\nSinger Y\nSinger Z\nSinger 2\nSinger 3",
     "?",
     "x",
     "-",
@@ -352,9 +352,9 @@ const fakePayload = [
     "x [OxuBot]"
   ],
   [
-    "2018-03-19T22:00:00.000Z",
+    "ti 20.3.",
     "Irish Blessing\nWeep O Mine Eyes\nDaydream Lullaby\nIo ti Voria",
-    "13\nSinger B\nSinger B\nSinger C\nSinger E\nSinger F\nSinger L\nSinger Q\nSinger S\nSinger T\nSinger U\nSinger X\nSinger Y\nSinger Ö",
+    "13\nSinger B\nSinger D\nSinger E\nSinger G\nSinger H\nSinger N\nSinger R\nSinger T\nSinger U\nSinger V\nSinger Y\nSinger Z\nSinger 3",
     "?",
     "x",
     "-",
@@ -387,9 +387,9 @@ const fakePayload = [
     "x [OxuBot]"
   ],
   [
-    "2018-03-26T21:00:00.000Z",
+    "ti 27.3.",
     "Under Häggarna\nYesterday\nLauantai-ilta\nKeinu\nOnly You",
-    "13\nSinger B\nSinger A\nSinger C\nSinger D\nSinger H\nSinger I\nSinger L\nSinger Q\nSinger R\nSinger S\nSinger T\nSinger U\nSinger Ö",
+    "13\nSinger B\nSinger C\nSinger E\nSinger F\nSinger J\nSinger K\nSinger N\nSinger R\nSinger S\nSinger T\nSinger U\nSinger V\nSinger 3",
     "?",
     "x",
     "x",
@@ -422,9 +422,9 @@ const fakePayload = [
     "x [OxuBot]"
   ],
   [
-    "2018-04-02T21:00:00.000Z",
+    "ti 3.4.",
     "",
-    "6\nSinger B\nSinger I\nSinger L\nSinger Q\nSinger S\nSinger T",
+    "6\nSinger B\nSinger K\nSinger N\nSinger R\nSinger T\nSinger U",
     "?",
     "x",
     "",
@@ -457,9 +457,9 @@ const fakePayload = [
     "- [OxuBot]"
   ],
   [
-    "2018-04-09T21:00:00.000Z",
+    "ti 10.4.",
     "",
-    "20\nSinger B\nSinger B\nSinger C\nSinger D\nSinger E\nSinger F\nSinger H\nSinger I\nSinger K\nSinger L\nSinger M\nSinger Q\nSinger R\nSinger S\nSinger T\nSinger U\nSinger X\nSinger Y\nSinger Z\nSinger Ö",
+    "20\nSinger B\nSinger D\nSinger E\nSinger F\nSinger G\nSinger H\nSinger J\nSinger K\nSinger M\nSinger N\nSinger O\nSinger R\nSinger S\nSinger T\nSinger U\nSinger V\nSinger Y\nSinger Z\nSinger 0\nSinger 3",
     "",
     "x",
     "",
@@ -492,9 +492,9 @@ const fakePayload = [
     "x [OxuBot]"
   ],
   [
-    "2018-04-16T21:00:00.000Z",
+    "ti 17.4.",
     "Weep o mine eyes\nLeivolle\nKeinu\nDaydream Lullaby",
-    "10\nSinger B\nSinger H\nSinger I\nSinger L\nSinger Q\nSinger S\nSinger T\nSinger X\nSinger Y\nSinger Z",
+    "10\nSinger D\nSinger J\nSinger K\nSinger N\nSinger R\nSinger T\nSinger U\nSinger Y\nSinger Z\nSinger 0",
     "?",
     "-",
     "",
@@ -527,9 +527,9 @@ const fakePayload = [
     "?"
   ],
   [
-    "2018-04-23T21:00:00.000Z",
+    "ti 24.4.",
     "Leivolle\nIo ti voria\nYesterday\nIrish Blessing\nUnder Häggarna",
-    "13\nSinger B\nSinger C\nSinger D\nSinger E\nSinger F\nSinger I\nSinger M\nSinger Q\nSinger S\nSinger T\nSinger X\nSinger Z\nSinger Ö",
+    "13\nSinger B\nSinger E\nSinger F\nSinger G\nSinger H\nSinger K\nSinger O\nSinger R\nSinger T\nSinger U\nSinger Y\nSinger 0\nSinger 3",
     "?",
     "x",
     "",
@@ -562,9 +562,9 @@ const fakePayload = [
     "x"
   ],
   [
-    "2018-05-07T21:00:00.000Z",
+    "ti 8.5.",
     "Only You\nIrish Blessing\nWeep o my eyes\nViva la musica\nLauantai/ilta",
-    "5\nSinger B\nSinger H\nSinger M\nSinger U\nSinger Y",
+    "5\nSinger B\nSinger J\nSinger O\nSinger V\nSinger Z",
     "?",
     "x",
     "",
@@ -597,9 +597,9 @@ const fakePayload = [
     "?"
   ],
   [
-    "2018-05-14T21:00:00.000Z",
+    "ti 15.5.",
     "",
-    "13\nSinger B\nSinger D\nSinger E\nSinger F\nSinger H\nSinger I\nSinger M\nSinger Q\nSinger S\nSinger T\nSinger U\nSinger X\nSinger Y",
+    "13\nSinger B\nSinger F\nSinger G\nSinger H\nSinger J\nSinger K\nSinger O\nSinger R\nSinger T\nSinger U\nSinger V\nSinger Y\nSinger Z",
     "?",
     "x",
     "?",
@@ -634,7 +634,7 @@ const fakePayload = [
   [
     "konsertti la 19.5.",
     "",
-    "14\nSinger B\nSinger D\nSinger E\nSinger F\nSinger H\nSinger I\nSinger Q\nSinger S\nSinger T\nSinger U\nSinger X\nSinger Y\nSinger Z\nSinger Ö",
+    "14\nSinger B\nSinger F\nSinger G\nSinger H\nSinger J\nSinger K\nSinger R\nSinger T\nSinger U\nSinger V\nSinger Y\nSinger Z\nSinger 0\nSinger 3",
     "",
     "x",
     "",
@@ -667,9 +667,9 @@ const fakePayload = [
     "x"
   ],
   [
-    "2018-05-23T21:00:00.000Z",
+    "to 24.5.",
     "Kvartetti-kickoff",
-    "1\nSinger T",
+    "0",
     "?",
     "?",
     "?",
@@ -690,7 +690,7 @@ const fakePayload = [
     "?",
     "?",
     "?",
-    "x",
+    "?",
     "?",
     "?",
     "?",
