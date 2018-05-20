@@ -15,3 +15,10 @@ test("contains dates as written", () => {
   expect(result["2018-01-16"].dateAsWritten).toEqual("ti 16.1.");
   expect(result["2018-05-19"].dateAsWritten).toEqual("konsertti la 19.5.");
 });
+
+test("parses song names", () => {
+  const result = ilmoDataToObject(fakePayload);
+  expect(result["2018-01-16"].songs).toEqual(
+    "Under häggarna\nWeep, o mine eyes\nLauantai-ilta"
+  );
+});
