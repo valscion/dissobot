@@ -22,10 +22,10 @@ export default async function handleMessage(
     }
 
     if (text.startsWith("/ilmonneet")) {
-      const signedUp = await peopleSignedUp();
+      // const signedUp = await peopleSignedUp();
       await api.sendMessage({
         chat_id: chat.id,
-        text: signedUp.join("\n")
+        text: ["NOT", "IMPLEMENTED"].join("\n")
       });
     }
 

@@ -9,11 +9,10 @@ export default async function updateSpreadsheetHandler(
   _context: empty,
   callback: (error: null | Error, result?: ProxyResult) => void
 ) {
-  const info = await getInfo();
-  console.log({
-    title: info.title,
-    sheets: info.worksheets.map(sh => sh.title).join(", ")
-  });
+  const { body } = event;
+  if (body) {
+    console.log(body);
+  }
 
   callback(null, {
     statusCode: 200,
