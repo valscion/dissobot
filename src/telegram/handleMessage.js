@@ -3,7 +3,8 @@
 import type { Message } from "telegram-typings";
 
 import type { ProxyResult } from "../common/types";
-import { peopleSignedUp } from "../gsheet/ilmoSheetFunctions";
+import { scan } from "../common/db";
+import { ILMOS_TABLE } from "../common/environment";
 import * as api from "./api";
 
 export default async function handleMessage(
@@ -22,10 +23,10 @@ export default async function handleMessage(
     }
 
     if (text.startsWith("/ilmonneet")) {
-      // const signedUp = await peopleSignedUp();
+      const data = await scan({ TableName: ILMOS_TABLE });
       await api.sendMessage({
         chat_id: chat.id,
-        text: ["NOT", "IMPLEMENTED"].join("\n")
+        text: JSON.stringify(data)
       });
     }
 
