@@ -69,3 +69,16 @@ test("calculates notAttendingList", () => {
     "Singer 3"
   ]);
 });
+
+test("calculates unknownList", () => {
+  const result = ilmoDataToObject(fakePayload);
+  expect(result["2018-05-19"].unknownList).toEqual([
+    "Singer I",
+    "Singer L",
+    "Singer P",
+    "Singer Q",
+    "Singer W",
+    "Singer X",
+    "Singer 1"
+  ]);
+});

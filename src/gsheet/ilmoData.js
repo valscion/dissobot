@@ -80,6 +80,9 @@ function getAttendees(
       case "x":
         attendingList.push(name);
         break;
+      case "?":
+        unknownList.push(name);
+        break;
       case "-":
       case undefined:
         notAttendingList.push(name);
