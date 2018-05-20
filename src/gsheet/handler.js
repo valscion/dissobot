@@ -2,7 +2,7 @@
 
 import type { APIGatewayEvent, ProxyResult } from "../common/types";
 
-import { getInfo } from "./spreadsheet";
+import { ilmoDataToObject } from "./ilmoData";
 
 export default async function updateSpreadsheetHandler(
   event: APIGatewayEvent,
@@ -11,7 +11,8 @@ export default async function updateSpreadsheetHandler(
 ) {
   const { body } = event;
   if (body) {
-    console.log(body);
+    const jsonData = JSON.parse(body);
+    console.log(ilmoDataToObject(jsonData));
   }
 
   callback(null, {
