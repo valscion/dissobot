@@ -19,7 +19,10 @@ export function ilmoDataToObject(rawData: Array<Array<string>>): IlmoObject {
   const toSingleIlmo = makeToSingleIlmo(columns);
 
   return rawData.slice(1).reduce((acc, row) => {
-    const [dateStr, ilmoObj] = toSingleIlmo(row);
+    const ilmo = toSingleIlmo(row);
+    if (!ilmo) return acc;
+    const [dateStr, ilmoObj] = ilmo;
+
     acc[dateStr] = ilmoObj;
     return acc;
   }, {});
@@ -27,7 +30,7 @@ export function ilmoDataToObject(rawData: Array<Array<string>>): IlmoObject {
 
 function makeToSingleIlmo(
   columns
-): (row: Array<string>) => [string, SingleIlmoObject] {
+): (row: Array<string>) => null | [string, SingleIlmoObject] {
   const dateColumn = columns.indexOf("Pvm");
   const songsColumn = columns.indexOf("Biisit");
   const singerNames = columns.filter(col => {
@@ -48,6 +51,7 @@ function makeToSingleIlmo(
   return row => {
     const dateAsWritten = row[dateColumn];
     const parsedDate = moment.utc(dateAsWritten, "D.M.");
+    if (!parsedDate.isValid()) return null;
 
     return [
       parsedDate.format("YYYY-MM-DD"),
