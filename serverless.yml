@@ -6,7 +6,7 @@ plugins:
   - serverless-offline # this needs to be last in the list
 
 custom:
-  tableName: 'users-table-${self:provider.stage}'
+  tableName: 'ilmos-table-${self:provider.stage}'
   dynamodb:
     start:
       migrate: true
@@ -29,9 +29,9 @@ provider:
         - dynamodb:UpdateItem
         - dynamodb:DeleteItem
       Resource:
-        - { "Fn::GetAtt": ["UsersDynamoDBTable", "Arn" ] }
+        - { "Fn::GetAtt": ["IlmosDynamoDBTable", "Arn" ] }
   environment:
-    USERS_TABLE: ${self:custom.tableName}
+    ILMOS_TABLE: ${self:custom.tableName}
     # aws --profile nurmilaakso-dissonanssi \
     #   ssm put-parameter --name telegramToken --type String --value abc123
     TELEGRAM_TOKEN: ${ssm:telegramToken}
@@ -53,16 +53,16 @@ functions:
 
 resources:
   Resources:
-    UsersDynamoDBTable:
+    IlmosDynamoDBTable:
       Type: 'AWS::DynamoDB::Table'
       Properties:
         AttributeDefinitions:
           -
-            AttributeName: userId
+            AttributeName: date
             AttributeType: S
         KeySchema:
           -
-            AttributeName: userId
+            AttributeName: date
             KeyType: HASH
         ProvisionedThroughput:
           ReadCapacityUnits: 1
