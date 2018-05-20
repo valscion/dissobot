@@ -50,3 +50,22 @@ test("calculates attendingList", () => {
     "Singer 2"
   ]);
 });
+
+test("calculates notAttendingList", () => {
+  const result = ilmoDataToObject(fakePayload);
+  expect(result["2018-01-16"].notAttendingList).toEqual([
+    "Singer D",
+    "Singer E",
+    "Singer I",
+    "Singer J",
+    "Singer L",
+    "Singer M",
+    "Singer O",
+    "Singer P",
+    "Singer Q",
+    "Singer V",
+    "Singer W",
+    "Singer 0",
+    "Singer 3"
+  ]);
+});
