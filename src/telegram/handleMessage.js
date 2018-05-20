@@ -2,7 +2,11 @@
 
 import type { Message } from "telegram-typings";
 
-import type { ProxyResult } from "../common/types";
+import type {
+  ProxyResult,
+  IlmoObject,
+  SingleIlmoObject
+} from "../common/types";
 import { scan } from "../common/db";
 import { ILMOS_TABLE } from "../common/environment";
 import * as api from "./api";
@@ -23,10 +27,13 @@ export default async function handleMessage(
     }
 
     if (text.startsWith("/ilmonneet")) {
-      const data = await scan({ TableName: ILMOS_TABLE });
+      const data = await scan({
+        TableName: ILMOS_TABLE
+      });
+      const items: Array<SingleIlmoObject> = data.items;
       await api.sendMessage({
         chat_id: chat.id,
-        text: JSON.stringify(data)
+        text: items[0].attendingList.join("\n")
       });
     }
 

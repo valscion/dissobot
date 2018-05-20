@@ -2,17 +2,7 @@
 
 import moment from "moment";
 
-type SingleIlmoObject = {|
-  dateAsWritten: string,
-  songs: string | null,
-  attendingList: Array<string>,
-  notAttendingList: Array<string>,
-  unknownList: Array<string>
-|};
-
-type IlmoObject = {
-  [dateTime: string]: SingleIlmoObject
-};
+import type { IlmoObject, SingleIlmoObject } from "../common/types";
 
 export function ilmoDataToObject(rawData: Array<Array<string>>): IlmoObject {
   const columns = rawData[0];

@@ -43,3 +43,15 @@ export type ProxyResult = {
   body: string,
   isBase64Encoded?: boolean
 };
+
+export type SingleIlmoObject = {|
+  dateAsWritten: string,
+  songs: string | null,
+  attendingList: Array<string>,
+  notAttendingList: Array<string>,
+  unknownList: Array<string>
+|};
+
+export type IlmoObject = {
+  [dateTime: string]: SingleIlmoObject
+};
