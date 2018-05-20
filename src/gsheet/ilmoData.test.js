@@ -22,3 +22,8 @@ test("parses song names", () => {
     "Under häggarna\nWeep, o mine eyes\nLauantai-ilta"
   );
 });
+
+test("returns missing songs as null", () => {
+  const result = ilmoDataToObject(fakePayload);
+  expect(result["2018-02-20"].songs).toEqual(null);
+});

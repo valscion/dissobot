@@ -5,7 +5,7 @@ import moment from "moment";
 type IlmoObject = {
   [dateTime: string]: {
     dateAsWritten: string,
-    songs: string,
+    songs: string | null,
     attendingList: Array<string>,
     notAttendingList: Array<string>,
     unknownList: Array<string>
@@ -25,7 +25,7 @@ export function ilmoDataToObject(rawData: Array<Array<string>>): IlmoObject {
       ...acc,
       [parsedDate.format("YYYY-MM-DD")]: {
         dateAsWritten: rawDate,
-        songs: rowData[songsColumn]
+        songs: rowData[songsColumn] || null
       }
     };
   }, {});
