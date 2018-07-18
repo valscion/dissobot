@@ -27,7 +27,7 @@ export const ilmonneet = [
       if (attendingList.length > 0) {
         return await api.sendMessage({
           chat_id: chat.id,
-          text: firstIlmo.attendingList.join("\n")
+          text: formatAttendees(firstIlmo)
         });
       } else {
         return await api.sendMessage({
@@ -40,11 +40,25 @@ export const ilmonneet = [
   }
 ];
 
+function formatAttendees(ilmo: SingleIlmoObject) {
+  let str = header(ilmo);
+  str += `\n\n`;
+  str += `<i>Attending:</i>`;
+  str += `\n\n`;
+  str += "- " + ilmo.attendingList.join("\n- ");
+  return str;
+}
+
 function formatNoSignups(ilmo: SingleIlmoObject) {
-  let str = "";
-  str += `<b>${escapeHtml(ilmo.dateAsWritten)}</b>`;
+  let str = header(ilmo);
   str += `\n\n`;
   str += `Nobody has signed up yet.`;
 
+  return str;
+}
+
+function header(ilmo: SingleIlmoObject) {
+  let str = "";
+  str += `<b>${escapeHtml(ilmo.dateAsWritten)}</b>`;
   return str;
 }
