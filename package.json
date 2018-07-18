@@ -13,6 +13,7 @@
   "dependencies": {
     "aws-sdk": "^2.207.0",
     "babel-polyfill": "^6.26.0",
+    "escape-html": "^1.0.3",
     "google-spreadsheet": "^2.0.4",
     "moment": "^2.22.1",
     "node-fetch": "^2.1.1",
