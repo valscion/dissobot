@@ -46,7 +46,7 @@ function formatAttendees(ilmo: SingleIlmoObject) {
   str += `\n\n`;
   str += `<i>Attending:</i>`;
   str += `\n\n`;
-  str += "- " + ilmo.attendingList.join("\n- ");
+  str += "- " + escapeHtml(ilmo.attendingList.join("\n- "));
   return str;
 }
 
@@ -70,7 +70,7 @@ function songs(ilmo: SingleIlmoObject) {
   const ilmoSongs = (ilmo.songs && ilmo.songs.trim()) || "";
   let str = "";
   if (ilmoSongs.length > 0) {
-    str += `Songs:\n${ilmoSongs}`;
+    str += `Songs:\n${escapeHtml(ilmoSongs)}`;
   } else {
     str += `Songs not yet input`;
   }
