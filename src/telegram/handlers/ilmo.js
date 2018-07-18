@@ -61,5 +61,18 @@ function formatNoSignups(ilmo: SingleIlmoObject) {
 function header(ilmo: SingleIlmoObject) {
   let str = "";
   str += `<b>${escapeHtml(ilmo.dateAsWritten)}</b>`;
+  str += `\n\n`;
+  str += songs(ilmo);
+  return str;
+}
+
+function songs(ilmo: SingleIlmoObject) {
+  const ilmoSongs = (ilmo.songs && ilmo.songs.trim()) || "";
+  let str = "";
+  if (ilmoSongs.length > 0) {
+    str += `Songs:\n${ilmoSongs}`;
+  } else {
+    str += `Songs not yet input`;
+  }
   return str;
 }
