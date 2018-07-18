@@ -23,20 +23,11 @@ export const ilmonneet = [
           "There doesn't seem to be any rehearsals marked in Treeni-ilmoke spreadsheet"
       });
     } else {
-      const attendingList = firstIlmo.attendingList.join("\n");
-      if (attendingList.length > 0) {
-        return await api.sendMessage({
-          chat_id: chat.id,
-          text: formatAttendees(firstIlmo),
-          parse_mode: "HTML"
-        });
-      } else {
-        return await api.sendMessage({
-          chat_id: chat.id,
-          text: formatNoSignups(firstIlmo),
-          parse_mode: "HTML"
-        });
-      }
+      return await api.sendMessage({
+        chat_id: chat.id,
+        text: formatAttendees(firstIlmo),
+        parse_mode: "HTML"
+      });
     }
   }
 ];
@@ -46,15 +37,13 @@ function formatAttendees(ilmo: SingleIlmoObject) {
   str += `\n\n`;
   str += `<i>Attending:</i>`;
   str += `\n\n`;
-  str += "- " + escapeHtml(ilmo.attendingList.join("\n- "));
-  return str;
-}
-
-function formatNoSignups(ilmo: SingleIlmoObject) {
-  let str = header(ilmo);
+  str +=
+    "- " + escapeHtml(ilmo.attendingList.join("\n- ")) || "No attendees yet";
+  str += `<i>Not attending:</i>`;
   str += `\n\n`;
-  str += `Nobody has signed up yet.`;
-
+  str +=
+    "- " + escapeHtml(ilmo.notAttendingList.join("\n- ")) ||
+    "Nobody has said they're not attending";
   return str;
 }
 
