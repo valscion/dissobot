@@ -2,38 +2,36 @@
 
 import type { Message } from "telegram-typings";
 
-import type {
-  ProxyResult,
-  IlmoObject,
-  SingleIlmoObject
-} from "../common/types";
-import { scan } from "../common/db";
-import { ILMOS_TABLE } from "../common/environment";
+import type { ProxyResult } from "../common/types";
 import * as api from "./api";
+import { ping } from "./handlers/debug";
+import { ilmonneet } from "./handlers/ilmo";
+
+const commandsToHandlers = new Map([ping, ilmonneet]);
+
+function getHandlerForCommand(text) {
+  for (const [cmd, handler] of commandsToHandlers.entries()) {
+    if (text.startsWith(`/${cmd}`)) {
+      return handler;
+    }
+  }
+  return null;
+}
 
 export default async function handleMessage(
   message: Message
 ): Promise<ProxyResult> {
   const { chat } = message;
 
-  if (chat.type == "private" && message.text) {
+  if (chat.type === "private" && message.text) {
     const text = message.text;
-
-    if (/^\/ping$/.test(text)) {
+    const handler = getHandlerForCommand(text);
+    if (handler) {
+      await handler(chat);
+    } else {
       await api.sendMessage({
         chat_id: chat.id,
-        text: "PONG"
-      });
-    }
-
-    if (text.startsWith("/ilmonneet")) {
-      const data = await scan({
-        TableName: ILMOS_TABLE
-      });
-      const items: Array<SingleIlmoObject> = data.Items;
-      await api.sendMessage({
-        chat_id: chat.id,
-        text: items[0].attendingList.join("\n")
+        text: `Sorry, I don't know that command.`
       });
     }
 
