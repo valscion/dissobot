@@ -110,7 +110,8 @@ module.exports = {
       }
     ],
     "no-use-before-define": [
-      "warn",
+      // Turn off this rule as flow types are nicer this way.
+      "off",
       {
         functions: false,
         classes: false,
