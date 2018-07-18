@@ -36,14 +36,16 @@ function formatAttendees(ilmo: SingleIlmoObject) {
   let str = header(ilmo);
   str += `\n\n`;
   str += `<i>Attending:</i>`;
+  str += `\n`;
+  const attendeeList = ilmo.attendingList.join("\n- ").trim();
+  str += "- " + escapeHtml(attendeeList || "No attendees yet");
   str += `\n\n`;
-  str +=
-    "- " + escapeHtml(ilmo.attendingList.join("\n- ")) || "No attendees yet";
+  const notAttendeeList = ilmo.notAttendingList.join("\n- ").trim();
   str += `<i>Not attending:</i>`;
-  str += `\n\n`;
+  str += `\n`;
   str +=
-    "- " + escapeHtml(ilmo.notAttendingList.join("\n- ")) ||
-    "Nobody has said they're not attending";
+    "- " +
+    escapeHtml(notAttendeeList || "Nobody has said they're not attending");
   return str;
 }
 
