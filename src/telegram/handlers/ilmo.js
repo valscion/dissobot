@@ -27,7 +27,8 @@ export const ilmonneet = [
       if (attendingList.length > 0) {
         return await api.sendMessage({
           chat_id: chat.id,
-          text: formatAttendees(firstIlmo)
+          text: formatAttendees(firstIlmo),
+          parse_mode: "HTML"
         });
       } else {
         return await api.sendMessage({
