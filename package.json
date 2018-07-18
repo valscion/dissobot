@@ -1,7 +1,13 @@
 {
   "name": "dissobot",
   "version": "1.0.0",
-  "description": "",
+  "description": "Telegram bot for Dissonanssi choir",
+  "homepage": "https://github.com/valscion/dissobot",
+  "bugs": "https://github.com/valscion/dissobot/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/valscion/dissobot.git"
+  },
   "main": "index.js",
   "scripts": {
     "test": "jest",
