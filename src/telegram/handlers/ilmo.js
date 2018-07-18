@@ -13,9 +13,25 @@ export const ilmonneet = [
       TableName: ILMOS_TABLE
     });
     const items: Array<SingleIlmoObject> = data.Items;
-    return await api.sendMessage({
-      chat_id: chat.id,
-      text: items[0].attendingList.join("\n")
-    });
+    if (items.length === 0) {
+      return await api.sendMessage({
+        chat_id: chat.id,
+        text:
+          "There doesn't seem to be any rehearsals marked in Treeni-ilmoke spreadsheet"
+      });
+    } else {
+      const attendingList = items[0].attendingList.join("\n");
+      if (attendingList.length > 0) {
+        return await api.sendMessage({
+          chat_id: chat.id,
+          text: items[0].attendingList.join("\n")
+        });
+      } else {
+        return await api.sendMessage({
+          chat_id: chat.id,
+          text: "Nobody has signed up"
+        });
+      }
+    }
   }
 ];
