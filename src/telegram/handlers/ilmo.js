@@ -35,13 +35,17 @@ export const ilmonneet = [
 function getFirstIlmo(
   ilmoList: $ReadOnlyArray<SingleIlmoObject>
 ): void | SingleIlmoObject {
-  const sortedList = ilmoList.slice().sort((a, b) => {
-    const mA = moment.utc(a.dateAsWritten, "D.M.");
-    const mB = moment.utc(b.dateAsWritten, "D.M.");
-    if (mA.isBefore(mB)) return -1;
-    if (mB.isBefore(mA)) return 1;
-    return 0;
-  });
+  const sortedList = ilmoList
+    .filter(ilmo =>
+      moment.utc(ilmo.dateAsWritten, "D.M.").isAfter(moment().subtract("1 day"))
+    )
+    .sort((a, b) => {
+      const mA = moment.utc(a.dateAsWritten, "D.M.");
+      const mB = moment.utc(b.dateAsWritten, "D.M.");
+      if (mA.isBefore(mB)) return -1;
+      if (mB.isBefore(mA)) return 1;
+      return 0;
+    });
   return sortedList[0];
 }
 

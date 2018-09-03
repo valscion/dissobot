@@ -1,5 +1,6 @@
 // @flow
 
+import { advanceTo } from "jest-date-mock";
 import type { SingleIlmoObject } from "../../common/types";
 
 process.env.TELEGRAM_TOKEN = "anything";
@@ -12,6 +13,8 @@ jest.mock("../../common/db");
 
 describe("ilmonneet", () => {
   test("ilmo sorting", async () => {
+    advanceTo(new Date(2018, 8, 1, 0, 0, 0)); // 2018-09-02
+
     const ilmos: Array<SingleIlmoObject> = [
       {
         dateAsWritten: "la 6.10.",
@@ -22,6 +25,13 @@ describe("ilmonneet", () => {
       },
       {
         dateAsWritten: "ti 4.9.",
+        songs: null,
+        attendingList: [],
+        notAttendingList: [],
+        unknownList: []
+      },
+      {
+        dateAsWritten: "ti 28.8.",
         songs: null,
         attendingList: [],
         notAttendingList: [],
