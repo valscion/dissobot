@@ -2,6 +2,7 @@
 
 import type { Chat } from "telegram-typings";
 import escapeHtml from "escape-html";
+import moment from "moment";
 
 import * as api from "../api";
 import { scan } from "../../common/db";
@@ -14,8 +15,7 @@ export const ilmonneet = [
     const data = await scan({
       TableName: ILMOS_TABLE
     });
-    const items: Array<SingleIlmoObject> = data.Items;
-    const firstIlmo = items[0];
+    const firstIlmo = getFirstIlmo(data.Items);
     if (!firstIlmo) {
       return await api.sendMessage({
         chat_id: chat.id,
@@ -31,6 +31,19 @@ export const ilmonneet = [
     }
   }
 ];
+
+function getFirstIlmo(
+  ilmoList: $ReadOnlyArray<SingleIlmoObject>
+): void | SingleIlmoObject {
+  const sortedList = ilmoList.slice().sort((a, b) => {
+    const mA = moment.utc(a.dateAsWritten, "D.M.");
+    const mB = moment.utc(b.dateAsWritten, "D.M.");
+    if (mA.isBefore(mB)) return -1;
+    if (mB.isBefore(mA)) return 1;
+    return 0;
+  });
+  return sortedList[0];
+}
 
 function formatAttendees(ilmo: SingleIlmoObject) {
   let str = header(ilmo);
