@@ -3,7 +3,6 @@
 import type { Message } from "telegram-typings";
 
 import type { ProxyResult } from "../common/types";
-import * as api from "./api";
 import { ping } from "./handlers/debug";
 import { ilmonneet } from "./handlers/ilmo";
 
@@ -28,11 +27,6 @@ export default async function handleMessage(
     const handler = getHandlerForCommand(text);
     if (handler) {
       await handler(chat);
-    } else {
-      await api.sendMessage({
-        chat_id: chat.id,
-        text: `Sorry, I don't know that command.`
-      });
     }
 
     return {
