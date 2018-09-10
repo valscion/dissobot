@@ -23,7 +23,7 @@ export default async function handleMessage(
 ): Promise<ProxyResult> {
   const { chat } = message;
 
-  if (chat.type === "private" && message.text) {
+  if (message.text) {
     const text = message.text;
     const handler = getHandlerForCommand(text);
     if (handler) {
