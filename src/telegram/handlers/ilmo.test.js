@@ -13,7 +13,7 @@ jest.mock("../../common/db");
 
 describe("ilmonneet", () => {
   test("ilmo sorting", async () => {
-    advanceTo(new Date(2018, 8, 1, 0, 0, 0)); // 2018-09-02
+    advanceTo(new Date(2018, 8, 2, 0, 0, 0)); // 2018-09-02
 
     const ilmos: Array<SingleIlmoObject> = [
       {
