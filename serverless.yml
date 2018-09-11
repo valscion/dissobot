@@ -16,7 +16,8 @@ custom:
 provider:
   name: aws
   runtime: nodejs6.10
-  stage: dev
+  defaultStage: dev
+  stage: ${opt:stage, self:custom.defaultStage}
   region: eu-central-1
   profile: nurmilaakso-dissonanssi
   iamRoleStatements:
@@ -33,9 +34,9 @@ provider:
   environment:
     ILMOS_TABLE: ${self:custom.tableName}
     # aws --profile nurmilaakso-dissonanssi \
-    #   ssm put-parameter --name telegramToken --type String --value abc123
-    TELEGRAM_TOKEN: ${ssm:telegramToken}
-    TELEGRAM_URL_SECRET: ${ssm:telegramUrlSecret}
+    #   ssm put-parameter --name dev.telegramToken --type String --value abc123
+    TELEGRAM_TOKEN: ${ssm:${self:provider.stage}.telegramToken}
+    TELEGRAM_URL_SECRET: ${ssm:${self:provider.stage}.telegramUrlSecret}
     SPREADSHEET_SERVICE_ACCOUNT_CLIENT_EMAIL: ${ssm:gsheetClientEmail}
     SPREADSHEET_SERVICE_ACCOUNT_PRIVATE_KEY: ${ssm:gsheetPrivateKey}
 
