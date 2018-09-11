@@ -47,8 +47,8 @@ function getFirstIlmo(
         })
         .isAfter(
           moment()
-            .subtract("1 day")
             .set({ hour: 0, minute: 0, second: 0, millisecond: 0 })
+            .subtract("1 day")
         )
     )
     .sort((a, b) => {
