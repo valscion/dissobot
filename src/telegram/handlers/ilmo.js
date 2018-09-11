@@ -37,11 +37,19 @@ function getFirstIlmo(
 ): void | SingleIlmoObject {
   const sortedList = ilmoList
     .filter(ilmo =>
-      moment.utc(ilmo.dateAsWritten, "D.M.").isAfter(
-        moment()
-          .subtract("1 day")
-          .set({ hour: 0, minute: 0, second: 0, millisecond: 0 })
-      )
+      moment
+        .utc(ilmo.dateAsWritten, "D.M.")
+        .set({
+          hour: 0,
+          minute: 0,
+          second: 0,
+          millisecond: 0
+        })
+        .isAfter(
+          moment()
+            .subtract("1 day")
+            .set({ hour: 0, minute: 0, second: 0, millisecond: 0 })
+        )
     )
     .sort((a, b) => {
       const mA = moment.utc(a.dateAsWritten, "D.M.");
