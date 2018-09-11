@@ -6,7 +6,7 @@ plugins:
   - serverless-offline # this needs to be last in the list
 
 custom:
-  tableName: 'ilmos-table-${self:provider.stage}'
+  tableName: "ilmos-table-${self:provider.stage}"
   dynamodb:
     start:
       migrate: true
@@ -29,7 +29,7 @@ provider:
         - dynamodb:UpdateItem
         - dynamodb:DeleteItem
       Resource:
-        - { "Fn::GetAtt": ["IlmosDynamoDBTable", "Arn" ] }
+        - { "Fn::GetAtt": ["IlmosDynamoDBTable", "Arn"] }
   environment:
     ILMOS_TABLE: ${self:custom.tableName}
     # aws --profile nurmilaakso-dissonanssi \
@@ -39,13 +39,12 @@ provider:
     SPREADSHEET_SERVICE_ACCOUNT_CLIENT_EMAIL: ${ssm:gsheetClientEmail}
     SPREADSHEET_SERVICE_ACCOUNT_PRIVATE_KEY: ${ssm:gsheetPrivateKey}
 
-
 functions:
   telegram:
     handler: telegram.handler
     events:
       - http: ANY /telegram
-      - http: 'ANY /telegram/{proxy+}'
+      - http: "ANY /telegram/{proxy+}"
   gsheet:
     handler: gsheet.handler
     events:
@@ -54,15 +53,13 @@ functions:
 resources:
   Resources:
     IlmosDynamoDBTable:
-      Type: 'AWS::DynamoDB::Table'
+      Type: "AWS::DynamoDB::Table"
       Properties:
         AttributeDefinitions:
-          -
-            AttributeName: date
+          - AttributeName: date
             AttributeType: S
         KeySchema:
-          -
-            AttributeName: date
+          - AttributeName: date
             KeyType: HASH
         ProvisionedThroughput:
           ReadCapacityUnits: 1
