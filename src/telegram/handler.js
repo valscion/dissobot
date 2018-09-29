@@ -6,6 +6,7 @@ import { TELEGRAM_URL_SECRET } from "../common/environment";
 import type { APIGatewayEvent, ProxyResult } from "../common/types";
 
 import handleMessage from "./handleMessage";
+import handleCallbackQuery from "./handleCallbackQuery";
 
 const TELEGRAM_URL = "/telegram/" + TELEGRAM_URL_SECRET;
 export default async function telegramHandler(
@@ -32,10 +33,17 @@ export default async function telegramHandler(
 
   const update: Update = JSON.parse(event.body);
   console.log("Handling telegram update: " + JSON.stringify(update));
-  const message = update.message;
+  const { message, callback_query: callbackQuery } = update;
   if (message) {
     try {
       const result = await handleMessage(message);
+      return callback(null, result);
+    } catch (err) {
+      return callback(err);
+    }
+  } else if (callbackQuery) {
+    try {
+      const result = await handleCallbackQuery(callbackQuery);
       return callback(null, result);
     } catch (err) {
       return callback(err);

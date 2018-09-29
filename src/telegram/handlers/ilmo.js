@@ -26,7 +26,17 @@ export const ilmonneet = [
       return await api.sendMessage({
         chat_id: chat.id,
         text: formatAttendees(firstIlmo),
-        parse_mode: "HTML"
+        parse_mode: "HTML",
+        reply_markup: {
+          inline_keyboard: [
+            [
+              {
+                text: "Refresh",
+                callback_data: firstIlmo.dateAsWritten
+              }
+            ]
+          ]
+        }
       });
     }
   }
