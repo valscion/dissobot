@@ -32,7 +32,7 @@ export const ilmonneet = [
             [
               {
                 text: "Refresh",
-                callback_data: firstIlmo.dateAsWritten
+                callback_data: `REFRESH:${firstIlmo.date}`
               }
             ]
           ]
