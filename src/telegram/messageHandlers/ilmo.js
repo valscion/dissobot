@@ -5,6 +5,7 @@ import moment from "moment";
 
 import * as api from "../api";
 import { formatAttendees } from "../shared/formatters";
+import { refresh } from "../shared/inlineKeyboards";
 import { scan } from "../../common/db";
 import { ILMOS_TABLE } from "../../common/environment";
 import type { SingleIlmoObject } from "../../common/types";
@@ -28,14 +29,7 @@ export const ilmonneet = [
         text: formatAttendees(firstIlmo),
         parse_mode: "HTML",
         reply_markup: {
-          inline_keyboard: [
-            [
-              {
-                text: "Refresh",
-                callback_data: `REFRESH:${firstIlmo.date}`
-              }
-            ]
-          ]
+          inline_keyboard: [[refresh(firstIlmo)]]
         }
       });
     }
