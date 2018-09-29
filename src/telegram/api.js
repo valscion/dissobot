@@ -3,7 +3,8 @@
 import fetch from "node-fetch";
 import type {
   SendMessagePayload,
-  AnswerCallbackQueryPayload
+  AnswerCallbackQueryPayload,
+  EditMessageTextPayload
 } from "telegram-typings";
 
 import { TELEGRAM_TOKEN } from "../common/environment";
@@ -50,6 +51,27 @@ export async function answerCallbackQuery(
     return json;
   } catch (err) {
     console.log("Answering did not go so smooth: " + JSON.stringify(err));
+    return Promise.reject({ error: JSON.stringify(err) });
+  }
+}
+
+export async function editMessageText(bodyJson: EditMessageTextPayload) {
+  const url = TELEGRAM_API_ROOT + "/editMessageText";
+
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "user-agent": "DissoBot v0.0.0",
+        "content-type": "application/json"
+      },
+      body: JSON.stringify(bodyJson)
+    });
+    const json = await response.json();
+    console.log("Response back from Telegram: " + JSON.stringify(json));
+    return json;
+  } catch (err) {
+    console.log("Editing did not go so smooth: " + JSON.stringify(err));
     return Promise.reject({ error: JSON.stringify(err) });
   }
 }
