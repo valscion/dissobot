@@ -3,8 +3,8 @@
 import type { Message } from "telegram-typings";
 
 import type { ProxyResult } from "../common/types";
-import { ping } from "./handlers/debug";
-import { ilmonneet } from "./handlers/ilmo";
+import { ping } from "./messageHandlers/debug";
+import { ilmonneet } from "./messageHandlers/ilmo";
 
 const commandsToHandlers = new Map([ping, ilmonneet]);
 
