@@ -62,17 +62,14 @@ function getFirstIlmo(
 function formatAttendees(ilmo: SingleIlmoObject) {
   let str = header(ilmo);
   str += `\n\n`;
-  str += `<i>Attending:</i>`;
+  str += `<i>${ilmo.attendingList.length} coming, ${
+    ilmo.notAttendingList.length
+  } not coming, ${ilmo.unknownList.length} have not answered yet.</i>`;
+  str += `\n`;
+  str += `<i>Attendees are:</i>`;
   str += `\n`;
   const attendeeList = ilmo.attendingList.join("\n- ").trim();
   str += "- " + escapeHtml(attendeeList || "No attendees yet");
-  str += `\n\n`;
-  const notAttendeeList = ilmo.notAttendingList.join("\n- ").trim();
-  str += `<i>Not attending:</i>`;
-  str += `\n`;
-  str +=
-    "- " +
-    escapeHtml(notAttendeeList || "Nobody has said they're not attending");
   return str;
 }
 
