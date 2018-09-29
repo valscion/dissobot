@@ -4,14 +4,26 @@ import type { CallbackQuery } from "telegram-typings";
 
 import type { ProxyResult } from "../common/types";
 import * as api from "./api";
+import { refresh } from "./callbackQueryHandlers/refresh";
+
+const commandsToHandlers = new Map([refresh]);
+
+function getHandlerForCallbackData(data: string) {
+  for (const [cmd, handler] of commandsToHandlers.entries()) {
+    if (data.startsWith(cmd)) {
+      return handler;
+    }
+  }
+  return null;
+}
 
 export default async function handleCallbackQuery(
   query: CallbackQuery
 ): Promise<ProxyResult> {
-  const { message } = query;
+  const { data } = query;
 
-  if (!message) {
-    console.log("Received a callback query without an attached message.", {
+  if (!data) {
+    console.log("Received a callback query without any callback data.", {
       id: query.id,
       from: query.from
     });
@@ -25,14 +37,13 @@ export default async function handleCallbackQuery(
       // Using 2xx status code as we don't want Telegram to re-send this query.
       // We know we won't be able to handle it.
       statusCode: 200,
-      body: "callback query not attached to a message"
+      body: "callback data not present in callback query"
     };
   } else {
-    await api.answerCallbackQuery({
-      callback_query_id: query.id,
-      text: "Button click worked!",
-      show_alert: true
-    });
+    const handler = getHandlerForCallbackData(data);
+    if (handler) {
+      await handler(query);
+    }
   }
 
   return {
