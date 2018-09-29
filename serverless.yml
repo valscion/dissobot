@@ -19,6 +19,7 @@ provider:
   defaultStage: dev
   stage: ${opt:stage, self:provider.defaultStage}
   region: eu-central-1
+  stackName: ${self:service}-${self:provider.stage}
   profile: nurmilaakso-dissonanssi
   iamRoleStatements:
     - Effect: Allow
