@@ -42,10 +42,12 @@ function makeToSingleIlmo(
     const dateAsWritten = row[dateColumn];
     const parsedDate = moment.utc(dateAsWritten, "D.M.");
     if (!parsedDate.isValid()) return null;
+    const date = parsedDate.format("YYYY-MM-DD");
 
     return [
-      parsedDate.format("YYYY-MM-DD"),
+      date,
       {
+        date,
         dateAsWritten,
         songs: row[songsColumn] || null,
         ...getAttendees(row, singerNamesToColumns)

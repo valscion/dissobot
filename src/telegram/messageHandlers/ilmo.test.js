@@ -21,6 +21,7 @@ describe("ilmonneet", () => {
 
     const ilmos: Array<SingleIlmoObject> = [
       {
+        date: "2018-10-06",
         dateAsWritten: "la 6.10.",
         songs: null,
         attendingList: [],
@@ -28,6 +29,7 @@ describe("ilmonneet", () => {
         unknownList: []
       },
       {
+        date: "2018-09-04",
         dateAsWritten: "ti 4.9.",
         songs: null,
         attendingList: [],
@@ -35,6 +37,7 @@ describe("ilmonneet", () => {
         unknownList: []
       },
       {
+        date: "2018-08-28",
         dateAsWritten: "ti 28.8.",
         songs: null,
         attendingList: [],
@@ -67,6 +70,7 @@ describe("ilmonneet", () => {
 
     const ilmos: Array<SingleIlmoObject> = [
       {
+        date: "2018-09-10",
         dateAsWritten: "ma 10.9.",
         songs: null,
         attendingList: [],
@@ -74,6 +78,7 @@ describe("ilmonneet", () => {
         unknownList: []
       },
       {
+        date: "2018-09-11",
         dateAsWritten: "ti 11.9.",
         songs: null,
         attendingList: [],
@@ -81,6 +86,7 @@ describe("ilmonneet", () => {
         unknownList: []
       },
       {
+        date: "2018-09-18",
         dateAsWritten: "ti 18.9.",
         songs: null,
         attendingList: [],

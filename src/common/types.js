@@ -45,6 +45,7 @@ export type ProxyResult = {
 };
 
 export type SingleIlmoObject = {|
+  date: string,
   dateAsWritten: string,
   songs: string | null,
   attendingList: Array<string>,
@@ -53,5 +54,5 @@ export type SingleIlmoObject = {|
 |};
 
 export type IlmoObject = {
-  [dateTime: string]: SingleIlmoObject
+  [date: string]: SingleIlmoObject
 };
