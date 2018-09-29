@@ -77,8 +77,8 @@ function getAttendees(
       case "?":
         unknownList.push(name);
         break;
-      case "-":
-      case undefined:
+      default:
+        // All other characters mean that the singer is not attending
         notAttendingList.push(name);
         break;
     }
