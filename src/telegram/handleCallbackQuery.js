@@ -15,6 +15,12 @@ export default async function handleCallbackQuery(
       id: query.id,
       from: query.from
     });
+    await api.answerCallbackQuery({
+      callback_query_id: query.id,
+      text:
+        "Bot can't handle this action. Telegram sent the bot some strange info.",
+      show_alert: true
+    });
     return {
       // Using 2xx status code as we don't want Telegram to re-send this query.
       // We know we won't be able to handle it.
