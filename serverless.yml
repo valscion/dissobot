@@ -48,6 +48,7 @@ provider:
     SPREADSHEET_SERVICE_ACCOUNT_CLIENT_EMAIL: ${ssm:gsheetClientEmail}
     SPREADSHEET_SERVICE_ACCOUNT_PRIVATE_KEY: ${ssm:gsheetPrivateKey}
     ILMO_SPREADSHEET_URL: ${ssm:${self:provider.stage}.ilmoSheetUrl}
+    ILMO_SPREADSHEET_API_URL: ${ssm:${self:provider.stage}.ilmoSheetApiUrl}
 
 functions:
   telegram:
