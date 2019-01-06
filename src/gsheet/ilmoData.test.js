@@ -4,33 +4,35 @@ import fakePayload from "./__mocks__/fakePayload";
 
 import { ilmoDataToObject } from "./ilmoData";
 
+const y = new Date().getFully();
+
 test("maps dates to ISO", () => {
   const result = ilmoDataToObject(fakePayload);
-  expect(Object.keys(result)).toContainEqual("2018-01-16");
-  expect(Object.keys(result)).toContainEqual("2018-05-19");
+  expect(Object.keys(result)).toContainEqual(`${y}-01-16`);
+  expect(Object.keys(result)).toContainEqual(`${y}-05-19`);
 });
 
 test("contains dates as written", () => {
   const result = ilmoDataToObject(fakePayload);
-  expect(result["2018-01-16"].dateAsWritten).toEqual("ti 16.1.");
-  expect(result["2018-05-19"].dateAsWritten).toEqual("konsertti la 19.5.");
+  expect(result[`${y}-01-16`].dateAsWritten).toEqual("ti 16.1.");
+  expect(result[`${y}-05-19`].dateAsWritten).toEqual("konsertti la 19.5.");
 });
 
 test("parses song names", () => {
   const result = ilmoDataToObject(fakePayload);
-  expect(result["2018-01-16"].songs).toEqual(
+  expect(result[`${y}-01-16`].songs).toEqual(
     "Under häggarna\nWeep, o mine eyes\nLauantai-ilta"
   );
 });
 
 test("returns missing songs as null", () => {
   const result = ilmoDataToObject(fakePayload);
-  expect(result["2018-02-20"].songs).toEqual(null);
+  expect(result[`${y}-02-20`].songs).toEqual(null);
 });
 
 test("calculates attendingList", () => {
   const result = ilmoDataToObject(fakePayload);
-  expect(result["2018-01-16"].attendingList).toEqual([
+  expect(result[`${y}-01-16`].attendingList).toEqual([
     "Singer A",
     "Singer B",
     "Singer C",
@@ -53,7 +55,7 @@ test("calculates attendingList", () => {
 
 test("calculates notAttendingList", () => {
   const result = ilmoDataToObject(fakePayload);
-  expect(result["2018-01-16"].notAttendingList).toEqual([
+  expect(result[`${y}-01-16`].notAttendingList).toEqual([
     "Singer D",
     "Singer E",
     "Singer I",
@@ -72,7 +74,7 @@ test("calculates notAttendingList", () => {
 
 test("calculates unknownList", () => {
   const result = ilmoDataToObject(fakePayload);
-  expect(result["2018-05-19"].unknownList).toEqual([
+  expect(result[`${y}-05-19`].unknownList).toEqual([
     "Singer I",
     "Singer L",
     "Singer P",
