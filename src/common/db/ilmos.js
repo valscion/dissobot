@@ -2,7 +2,7 @@
 
 import moment from "moment";
 
-import { scan } from "../db";
+import { put, scan } from "../db";
 import { ILMOS_TABLE } from "../../common/environment";
 import type { SingleIlmoObject } from "../../common/types";
 
@@ -11,6 +11,20 @@ export async function getFirstIlmo(): Promise<void | SingleIlmoObject> {
     TableName: ILMOS_TABLE
   });
   return _getFirstIlmo(data.Items);
+}
+
+export async function saveIlmo(ilmo: SingleIlmoObject) {
+  await put({
+    TableName: ILMOS_TABLE,
+    Item: {
+      date: ilmo.date,
+      dateAsWritten: ilmo.dateAsWritten,
+      songs: ilmo.songs,
+      attendingList: ilmo.attendingList,
+      notAttendingList: ilmo.notAttendingList,
+      unknownList: ilmo.unknownList
+    }
+  });
 }
 
 function _getFirstIlmo(
