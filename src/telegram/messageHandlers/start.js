@@ -62,7 +62,19 @@ export const iAm = [
       });
     }
 
-    await saveTelegramUserSheetName(from, name);
+    try {
+      await saveTelegramUserSheetName(from, name);
+    } catch (err) {
+      return await api.sendMessage({
+        chat_id: chat.id,
+        text:
+          "Oh no! Some kind of a horrible error happened!\n\n" +
+          JSON.stringify(err),
+        reply_markup: {
+          remove_keyboard: true
+        }
+      });
+    }
 
     return await api.sendMessage({
       chat_id: chat.id,
