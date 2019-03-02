@@ -50,7 +50,7 @@ export default async function telegramHandler(
     }
   } else {
     callback(null, {
-      statusCode: 404,
+      statusCode: 200,
       body: "No message received"
     });
   }

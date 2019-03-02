@@ -37,7 +37,7 @@ export default async function handleMessage(
   }
 
   return {
-    statusCode: 404,
+    statusCode: 200,
     body: "Unknown message"
   };
 }
