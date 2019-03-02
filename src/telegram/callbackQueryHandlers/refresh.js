@@ -8,6 +8,7 @@ import { formatAttendees } from "../shared/formatters";
 import {
   refresh as refreshKeyboard,
   attendRehearsals,
+  unattendRehearsals,
   goToIlmoSpreadsheet,
   compactInlineKeyboards
 } from "../shared/inlineKeyboards";
@@ -68,6 +69,7 @@ export const refresh = [
         inline_keyboard: compactInlineKeyboards([
           [refreshKeyboard(ilmo)],
           [attendRehearsals(ilmo)],
+          [unattendRehearsals(ilmo)],
           [goToIlmoSpreadsheet()]
         ])
       }

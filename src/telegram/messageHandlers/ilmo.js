@@ -8,6 +8,7 @@ import {
   refresh,
   goToIlmoSpreadsheet,
   attendRehearsals,
+  unattendRehearsals,
   compactInlineKeyboards
 } from "../shared/inlineKeyboards";
 import { getFirstIlmo } from "../../common/db/ilmos";
@@ -31,6 +32,7 @@ export const ilmonneet = [
           inline_keyboard: compactInlineKeyboards([
             [refresh(firstIlmo)],
             [attendRehearsals(firstIlmo)],
+            [unattendRehearsals(firstIlmo)],
             [goToIlmoSpreadsheet()]
           ])
         }
