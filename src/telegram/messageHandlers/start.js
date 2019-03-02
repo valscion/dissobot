@@ -1,8 +1,9 @@
 // @flow
 
-import type { Chat } from "telegram-typings";
+import type { Message, Chat } from "telegram-typings";
 import * as api from "../api";
 import { getFirstIlmo } from "../../common/db/ilmos";
+import { saveTelegramUserSheetName } from "../../common/db/users";
 
 export const start = [
   "start",
@@ -49,6 +50,20 @@ export const iAm = [
     text: string
   }) => {
     const name = text.substring(6);
+    const from = message.from;
+    if (!from) {
+      return await api.sendMessage({
+        chat_id: chat.id,
+        text:
+          "Huh, Telegram did not tell me who you were. I'm afraid I can't do anything now.",
+        reply_markup: {
+          remove_keyboard: true
+        }
+      });
+    }
+
+    await saveTelegramUserSheetName(from, name);
+
     return await api.sendMessage({
       chat_id: chat.id,
       text: `Ok, so you're "${name}". If that wasn't right, send /start and I'll ask again.`,

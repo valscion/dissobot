@@ -6,6 +6,7 @@ import fetch from "node-fetch";
 
 import * as api from "../api";
 import { findIlmoForDate } from "../../common/db/ilmos";
+import { getSingerForTelegramUser } from "../../common/db/users";
 import {
   TELEGRAM_BOT_NAME,
   ILMO_SPREADSHEET_API_URL
@@ -88,7 +89,10 @@ export const attend = [
 ];
 
 async function getSingerNameForUser(user: User): Promise<null | string> {
-  // TODO: Try to find the user from users database, and return name if found.
+  const found = await getSingerForTelegramUser(user);
+  if (found) {
+    return found.sheetName;
+  }
   return null;
 }
 
