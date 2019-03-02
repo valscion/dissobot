@@ -5,8 +5,9 @@ import type { Message } from "telegram-typings";
 import type { ProxyResult } from "../common/types";
 import { ping } from "./messageHandlers/debug";
 import { ilmonneet } from "./messageHandlers/ilmo";
+import { start, iAm } from "./messageHandlers/start";
 
-const commandsToHandlers = new Map([ping, ilmonneet]);
+const commandsToHandlers = new Map([ping, ilmonneet, start, iAm]);
 
 function getHandlerForCommand(text) {
   for (const [cmd, handler] of commandsToHandlers.entries()) {
