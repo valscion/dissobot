@@ -7,7 +7,7 @@ plugins:
   - serverless-offline # this needs to be last in the list
 
 custom:
-  tableName: "ilmos-table-${self:provider.stage}"
+  ilmoTableName: "ilmos-table-${self:provider.stage}"
   dynamodb:
     start:
       migrate: true
@@ -40,7 +40,7 @@ provider:
       Resource:
         - { "Fn::GetAtt": ["IlmosDynamoDBTable", "Arn"] }
   environment:
-    ILMOS_TABLE: ${self:custom.tableName}
+    ILMOS_TABLE: ${self:custom.ilmoTableName}
     # aws --profile nurmilaakso-dissonanssi \
     #   ssm put-parameter --name dev.telegramToken --type String --value abc123
     TELEGRAM_TOKEN: ${ssm:${self:provider.stage}.telegramToken}
@@ -75,4 +75,4 @@ resources:
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
-        TableName: ${self:custom.tableName}
+        TableName: ${self:custom.ilmoTableName}
