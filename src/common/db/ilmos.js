@@ -7,10 +7,16 @@ import { ILMOS_TABLE } from "../../common/environment";
 import type { SingleIlmoObject } from "../../common/types";
 
 export async function getFirstIlmo(): Promise<void | SingleIlmoObject> {
-  const data = await scan({
-    TableName: ILMOS_TABLE
-  });
-  return _getFirstIlmo(data.Items);
+  const ilmos = await getIlmosFromDatabase();
+  return _getFirstIlmo(ilmos);
+}
+
+export async function findIlmoForDate(
+  mom: moment$Moment
+): Promise<void | SingleIlmoObject> {
+  const dateToSearch = mom.format("YYYY-MM-DD");
+  const ilmoList = await getIlmosFromDatabase();
+  return ilmoList.find(ilmo => ilmo.date === dateToSearch);
 }
 
 export async function saveIlmo(ilmo: SingleIlmoObject) {
@@ -25,6 +31,15 @@ export async function saveIlmo(ilmo: SingleIlmoObject) {
       unknownList: ilmo.unknownList
     }
   });
+}
+
+async function getIlmosFromDatabase(): Promise<
+  $ReadOnlyArray<SingleIlmoObject>
+> {
+  const data = await scan({
+    TableName: ILMOS_TABLE
+  });
+  return data.Items;
 }
 
 function _getFirstIlmo(

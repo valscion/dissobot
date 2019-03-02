@@ -11,9 +11,7 @@ import {
   goToIlmoSpreadsheet,
   compactInlineKeyboards
 } from "../shared/inlineKeyboards";
-import { scan } from "../../common/db";
-import { ILMOS_TABLE } from "../../common/environment";
-import type { SingleIlmoObject } from "../../common/types";
+import { findIlmoForDate } from "../../common/db/ilmos";
 
 export const refresh = [
   "REFRESH",
@@ -81,18 +79,3 @@ export const refresh = [
     });
   }
 ];
-
-async function findIlmoForDate(mom: moment$Moment) {
-  const dateToSearch = mom.format("YYYY-MM-DD");
-  const ilmoList = await getIlmosFromDatabase();
-  return ilmoList.find(ilmo => ilmo.date === dateToSearch);
-}
-
-async function getIlmosFromDatabase(): Promise<
-  $ReadOnlyArray<SingleIlmoObject>
-> {
-  const data = await scan({
-    TableName: ILMOS_TABLE
-  });
-  return data.Items;
-}

@@ -5,10 +5,9 @@ import type { CallbackQuery, User } from "telegram-typings";
 import fetch from "node-fetch";
 
 import * as api from "../api";
-import { scan } from "../../common/db";
+import { findIlmoForDate } from "../../common/db/ilmos";
 import {
   TELEGRAM_BOT_NAME,
-  ILMOS_TABLE,
   ILMO_SPREADSHEET_API_URL
 } from "../../common/environment";
 import type { SingleIlmoObject } from "../../common/types";
@@ -88,24 +87,9 @@ export const attend = [
   }
 ];
 
-async function findIlmoForDate(mom: moment$Moment) {
-  const dateToSearch = mom.format("YYYY-MM-DD");
-  const ilmoList = await getIlmosFromDatabase();
-  return ilmoList.find(ilmo => ilmo.date === dateToSearch);
-}
-
 async function getSingerNameForUser(user: User): Promise<null | string> {
   // TODO: Try to find the user from users database, and return name if found.
   return null;
-}
-
-async function getIlmosFromDatabase(): Promise<
-  $ReadOnlyArray<SingleIlmoObject>
-> {
-  const data = await scan({
-    TableName: ILMOS_TABLE
-  });
-  return data.Items;
 }
 
 async function gsheetUpdateAttending(
