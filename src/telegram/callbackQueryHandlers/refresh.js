@@ -7,6 +7,7 @@ import * as api from "../api";
 import { formatAttendees } from "../shared/formatters";
 import {
   refresh as refreshKeyboard,
+  attendRehearsals,
   goToIlmoSpreadsheet,
   compactInlineKeyboards
 } from "../shared/inlineKeyboards";
@@ -68,6 +69,7 @@ export const refresh = [
       reply_markup: {
         inline_keyboard: compactInlineKeyboards([
           [refreshKeyboard(ilmo)],
+          [attendRehearsals(ilmo)],
           [goToIlmoSpreadsheet()]
         ])
       }
