@@ -56,3 +56,8 @@ export type SingleIlmoObject = {|
 export type IlmoObject = {
   [date: string]: SingleIlmoObject
 };
+
+export type IlmoUser = {|
+  id: number,
+  sheetName: string
+|};

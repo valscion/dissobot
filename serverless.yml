@@ -7,7 +7,8 @@ plugins:
   - serverless-offline # this needs to be last in the list
 
 custom:
-  tableName: "ilmos-table-${self:provider.stage}"
+  ilmoTableName: "ilmos-table-${self:provider.stage}"
+  userTableName: "users-table-${self:provider.stage}"
   dynamodb:
     start:
       migrate: true
@@ -39,10 +40,13 @@ provider:
         - dynamodb:DeleteItem
       Resource:
         - { "Fn::GetAtt": ["IlmosDynamoDBTable", "Arn"] }
+        - { "Fn::GetAtt": ["UsersDynamoDBTable", "Arn"] }
   environment:
-    ILMOS_TABLE: ${self:custom.tableName}
+    ILMOS_TABLE: ${self:custom.ilmoTableName}
+    USERS_TABLE: ${self:custom.userTableName}
     # aws --profile nurmilaakso-dissonanssi \
     #   ssm put-parameter --name dev.telegramToken --type String --value abc123
+    TELEGRAM_BOT_NAME: ${ssm:${self:provider.stage}.telegramBotName}
     TELEGRAM_TOKEN: ${ssm:${self:provider.stage}.telegramToken}
     TELEGRAM_URL_SECRET: ${ssm:${self:provider.stage}.telegramUrlSecret}
     SPREADSHEET_SERVICE_ACCOUNT_CLIENT_EMAIL: ${ssm:gsheetClientEmail}
@@ -75,4 +79,17 @@ resources:
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
-        TableName: ${self:custom.tableName}
+        TableName: ${self:custom.ilmoTableName}
+    UsersDynamoDBTable:
+      Type: "AWS::DynamoDB::Table"
+      Properties:
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: "N"
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        TableName: ${self:custom.userTableName}

@@ -5,8 +5,10 @@ import type { CallbackQuery } from "telegram-typings";
 import type { ProxyResult } from "../common/types";
 import * as api from "./api";
 import { refresh } from "./callbackQueryHandlers/refresh";
+import { attend } from "./callbackQueryHandlers/attend";
+import { unattend } from "./callbackQueryHandlers/unattend";
 
-const commandsToHandlers = new Map([refresh]);
+const commandsToHandlers = new Map([refresh, attend, unattend]);
 
 function getHandlerForCallbackData(data: string) {
   for (const [cmd, handler] of commandsToHandlers.entries()) {
@@ -43,6 +45,12 @@ export default async function handleCallbackQuery(
     const handler = getHandlerForCallbackData(data);
     if (handler) {
       await handler(query);
+    } else {
+      await api.answerCallbackQuery({
+        callback_query_id: query.id,
+        text: "I don't know what to do with that action :(",
+        show_alert: true
+      });
     }
   }
 

@@ -3,8 +3,7 @@
 import type { APIGatewayEvent, ProxyResult } from "../common/types";
 
 import { ilmoDataToObject } from "./ilmoData";
-import { put } from "../common/db";
-import { ILMOS_TABLE } from "../common/environment";
+import { saveIlmo } from "../common/db/ilmos";
 
 export default async function updateSpreadsheetHandler(
   event: APIGatewayEvent,
@@ -17,17 +16,7 @@ export default async function updateSpreadsheetHandler(
     const ilmos = ilmoDataToObject(jsonData);
     for (const date of Object.keys(ilmos)) {
       const ilmo = ilmos[date];
-      await put({
-        TableName: ILMOS_TABLE,
-        Item: {
-          date,
-          dateAsWritten: ilmo.dateAsWritten,
-          songs: ilmo.songs,
-          attendingList: ilmo.attendingList,
-          notAttendingList: ilmo.notAttendingList,
-          unknownList: ilmo.unknownList
-        }
-      });
+      await saveIlmo(ilmo);
     }
   }
 

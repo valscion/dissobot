@@ -3,9 +3,11 @@
 import { advanceTo } from "jest-date-mock";
 import type { SingleIlmoObject } from "../../common/types";
 
+process.env.TELEGRAM_BOT_NAME = "anything";
 process.env.TELEGRAM_TOKEN = "anything";
 process.env.TELEGRAM_URL_SECRET = "anything";
 process.env.ILMOS_TABLE = "anything";
+process.env.USERS_TABLE = "anything";
 const ilmonneet = require("./ilmo").ilmonneet;
 
 jest.mock("../api");
@@ -55,7 +57,7 @@ describe("ilmonneet", () => {
       id: 123,
       type: "group"
     };
-    await ilmonneet[1](chat);
+    await ilmonneet[1]({ chat });
     expect(sendMessage).toHaveBeenCalledTimes(1);
     expect(sendMessage).toHaveBeenCalledWith(
       expect.objectContaining({
@@ -104,7 +106,7 @@ describe("ilmonneet", () => {
       id: 123,
       type: "group"
     };
-    await ilmonneet[1](chat);
+    await ilmonneet[1]({ chat });
     expect(sendMessage).toHaveBeenCalledTimes(1);
     expect(sendMessage).toHaveBeenCalledWith(
       expect.objectContaining({
