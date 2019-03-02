@@ -40,6 +40,7 @@ provider:
         - dynamodb:DeleteItem
       Resource:
         - { "Fn::GetAtt": ["IlmosDynamoDBTable", "Arn"] }
+        - { "Fn::GetAtt": ["UsersDynamoDBTable", "Arn"] }
   environment:
     ILMOS_TABLE: ${self:custom.ilmoTableName}
     USERS_TABLE: ${self:custom.userTableName}
