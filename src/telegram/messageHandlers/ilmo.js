@@ -64,9 +64,12 @@ export const ilmonneetAt = [
         text: "Which upcoming ilmolist would you like to see?",
         reply_markup: {
           one_time_keyboard: true,
-          keyboard: nextIlmos.map(ilmo => {
-            return [{ text: `/show ${ilmo.dateAsWritten}` }];
-          })
+          keyboard: [
+            [{ text: "/close" }],
+            ...nextIlmos.map(ilmo => {
+              return [{ text: `/show ${ilmo.dateAsWritten}` }];
+            })
+          ]
         }
       });
     }
