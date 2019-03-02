@@ -4,7 +4,7 @@ import fakePayload from "./__mocks__/fakePayload";
 
 import { ilmoDataToObject } from "./ilmoData";
 
-const y = new Date().getFully();
+const y = new Date().getFullYear();
 
 test("maps dates to ISO", () => {
   const result = ilmoDataToObject(fakePayload);
