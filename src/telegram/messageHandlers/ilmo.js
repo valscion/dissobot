@@ -14,7 +14,7 @@ import { getFirstIlmo } from "../../common/db/ilmos";
 
 export const ilmonneet = [
   "ilmonneet",
-  async (chat: Chat, _text?: string) => {
+  async ({ chat }: { chat: Chat }) => {
     const firstIlmo = await getFirstIlmo();
     if (!firstIlmo) {
       return await api.sendMessage({

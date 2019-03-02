@@ -6,7 +6,7 @@ import { getFirstIlmo } from "../../common/db/ilmos";
 
 export const start = [
   "start",
-  async (chat: Chat, _text: string) => {
+  async ({ chat }: { chat: Chat }) => {
     const ilmo = await getFirstIlmo();
     if (!ilmo) {
       return await api.sendMessage({
@@ -39,7 +39,15 @@ export const start = [
 
 export const iAm = [
   "i_am",
-  async (chat: Chat, text: string) => {
+  async ({
+    message,
+    chat,
+    text
+  }: {
+    message: Message,
+    chat: Chat,
+    text: string
+  }) => {
     const name = text.substring(6);
     return await api.sendMessage({
       chat_id: chat.id,

@@ -57,7 +57,7 @@ describe("ilmonneet", () => {
       id: 123,
       type: "group"
     };
-    await ilmonneet[1](chat);
+    await ilmonneet[1]({ chat });
     expect(sendMessage).toHaveBeenCalledTimes(1);
     expect(sendMessage).toHaveBeenCalledWith(
       expect.objectContaining({
@@ -106,7 +106,7 @@ describe("ilmonneet", () => {
       id: 123,
       type: "group"
     };
-    await ilmonneet[1](chat);
+    await ilmonneet[1]({ chat });
     expect(sendMessage).toHaveBeenCalledTimes(1);
     expect(sendMessage).toHaveBeenCalledWith(
       expect.objectContaining({

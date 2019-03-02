@@ -27,7 +27,7 @@ export default async function handleMessage(
     const text = message.text;
     const handler = getHandlerForCommand(text);
     if (handler) {
-      await handler(chat, text);
+      await handler({ message, chat, text });
     }
 
     return {
