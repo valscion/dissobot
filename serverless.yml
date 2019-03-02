@@ -45,6 +45,7 @@ provider:
     USERS_TABLE: ${self:custom.userTableName}
     # aws --profile nurmilaakso-dissonanssi \
     #   ssm put-parameter --name dev.telegramToken --type String --value abc123
+    TELEGRAM_BOT_NAME: ${ssm:${self:provider.stage}.telegramBotName}
     TELEGRAM_TOKEN: ${ssm:${self:provider.stage}.telegramToken}
     TELEGRAM_URL_SECRET: ${ssm:${self:provider.stage}.telegramUrlSecret}
     SPREADSHEET_SERVICE_ACCOUNT_CLIENT_EMAIL: ${ssm:gsheetClientEmail}
