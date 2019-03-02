@@ -6,8 +6,16 @@ import type { ProxyResult } from "../common/types";
 import { ping } from "./messageHandlers/debug";
 import { ilmonneet, ilmonneetAt } from "./messageHandlers/ilmo";
 import { start, iAm } from "./messageHandlers/start";
+import { close } from "./messageHandlers/close";
 
-const commandsToHandlers = new Map([ping, ilmonneetAt, ilmonneet, start, iAm]);
+const commandsToHandlers = new Map([
+  ping,
+  ilmonneetAt,
+  ilmonneet,
+  start,
+  iAm,
+  close
+]);
 
 function getHandlerForCommand(text) {
   for (const [cmd, handler] of commandsToHandlers.entries()) {
