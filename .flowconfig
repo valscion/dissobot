@@ -2,5 +2,7 @@
 0.76.0
 
 [ignore]
+<PROJECT_ROOT>/.serverless/.*
+<PROJECT_ROOT>/tmp/.*
 
 [libs]
