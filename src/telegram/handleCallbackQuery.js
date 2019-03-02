@@ -5,8 +5,9 @@ import type { CallbackQuery } from "telegram-typings";
 import type { ProxyResult } from "../common/types";
 import * as api from "./api";
 import { refresh } from "./callbackQueryHandlers/refresh";
+import { attend } from "./callbackQueryHandlers/attend";
 
-const commandsToHandlers = new Map([refresh]);
+const commandsToHandlers = new Map([refresh, attend]);
 
 function getHandlerForCallbackData(data: string) {
   for (const [cmd, handler] of commandsToHandlers.entries()) {
