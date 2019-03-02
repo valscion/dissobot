@@ -42,10 +42,15 @@ async function getIlmosFromDatabase(): Promise<
   return data.Items;
 }
 
-function _getFirstIlmo(
-  ilmoList: $ReadOnlyArray<SingleIlmoObject>
-): void | SingleIlmoObject {
-  const sortedList = ilmoList
+export async function getUpcomingIlmos(): Promise<
+  $ReadOnlyArray<SingleIlmoObject>
+> {
+  const ilmoList = await getIlmosFromDatabase();
+  return _sortUpcomingIlmos(ilmoList);
+}
+
+function _sortUpcomingIlmos(ilmoList: $ReadOnlyArray<SingleIlmoObject>) {
+  return ilmoList
     .filter(ilmo =>
       moment
         .utc(ilmo.dateAsWritten, "D.M.")
@@ -66,5 +71,10 @@ function _getFirstIlmo(
       if (mB.isBefore(mA)) return 1;
       return 0;
     });
-  return sortedList[0];
+}
+
+function _getFirstIlmo(
+  ilmoList: $ReadOnlyArray<SingleIlmoObject>
+): void | SingleIlmoObject {
+  return _sortUpcomingIlmos(ilmoList)[0];
 }
