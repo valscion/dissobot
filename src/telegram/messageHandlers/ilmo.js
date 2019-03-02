@@ -42,9 +42,9 @@ export const ilmonneet = [
 ];
 
 export const ilmonneetAt = [
-  "ilmonneet_at",
+  "show",
   async ({ chat, text }: { chat: Chat, text: string }) => {
-    const date = text.substring("ilmonneet_at".length + 2).trim();
+    const date = text.substring("show".length + 2).trim();
     if (chat.type !== "private" && !date) {
       // List mode works only in private chat
       return;
@@ -65,7 +65,7 @@ export const ilmonneetAt = [
         reply_markup: {
           one_time_keyboard: true,
           keyboard: nextIlmos.map(ilmo => {
-            return [{ text: `/ilmonneet_at ${ilmo.dateAsWritten}` }];
+            return [{ text: `/show ${ilmo.dateAsWritten}` }];
           })
         }
       });
