@@ -8,6 +8,7 @@ import { formatAttendees } from "../shared/formatters";
 import {
   refresh,
   goToIlmoSpreadsheet,
+  attendRehearsals,
   compactInlineKeyboards
 } from "../shared/inlineKeyboards";
 import { scan } from "../../common/db";
@@ -35,6 +36,7 @@ export const ilmonneet = [
         reply_markup: {
           inline_keyboard: compactInlineKeyboards([
             [refresh(firstIlmo)],
+            [attendRehearsals(firstIlmo)],
             [goToIlmoSpreadsheet()]
           ])
         }

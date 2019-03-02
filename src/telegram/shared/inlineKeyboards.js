@@ -22,6 +22,13 @@ export function goToIlmoSpreadsheet(): null | InlineKeyboardButton {
   };
 }
 
+export function attendRehearsals(ilmo: SingleIlmoObject): InlineKeyboardButton {
+  return {
+    text: "Attend",
+    callback_data: `ATTEND:${ilmo.date}`
+  };
+}
+
 export function compactInlineKeyboards(
   kbs: Array<Array<InlineKeyboardButton | null>>
 ): Array<Array<InlineKeyboardButton>> {
