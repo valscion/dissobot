@@ -8,6 +8,7 @@ plugins:
 
 custom:
   ilmoTableName: "ilmos-table-${self:provider.stage}"
+  userTableName: "users-table-${self:provider.stage}"
   dynamodb:
     start:
       migrate: true
@@ -41,6 +42,7 @@ provider:
         - { "Fn::GetAtt": ["IlmosDynamoDBTable", "Arn"] }
   environment:
     ILMOS_TABLE: ${self:custom.ilmoTableName}
+    USERS_TABLE: ${self:custom.userTableName}
     # aws --profile nurmilaakso-dissonanssi \
     #   ssm put-parameter --name dev.telegramToken --type String --value abc123
     TELEGRAM_TOKEN: ${ssm:${self:provider.stage}.telegramToken}
@@ -76,3 +78,16 @@ resources:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
         TableName: ${self:custom.ilmoTableName}
+    UsersDynamoDBTable:
+      Type: "AWS::DynamoDB::Table"
+      Properties:
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: "N"
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        TableName: ${self:custom.userTableName}

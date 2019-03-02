@@ -6,11 +6,13 @@ if (!env.TELEGRAM_TOKEN) throw new Error("TELEGRAM_TOKEN env var is missing");
 if (!env.TELEGRAM_URL_SECRET)
   throw new Error("TELEGRAM_URL_SECRET env var is missing");
 if (!env.ILMOS_TABLE) throw new Error("ILMOS_TABLE env var is missing");
+if (!env.USERS_TABLE) throw new Error("USERS_TABLE env var is missing");
 
 module.exports = {
   TELEGRAM_TOKEN: env.TELEGRAM_TOKEN,
   TELEGRAM_URL_SECRET: env.TELEGRAM_URL_SECRET,
   ILMOS_TABLE: env.ILMOS_TABLE,
+  USERS_TABLE: env.USERS_TABLE,
   SPREADSHEET_SERVICE_ACCOUNT_CLIENT_EMAIL:
     env.SPREADSHEET_SERVICE_ACCOUNT_CLIENT_EMAIL,
   SPREADSHEET_SERVICE_ACCOUNT_PRIVATE_KEY:
