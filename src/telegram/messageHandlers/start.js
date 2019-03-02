@@ -50,6 +50,14 @@ export const iAm = [
     text: string
   }) => {
     const name = text.substring(6);
+    if (!name.trim()) {
+      return await api.sendMessage({
+        chat_id: chat.id,
+        text:
+          "Sorry, I didn't quite catch your name. Say /start again and I'll give you a list of names to choose from."
+      });
+    }
+
     const from = message.from;
     if (!from) {
       return await api.sendMessage({
