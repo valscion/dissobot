@@ -78,7 +78,11 @@ export const iAm = [
 
     return await api.sendMessage({
       chat_id: chat.id,
-      text: `Ok, so you're "${name}". If that wasn't right, send /start and I'll ask again.`,
+      text:
+        `Ok, so you're "${name}". If that wasn't right, send /start and I'll ask again.\n\n` +
+        "You can now try attending to rehearsals via this bot. You can do it here, too: Send me " +
+        "/ilmonneet command and I will show you next upcoming rehearsals and the reply will contain " +
+        "a button to mark attendance status.",
       reply_markup: {
         remove_keyboard: true
       }
