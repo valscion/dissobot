@@ -9,7 +9,9 @@ export const close = [
     return await api.sendMessage({
       chat_id: chat.id,
       text: "Closed any potentially open inline keyboard.",
-      remove_keyboard: true
+      reply_markup: {
+        remove_keyboard: true
+      }
     });
   }
 ];
