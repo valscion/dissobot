@@ -8,6 +8,11 @@ import { saveTelegramUserSheetName } from "../../common/db/users";
 export const start = [
   "start",
   async ({ chat }: { chat: Chat }) => {
+    if (chat.type !== "private") {
+      // Silently ignore any non-private /start commands
+      return;
+    }
+
     const ilmo = await getFirstIlmo();
     if (!ilmo) {
       return await api.sendMessage({
@@ -49,6 +54,11 @@ export const iAm = [
     chat: Chat,
     text: string
   }) => {
+    if (chat.type !== "private") {
+      // Silently ignore any non-private /i_am commands
+      return;
+    }
+
     const name = text.substring(6);
     if (!name.trim()) {
       return await api.sendMessage({
