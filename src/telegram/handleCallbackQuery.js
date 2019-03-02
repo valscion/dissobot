@@ -43,6 +43,12 @@ export default async function handleCallbackQuery(
     const handler = getHandlerForCallbackData(data);
     if (handler) {
       await handler(query);
+    } else {
+      await api.answerCallbackQuery({
+        callback_query_id: query.id,
+        text: "I don't know what to do with that action :(",
+        show_alert: true
+      });
     }
   }
 
