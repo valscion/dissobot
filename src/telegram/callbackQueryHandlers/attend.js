@@ -63,7 +63,7 @@ export const attend = [
     if (!singerName) {
       return await api.answerCallbackQuery({
         callback_query_id: query.id,
-        url: `t.me/${TELEGRAM_BOT_NAME}?start`
+        url: `t.me/${TELEGRAM_BOT_NAME}?start=unknown-singer`
       });
     }
 
