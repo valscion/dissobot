@@ -58,12 +58,24 @@ export const attend = [
       });
     }
 
-    await gsheetUpdateAttending(ilmo);
+    const result = await gsheetUpdateAttending(ilmo);
 
-    return await api.answerCallbackQuery({
-      callback_query_id: query.id,
-      text: "The test worked!"
-    });
+    if (result.ok) {
+      return await api.answerCallbackQuery({
+        callback_query_id: query.id,
+        text:
+          "You have now been marked as attending in the Treeni-ilmoke spreadsheet.\n\n" +
+          'Wait a few minutes, and then click "Refresh" button below bot attending list message.\n\n' +
+          "You should see your name now in the list. If this didn't happen, let Vesa know — the bot might be broken.",
+        show_alert: true
+      });
+    } else {
+      return await api.answerCallbackQuery({
+        callback_query_id: query.id,
+        text: result.error,
+        show_alert: true
+      });
+    }
   }
 ];
 
@@ -84,9 +96,10 @@ async function getIlmosFromDatabase(): Promise<
 
 async function gsheetUpdateAttending(
   ilmo: SingleIlmoObject
-): Promise<{| ok: true |} | {| error: string |}> {
+): Promise<{| ok: true |} | {| ok: false, error: string |}> {
   if (!ILMO_SPREADSHEET_API_URL) {
     return {
+      ok: false,
       error:
         "Internal bot error! Bot cannot connect to Treeni-ilmoke spreadsheet :("
     };
@@ -116,6 +129,6 @@ async function gsheetUpdateAttending(
     console.log(
       `gsheetUpdateAttending send did not go so smooth: ` + JSON.stringify(err)
     );
-    return { error: "Internal bot error! " + JSON.stringify(err) };
+    return { ok: false, error: "Internal bot error! " + JSON.stringify(err) };
   }
 }
