@@ -2,7 +2,7 @@
 
 import moment from "moment";
 
-import { put, scan } from "../db";
+import { put, scan, deleteItem } from "../db";
 import { ILMOS_TABLE } from "../../common/environment";
 import type { SingleIlmoObject } from "../../common/types";
 
@@ -33,7 +33,16 @@ export async function saveIlmo(ilmo: SingleIlmoObject) {
   });
 }
 
-async function getIlmosFromDatabase(): Promise<
+export async function deleteIlmo(ilmo: SingleIlmoObject) {
+  await deleteItem({
+    TableName: ILMOS_TABLE,
+    Key: {
+      date: ilmo.date
+    }
+  });
+}
+
+export async function getIlmosFromDatabase(): Promise<
   $ReadOnlyArray<SingleIlmoObject>
 > {
   const data = await scan({

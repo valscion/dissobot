@@ -22,6 +22,25 @@ type PutParams = {
   Item: Object
 };
 
+type DeleteParams = {
+  TableName: string,
+  Key: {
+    [id: string]: any
+  }
+};
+
+export function deleteItem(params: DeleteParams): Promise<void> {
+  return new Promise((resolve, reject) => {
+    dynamoDb.delete(params, error => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve();
+      }
+    });
+  });
+}
+
 export function put(params: PutParams): Promise<void> {
   return new Promise((resolve, reject) => {
     dynamoDb.put(params, error => {
