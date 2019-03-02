@@ -3,6 +3,7 @@
 
 [ignore]
 <PROJECT_ROOT>/.serverless/.*
+<PROJECT_ROOT>/.webpack/.*
 <PROJECT_ROOT>/tmp/.*
 
 [libs]
