@@ -43,7 +43,10 @@ export const iAm = [
     const name = text.substring(6);
     return await api.sendMessage({
       chat_id: chat.id,
-      text: `Ok, so you're "${name}"`
+      text: `Ok, so you're "${name}". If that wasn't right, send /start and I'll ask again.`,
+      reply_markup: {
+        remove_keyboard: true
+      }
     });
   }
 ];
