@@ -64,9 +64,9 @@ export const attend = [
       return await api.answerCallbackQuery({
         callback_query_id: query.id,
         text:
-          "You have now been marked as attending in the Treeni-ilmoke spreadsheet.\n\n" +
+          "You have now been marked as attending.\n\n" +
           'Wait a few minutes, and then click "Refresh" button below bot attending list message.\n\n' +
-          "You should see your name now in the list. If this didn't happen, let Vesa know — the bot might be broken.",
+          "You should see your name now in the list.",
         show_alert: true
       });
     } else {
