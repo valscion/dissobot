@@ -1,12 +1,13 @@
 // @flow
 
 import moment from "moment";
-import type { CallbackQuery } from "telegram-typings";
+import type { CallbackQuery, User } from "telegram-typings";
 import fetch from "node-fetch";
 
 import * as api from "../api";
 import { scan } from "../../common/db";
 import {
+  TELEGRAM_BOT_NAME,
   ILMOS_TABLE,
   ILMO_SPREADSHEET_API_URL
 } from "../../common/environment";
@@ -58,7 +59,15 @@ export const attend = [
       });
     }
 
-    const result = await gsheetUpdateAttending(ilmo);
+    const singerName = await getSingerNameForUser(query.from);
+    if (!singerName) {
+      return await api.answerCallbackQuery({
+        callback_query_id: query.id,
+        url: `t.me/${TELEGRAM_BOT_NAME}?start`
+      });
+    }
+
+    const result = await gsheetUpdateAttending(singerName, ilmo);
 
     if (result.ok) {
       return await api.answerCallbackQuery({
@@ -85,6 +94,11 @@ async function findIlmoForDate(mom: moment$Moment) {
   return ilmoList.find(ilmo => ilmo.date === dateToSearch);
 }
 
+async function getSingerNameForUser(user: User): Promise<null | string> {
+  // TODO: Try to find the user from users database, and return name if found.
+  return null;
+}
+
 async function getIlmosFromDatabase(): Promise<
   $ReadOnlyArray<SingleIlmoObject>
 > {
@@ -95,6 +109,7 @@ async function getIlmosFromDatabase(): Promise<
 }
 
 async function gsheetUpdateAttending(
+  singerName: string,
   ilmo: SingleIlmoObject
 ): Promise<{| ok: true |} | {| ok: false, error: string |}> {
   if (!ILMO_SPREADSHEET_API_URL) {
@@ -108,7 +123,7 @@ async function gsheetUpdateAttending(
   const bodyJson = {
     action: "MARK_AS_ATTENDING",
     payload: {
-      singer: "Vesa Laakso",
+      singer: singerName,
       dateColumn: ilmo.dateAsWritten
     }
   };
