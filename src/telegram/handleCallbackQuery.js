@@ -6,8 +6,9 @@ import type { ProxyResult } from "../common/types";
 import * as api from "./api";
 import { refresh } from "./callbackQueryHandlers/refresh";
 import { attend } from "./callbackQueryHandlers/attend";
+import { unattend } from "./callbackQueryHandlers/unattend";
 
-const commandsToHandlers = new Map([refresh, attend]);
+const commandsToHandlers = new Map([refresh, attend, unattend]);
 
 function getHandlerForCallbackData(data: string) {
   for (const [cmd, handler] of commandsToHandlers.entries()) {
