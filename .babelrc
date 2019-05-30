@@ -1,4 +1,4 @@
 {
-  "presets": [["env", { "node": "8.10" }]],
+  "presets": [["env", { "node": "10.15" }]],
   "plugins": ["transform-flow-strip-types", "transform-object-rest-spread"]
 }

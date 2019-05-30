@@ -23,7 +23,7 @@ custom:
 
 provider:
   name: aws
-  runtime: nodejs8.10
+  runtime: nodejs10.15
   defaultStage: dev
   stage: ${opt:stage, self:provider.defaultStage}
   region: eu-central-1
