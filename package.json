@@ -11,7 +11,9 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "flow": "flow",
+    "flow:test": "flow --max-warnings 0"
   },
   "keywords": [],
   "author": "",
