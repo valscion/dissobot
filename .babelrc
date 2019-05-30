@@ -1,6 +1,9 @@
 {
   "presets": [
-    ["@babel/env", { "targets": { "node": "10.15" } }],
+    [
+      "@babel/env",
+      { "targets": { "node": "10.15" }, "useBuiltIns": "entry", "corejs": 3 }
+    ],
     "@babel/flow"
   ],
   "plugins": ["@babel/proposal-object-rest-spread"]

@@ -1,6 +1,7 @@
 // @flow
 
-import "@babel/polyfill";
+import "core-js/stable";
+import "regenerator-runtime/runtime";
 
 import handler from "./src/gsheet/handler";
 
