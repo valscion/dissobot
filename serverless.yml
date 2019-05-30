@@ -13,7 +13,13 @@ custom:
     start:
       migrate: true
   webpack:
-    includeModules: true # enable auto-packing of external modules
+    # Enable auto-packing of external modules
+    includeModules:
+      forceExclude:
+        # We only use a small portion of core-js, so we should let
+        # webpack bundle it instead of having to zip the entire core-js
+        # package to the AWS Lambda output.
+        - core-js
   scripts:
     hooks:
       # This hook needs to be commented out before first deploy as stack isn't built yet

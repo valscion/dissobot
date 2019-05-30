@@ -15,7 +15,16 @@ module.exports = {
     hints: false
   },
   devtool: false,
-  externals: [nodeExternals()],
+  externals: [
+    nodeExternals({
+      whitelist: [
+        // We only use a small portion of core-js, so we should let
+        // webpack bundle it instead of having to zip the entire core-js
+        // package to the AWS Lambda output.
+        /^core-js\//
+      ]
+    })
+  ],
   module: {
     rules: [
       {
