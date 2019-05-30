@@ -16,6 +16,9 @@ custom:
     # Enable auto-packing of external modules
     includeModules:
       forceExclude:
+        # aws-sdk is provided already in the AWS Lambda environment, so
+        # we don't need to package it separately.
+        - aws-sdk
         # We only use a small portion of core-js, so we should let
         # webpack bundle it instead of having to zip the entire core-js
         # package to the AWS Lambda output.
