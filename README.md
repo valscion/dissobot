@@ -16,3 +16,12 @@ sls deploy --stage
 # View logs
 sls logs --stage production --tail -f telegram
 ```
+
+## Local development
+
+```
+npm install -g serverless
+npm install
+sls dynamodb install
+sls offline
+```
