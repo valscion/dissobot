@@ -39,7 +39,7 @@
     "babel-loader": "^8.0.6",
     "eslint": "^5.16.0",
     "eslint-plugin-flowtype": "^3.9.1",
-    "flow-bin": "^0.76.0",
+    "flow-bin": "^0.99.1",
     "jest": "^24.8.0",
     "jest-date-mock": "^1.0.6",
     "prettier": "^1.15.3",
