@@ -40,7 +40,7 @@ const signedUpForRow = ({
       .find(signUpCell => signUpCell.value[0].toLowerCase() === "x")
   );
 
-export async function peopleSignedUp() {
+export async function peopleSignedUp(): Promise<Array<string | void>> {
   const cells = await getCells(ILMO_SHEET_ID, {
     "min-row": 1,
     "max-row": 100,
@@ -49,5 +49,11 @@ export async function peopleSignedUp() {
   const nextTrainingCell = getNextTrainingCell(cells);
   return signedUpForRow({ cells, row: nextTrainingCell.row })
     .map(signUpCell => cells.find(c => c.row === 1 && c.col === signUpCell.col))
-    .map(nameCell => nameCell && nameCell.value);
+    .map(nameCell => {
+      if (nameCell) {
+        return nameCell.value;
+      } else {
+        return undefined;
+      }
+    });
 }
