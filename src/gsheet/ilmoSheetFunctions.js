@@ -1,12 +1,7 @@
 // @flow
 
 import moment from "moment";
-import {
-  getCells,
-  ILMO_SHEET_ID,
-  type SpreadsheetCell,
-  type SpreadsheetRow
-} from "./spreadsheet";
+import { getCells, ILMO_SHEET_ID, type SpreadsheetCell } from "./spreadsheet";
 
 const isDateCell = (cell: SpreadsheetCell) =>
   cell.col === 1 && cell.row > 1 && !!cell.value;
@@ -45,30 +40,6 @@ const signedUpForRow = ({
       .find(signUpCell => signUpCell.value[0].toLowerCase() === "x")
   );
 
-const notSignedUpForRow = ({
-  cells,
-  row
-}: {
-  cells: Array<SpreadsheetCell>,
-  row: SpreadsheetRow
-}) =>
-  nameCells(cells).filter(nameCell =>
-    cells
-      .filter(c => c.row === row && c.col === nameCell.col)
-      .find(signUpCell => {
-        const value = signUpCell.value;
-        if (!value) return true;
-        if (value[0] === "?") return false;
-        if (value[0].toLowerCase() === "x") return false;
-        return true;
-      })
-  );
-
-const getComingPeople = ({ cells, nextTrainingCell }) =>
-  signedUpForRow({ cells, row: nextTrainingCell.row })
-    .map(signUpCell => cells.find(c => c.row === 1 && c.col === signUpCell.col))
-    .map(nameCell => nameCell && nameCell.value);
-
 export async function peopleSignedUp() {
   const cells = await getCells(ILMO_SHEET_ID, {
     "min-row": 1,
@@ -76,7 +47,6 @@ export async function peopleSignedUp() {
     "return-empty": true
   });
   const nextTrainingCell = getNextTrainingCell(cells);
-  const comingPeople = getComingPeople({ cells, nextTrainingCell });
   return signedUpForRow({ cells, row: nextTrainingCell.row })
     .map(signUpCell => cells.find(c => c.row === 1 && c.col === signUpCell.col))
     .map(nameCell => nameCell && nameCell.value);
