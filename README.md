@@ -7,7 +7,7 @@ Telegram bot for signups for Dissonanssi choir rehearsals.
 sls deploy
 
 # Deploy to production
-sls deploy --stage
+sls deploy --stage production
 ```
 
 ```bash
