@@ -25,10 +25,8 @@ custom:
         - core-js
   scripts:
     hooks:
-      # This hook needs to be commented out before first deploy as stack isn't built yet
-      # Default value for cf reference won't work: https://github.com/serverless/serverless/issues/4940
       "deploy:finalize": >
-        curl "https://api.telegram.org/bot${ssm:${self:provider.stage}.telegramToken}/setWebhook?url=${cf:${self:provider.stackName}.ServiceEndpoint}/telegram/${ssm:${self:provider.stage}.telegramUrlSecret}"
+        curl "https://api.telegram.org/bot${ssm:${self:provider.stage}.telegramToken}/setWebhook?url=${cf:${self:provider.stackName}.ServiceEndpoint,'deploy-first'}/telegram/${ssm:${self:provider.stage}.telegramUrlSecret}"
 
 provider:
   name: aws
