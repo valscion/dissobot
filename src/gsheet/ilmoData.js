@@ -5,10 +5,10 @@ import moment from "moment";
 import type { IlmoObject, SingleIlmoObject } from "../common/types";
 
 export function ilmoDataToObject(rawData: Array<Array<string>>): IlmoObject {
-  const columns = rawData[0];
+  const columns = rawData[1];
   const toSingleIlmo = makeToSingleIlmo(columns);
 
-  return rawData.slice(1).reduce((acc, row) => {
+  return rawData.slice(2).reduce((acc, row) => {
     const ilmo = toSingleIlmo(row);
     if (!ilmo) return acc;
     const [dateStr, ilmoObj] = ilmo;

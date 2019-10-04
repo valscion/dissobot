@@ -32,7 +32,11 @@ test("returns missing songs as null", () => {
 
 test("calculates attendingList", () => {
   const result = ilmoDataToObject(fakePayload);
-  expect(result[`${y}-12-31`].attendingList).toEqual(["Singer 1", "Singer 2"]);
+  expect(result[`${y}-12-31`].attendingList).toEqual([
+    "Singer 1",
+    "Singer 2",
+    "Singer 3"
+  ]);
 });
 
 test("calculates notAttendingList", () => {
@@ -42,5 +46,11 @@ test("calculates notAttendingList", () => {
 
 test("calculates unknownList", () => {
   const result = ilmoDataToObject(fakePayload);
-  expect(result[`${y}-11-05`].unknownList).toEqual(["Singer 2"]);
+  expect(result[`${y}-11-05`].unknownList).toEqual([
+    "Singer 2",
+    "Singer 4",
+    "Singer 5",
+    "Singer 6",
+    "Singer 7"
+  ]);
 });
