@@ -76,7 +76,8 @@ function getAttendees(
       case "x":
         attendingList.push(name);
         break;
-      case "?":
+      // undefined means that there were no text in the column
+      case undefined:
         unknownList.push(name);
         break;
       default:
