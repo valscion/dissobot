@@ -7,9 +7,7 @@ import type { SingleIlmoObject } from "../../common/types";
 export function formatAttendees(ilmo: SingleIlmoObject) {
   let str = header(ilmo);
   str += `\n\n`;
-  str += `<i>${ilmo.attendingList.length} coming, ${
-    ilmo.notAttendingList.length
-  } not coming, ${ilmo.unknownList.length} have not answered yet.</i>`;
+  str += `<i>${ilmo.attendingList.length} coming, ${ilmo.notAttendingList.length} not coming, ${ilmo.unknownList.length} have not answered yet.</i>`;
   str += `\n`;
   str += `<i>Attendees are:</i>`;
   str += `\n`;
