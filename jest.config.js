@@ -1,4 +1,4 @@
 module.exports = {
-  preset: "@shelf/jest-dynamodb",
+  testEnvironment: "node",
   setupFiles: ["./jest.setup.js"]
 };

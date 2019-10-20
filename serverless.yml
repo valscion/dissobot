@@ -74,7 +74,6 @@ resources:
   Resources:
     IlmosDynamoDBTable:
       Type: "AWS::DynamoDB::Table"
-      # NOTE: Keep table definition in sync with Jest DynamoDB configuration
       Properties:
         AttributeDefinitions:
           - AttributeName: date
@@ -88,7 +87,6 @@ resources:
         TableName: ${self:custom.ilmoTableName}
     UsersDynamoDBTable:
       Type: "AWS::DynamoDB::Table"
-      # NOTE: Keep table definition in sync with Jest DynamoDB configuration
       Properties:
         AttributeDefinitions:
           - AttributeName: id
