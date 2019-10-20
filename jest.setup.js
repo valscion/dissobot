@@ -4,8 +4,7 @@ process.env = {
   TELEGRAM_TOKEN: "TELEGRAM_TOKEN",
   TELEGRAM_URL_SECRET: "TELEGRAM_URL_SECRET",
   ILMOS_TABLE: "ILMOS_TABLE",
-  USERS_TABLE: "USERS_TABLE",
-  IS_OFFLINE: "true"
+  USERS_TABLE: "USERS_TABLE"
 };
 
 // Force all AJAX requests to be mocked
