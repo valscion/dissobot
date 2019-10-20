@@ -7,3 +7,6 @@ process.env = {
   USERS_TABLE: "USERS_TABLE",
   IS_OFFLINE: "true"
 };
+
+// Enable database mocking
+jest.mock("./src/common/db");
