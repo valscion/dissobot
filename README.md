@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/valscion/dissobot.svg?style=svg)](https://circleci.com/gh/valscion/dissobot)
+
 # dissobot
 
 Telegram bot for signups for Dissonanssi choir rehearsals.
