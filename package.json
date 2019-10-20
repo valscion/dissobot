@@ -39,7 +39,7 @@
     "core-js": "^3.2.1",
     "eslint": "^5.16.0",
     "eslint-plugin-flowtype": "^3.13.0",
-    "flow-bin": "^0.99.1",
+    "flow-bin": "0.109.0",
     "jest": "^24.9.0",
     "jest-date-mock": "^1.0.6",
     "prettier": "^1.18.2",
