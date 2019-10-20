@@ -18,3 +18,5 @@ jest.mock("node-fetch", () => {
 
 // Enable database mocking
 jest.mock("./src/common/db");
+// Enable Telegram API mocking
+jest.mock("./src/telegram/api");
