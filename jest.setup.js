@@ -8,5 +8,13 @@ process.env = {
   IS_OFFLINE: "true"
 };
 
+// Force all AJAX requests to be mocked
+jest.mock("node-fetch", () => {
+  return (...args) => {
+    console.error("Unexpected AJAX request!", args);
+    throw new Error("Unexpected AJAX request!");
+  };
+});
+
 // Enable database mocking
 jest.mock("./src/common/db");
