@@ -2,16 +2,10 @@
 
 import { advanceTo } from "jest-date-mock";
 import type { SingleIlmoObject } from "../../common/types";
+import { saveIlmo } from "../../common/db/ilmos";
+import * as tgApi from "../api";
 
-process.env.TELEGRAM_BOT_NAME = "anything";
-process.env.TELEGRAM_TOKEN = "anything";
-process.env.TELEGRAM_URL_SECRET = "anything";
-process.env.ILMOS_TABLE = "anything";
-process.env.USERS_TABLE = "anything";
 const ilmonneet = require("./ilmo").ilmonneet;
-
-jest.mock("../api");
-jest.mock("../../common/db");
 
 beforeEach(() => {
   jest.resetAllMocks();
@@ -21,7 +15,7 @@ describe("ilmonneet", () => {
   test("ilmo sorting", async () => {
     advanceTo(new Date(2018, 8, 2, 0, 0, 0)); // 2018-09-02
 
-    const ilmos: Array<SingleIlmoObject> = [
+    [
       {
         date: "2018-10-06",
         dateAsWritten: "la 6.10.",
@@ -46,13 +40,12 @@ describe("ilmonneet", () => {
         notAttendingList: [],
         unknownList: []
       }
-    ];
-    // $FlowFixMe
-    require("../../common/db").scan.mockImplementationOnce(() => ({
-      Items: ilmos
-    }));
+    ].map(ilmo => saveIlmo(ilmo));
 
-    const sendMessage = require("../api").sendMessage;
+    const sendMessage = jest
+      .spyOn(tgApi, "sendMessage")
+      .mockImplementationOnce(() => Promise.resolve());
+
     const chat = {
       id: 123,
       type: "group"
@@ -70,7 +63,7 @@ describe("ilmonneet", () => {
   test("ilmo date cutoff", async () => {
     advanceTo(new Date(2018, 8, 11, 12, 0, 0)); // 2018-09-11T12:00:00
 
-    const ilmos: Array<SingleIlmoObject> = [
+    [
       {
         date: "2018-09-10",
         dateAsWritten: "ma 10.9.",
@@ -95,13 +88,12 @@ describe("ilmonneet", () => {
         notAttendingList: [],
         unknownList: []
       }
-    ];
-    // $FlowFixMe
-    require("../../common/db").scan.mockImplementationOnce(() => ({
-      Items: ilmos
-    }));
+    ].map(ilmo => saveIlmo(ilmo));
 
-    const sendMessage = require("../api").sendMessage;
+    const sendMessage = jest
+      .spyOn(tgApi, "sendMessage")
+      .mockImplementationOnce(() => Promise.resolve());
+
     const chat = {
       id: 123,
       type: "group"
