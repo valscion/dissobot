@@ -22,23 +22,18 @@ export function formatAttendees(ilmo: SingleIlmoObject) {
   str += `\n\n`;
   str += `<i>${attendingCount} coming, ${notAttendingCount} not coming, ${unknownCount} have not answered yet.</i>`;
 
-  str += `\n\n<b>Soprano</b> <i>(${formatAttendingCount(soprano)})</i>`;
+  str += `\n\n<b>Soprano</b>`;
   str += formatVocalRangeAttendees(soprano);
 
-  str += `\n\n<b>Alto</b> <i>(${formatAttendingCount(alto)})</i>`;
+  str += `\n\n<b>Alto</b>`;
   str += formatVocalRangeAttendees(alto);
 
-  str += `\n\n<b>Tenor</b> <i>(${formatAttendingCount(tenor)})</i>`;
+  str += `\n\n<b>Tenor</b>`;
   str += formatVocalRangeAttendees(tenor);
 
-  str += `\n\n<b>Bass</b> <i>(${formatAttendingCount(bass)})</i>`;
+  str += `\n\n<b>Bass</b>`;
   str += formatVocalRangeAttendees(bass);
   return str;
-}
-
-function formatAttendingCount({ attending, notAttending, unknown }) {
-  const answerCount = attending.length + notAttending.length;
-  return `${attending.length}/${answerCount} coming, ${unknown.length} unknown`;
 }
 
 function formatVocalRangeAttendees({ attending, notAttending, unknown }) {
