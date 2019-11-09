@@ -57,17 +57,17 @@ test("gsheet POST -> /ilmonneet", async () => {
     <i>2 coming, 1 not coming, 3 have not answered yet.</i>
     <i>Attendees are:</i>
 
-    <b>Soprano (2)</b>
+    <b>Soprano</b> <i>(2)</i>
     - One
     - Two
 
-    <b>Alto (0)</b>
+    <b>Alto</b> <i>(0)</i>
     - No attendees yet
 
-    <b>Tenor (0)</b>
+    <b>Tenor</b> <i>(0)</i>
     - No attendees yet
 
-    <b>Bass (0)</b>
+    <b>Bass</b> <i>(0)</i>
     - No attendees yet"
   `);
 });
@@ -95,18 +95,18 @@ describe("gsheet POST -> /show <date>", () => {
       <i>7 coming, 0 not coming, 0 have not answered yet.</i>
       <i>Attendees are:</i>
 
-      <b>Soprano (1)</b>
+      <b>Soprano</b> <i>(1)</i>
       - SopA
 
-      <b>Alto (2)</b>
+      <b>Alto</b> <i>(2)</i>
       - AltA
       - AltB
 
-      <b>Tenor (2)</b>
+      <b>Tenor</b> <i>(2)</i>
       - TenA
       - TenB
 
-      <b>Bass (2)</b>
+      <b>Bass</b> <i>(2)</i>
       - BasA
       - BasB"
     `);
@@ -122,16 +122,16 @@ describe("gsheet POST -> /show <date>", () => {
       <i>0 coming, 0 not coming, 7 have not answered yet.</i>
       <i>Attendees are:</i>
 
-      <b>Soprano (0)</b>
+      <b>Soprano</b> <i>(0)</i>
       - No attendees yet
 
-      <b>Alto (0)</b>
+      <b>Alto</b> <i>(0)</i>
       - No attendees yet
 
-      <b>Tenor (0)</b>
+      <b>Tenor</b> <i>(0)</i>
       - No attendees yet
 
-      <b>Bass (0)</b>
+      <b>Bass</b> <i>(0)</i>
       - No attendees yet"
     `);
   });
@@ -145,16 +145,16 @@ describe("gsheet POST -> /show <date>", () => {
       <i>0 coming, 7 not coming, 0 have not answered yet.</i>
       <i>Attendees are:</i>
 
-      <b>Soprano (0)</b>
+      <b>Soprano</b> <i>(0)</i>
       - No attendees yet
 
-      <b>Alto (0)</b>
+      <b>Alto</b> <i>(0)</i>
       - No attendees yet
 
-      <b>Tenor (0)</b>
+      <b>Tenor</b> <i>(0)</i>
       - No attendees yet
 
-      <b>Bass (0)</b>
+      <b>Bass</b> <i>(0)</i>
       - No attendees yet"
     `);
   });

@@ -24,25 +24,25 @@ export function formatAttendees(ilmo: SingleIlmoObject) {
   str += `\n`;
   str += `<i>Attendees are:</i>`;
 
-  str += `\n\n<b>Soprano (${formatAttendingCount(soprano)})</b>\n- `;
+  str += `\n\n<b>Soprano</b> <i>(${formatAttendingCount(soprano)})</i>\n- `;
   str +=
     soprano.attending.length > 0
       ? escapeHtml(soprano.attending.join("\n- ").trim())
       : "No attendees yet";
 
-  str += `\n\n<b>Alto (${formatAttendingCount(alto)})</b>\n- `;
+  str += `\n\n<b>Alto</b> <i>(${formatAttendingCount(alto)})</i>\n- `;
   str +=
     alto.attending.length > 0
       ? escapeHtml(alto.attending.join("\n- ").trim())
       : "No attendees yet";
 
-  str += `\n\n<b>Tenor (${formatAttendingCount(tenor)})</b>\n- `;
+  str += `\n\n<b>Tenor</b> <i>(${formatAttendingCount(tenor)})</i>\n- `;
   str +=
     tenor.attending.length > 0
       ? escapeHtml(tenor.attending.join("\n- ").trim())
       : "No attendees yet";
 
-  str += `\n\n<b>Bass (${formatAttendingCount(bass)})</b>\n- `;
+  str += `\n\n<b>Bass</b> <i>(${formatAttendingCount(bass)})</i>\n- `;
   str +=
     bass.attending.length > 0
       ? escapeHtml(bass.attending.join("\n- ").trim())
