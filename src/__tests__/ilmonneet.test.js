@@ -61,13 +61,14 @@ test("gsheet POST -> /ilmonneet", async () => {
     - Two
 
     <b>Alto</b> <i>(0/0 coming, 1 unknown)</i>
-    - No attendees yet
+    - ?? Three
 
     <b>Tenor</b> <i>(0/0 coming, 1 unknown)</i>
-    - No attendees yet
+    - ?? Four
 
     <b>Bass</b> <i>(0/1 coming, 1 unknown)</i>
-    - No attendees yet"
+    - <s>Five</s>
+    - ?? Six"
   `);
 });
 
@@ -121,16 +122,19 @@ describe("gsheet POST -> /show <date>", () => {
       <i>0 coming, 0 not coming, 7 have not answered yet.</i>
 
       <b>Soprano</b> <i>(0/0 coming, 1 unknown)</i>
-      - No attendees yet
+      - ?? SopA
 
       <b>Alto</b> <i>(0/0 coming, 2 unknown)</i>
-      - No attendees yet
+      - ?? AltA
+      - ?? AltB
 
       <b>Tenor</b> <i>(0/0 coming, 2 unknown)</i>
-      - No attendees yet
+      - ?? TenA
+      - ?? TenB
 
       <b>Bass</b> <i>(0/0 coming, 2 unknown)</i>
-      - No attendees yet"
+      - ?? BasA
+      - ?? BasB"
     `);
   });
 
@@ -143,16 +147,19 @@ describe("gsheet POST -> /show <date>", () => {
       <i>0 coming, 7 not coming, 0 have not answered yet.</i>
 
       <b>Soprano</b> <i>(0/1 coming, 0 unknown)</i>
-      - No attendees yet
+      - <s>SopA</s>
 
       <b>Alto</b> <i>(0/2 coming, 0 unknown)</i>
-      - No attendees yet
+      - <s>AltA</s>
+      - <s>AltB</s>
 
       <b>Tenor</b> <i>(0/2 coming, 0 unknown)</i>
-      - No attendees yet
+      - <s>TenA</s>
+      - <s>TenB</s>
 
       <b>Bass</b> <i>(0/2 coming, 0 unknown)</i>
-      - No attendees yet"
+      - <s>BasA</s>
+      - <s>BasB</s>"
     `);
   });
 
@@ -165,16 +172,19 @@ describe("gsheet POST -> /show <date>", () => {
       <i>2 coming, 2 not coming, 3 have not answered yet.</i>
 
       <b>Soprano</b> <i>(0/0 coming, 1 unknown)</i>
-      - No attendees yet
+      - ?? SopA
 
       <b>Alto</b> <i>(1/2 coming, 0 unknown)</i>
       - AltB
+      - <s>AltA</s>
 
       <b>Tenor</b> <i>(0/1 coming, 1 unknown)</i>
-      - No attendees yet
+      - <s>TenB</s>
+      - ?? TenA
 
       <b>Bass</b> <i>(1/1 coming, 1 unknown)</i>
-      - BasB"
+      - BasB
+      - ?? BasA"
     `);
   });
 
