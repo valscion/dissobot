@@ -21,25 +21,12 @@ test("gsheet POST -> /ilmonneet", async () => {
   `;
   await lambdaCall(gsheetHandler, { body: sheetData });
 
-  const tgUpdate: Update = {
-    update_id: 1,
-    message: {
-      message_id: 100,
-      date: Date.now(),
-      chat: {
-        id: 200,
-        type: "group"
-      },
-      text: "/ilmonneet"
-    }
-  };
-
   const tgSendMessage = jest
     .spyOn(tgApi, "sendMessage")
     .mockImplementationOnce(() => Promise.resolve());
 
   const tgResult = await lambdaCall(telegramHandler, {
-    body: tgUpdate,
+    body: ilmonneetCommand(),
     path: "/telegram/TELEGRAM_URL_SECRET"
   });
   expect(tgResult).toMatchInlineSnapshot(`
@@ -67,6 +54,21 @@ test("gsheet POST -> /ilmonneet", async () => {
     - Two"
   `);
 });
+
+function ilmonneetCommand(): Update {
+  return {
+    update_id: 1,
+    message: {
+      message_id: 100,
+      date: Date.now(),
+      chat: {
+        id: 200,
+        type: "group"
+      },
+      text: "/ilmonneet"
+    }
+  };
+}
 
 async function lambdaCall(handler, { body, path = "" }): Promise<ProxyResult> {
   const empty: any = undefined;
