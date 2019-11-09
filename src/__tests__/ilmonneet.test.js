@@ -56,8 +56,19 @@ test("gsheet POST -> /ilmonneet", async () => {
 
     <i>2 coming, 1 not coming, 3 have not answered yet.</i>
     <i>Attendees are:</i>
+
+    <b>Soprano (2)</b>
     - One
-    - Two"
+    - Two
+
+    <b>Alto (0)</b>
+    - No attendees yet
+
+    <b>Tenor (0)</b>
+    - No attendees yet
+
+    <b>Bass (0)</b>
+    - No attendees yet"
   `);
 });
 
@@ -65,7 +76,7 @@ describe("gsheet POST -> /show <date>", () => {
   beforeEach(async () => {
     advanceTo(new Date(2018, 8, 2, 0, 0, 0)); // 2018-09-02
     const sheetData = md`
-      |               |        |             | Soprano | Alto | Alto | Tenor 2 | Tenor 1 | Bass 1 | Bass 2 |
+      |               |        |             | Soprano | Alto |      | Tenor 2 | Tenor 1 | Bass 1 | Bass 2 |
       | ------------- | ------ | ----------- | ------- | ---- | ---- | ------- | ------- | ------ | ------ |
       | Pvm           | Biisit | Tulossa (x) | SopA    | AltA | AltB | TenA    | TenB    | BasA   | BasB   |
       | 5.11. all     |        |             | x       | x    | x    | x       | x       | x      | x      |
@@ -83,11 +94,19 @@ describe("gsheet POST -> /show <date>", () => {
 
       <i>7 coming, 0 not coming, 0 have not answered yet.</i>
       <i>Attendees are:</i>
+
+      <b>Soprano (1)</b>
       - SopA
+
+      <b>Alto (2)</b>
       - AltA
       - AltB
+
+      <b>Tenor (2)</b>
       - TenA
       - TenB
+
+      <b>Bass (2)</b>
       - BasA
       - BasB"
     `);
@@ -102,6 +121,17 @@ describe("gsheet POST -> /show <date>", () => {
 
       <i>0 coming, 0 not coming, 7 have not answered yet.</i>
       <i>Attendees are:</i>
+
+      <b>Soprano (0)</b>
+      - No attendees yet
+
+      <b>Alto (0)</b>
+      - No attendees yet
+
+      <b>Tenor (0)</b>
+      - No attendees yet
+
+      <b>Bass (0)</b>
       - No attendees yet"
     `);
   });
@@ -114,6 +144,17 @@ describe("gsheet POST -> /show <date>", () => {
 
       <i>0 coming, 7 not coming, 0 have not answered yet.</i>
       <i>Attendees are:</i>
+
+      <b>Soprano (0)</b>
+      - No attendees yet
+
+      <b>Alto (0)</b>
+      - No attendees yet
+
+      <b>Tenor (0)</b>
+      - No attendees yet
+
+      <b>Bass (0)</b>
       - No attendees yet"
     `);
   });
