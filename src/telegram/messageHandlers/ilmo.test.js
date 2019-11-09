@@ -1,7 +1,6 @@
 // @flow
 
 import { advanceTo } from "jest-date-mock";
-import type { SingleIlmoObject } from "../../common/types";
 import { saveIlmo } from "../../common/db/ilmos";
 import * as tgApi from "../api";
 
@@ -11,6 +10,7 @@ beforeEach(() => {
   jest.resetAllMocks();
 });
 
+const emptyAttendanceMap = { attending: [], notAttending: [], unknown: [] };
 describe("ilmonneet", () => {
   test("ilmo sorting", async () => {
     advanceTo(new Date(2018, 8, 2, 0, 0, 0)); // 2018-09-02
@@ -20,25 +20,28 @@ describe("ilmonneet", () => {
         date: "2018-10-06",
         dateAsWritten: "la 6.10.",
         songs: null,
-        attendingList: [],
-        notAttendingList: [],
-        unknownList: []
+        soprano: emptyAttendanceMap,
+        alto: emptyAttendanceMap,
+        tenor: emptyAttendanceMap,
+        bass: emptyAttendanceMap
       },
       {
         date: "2018-09-04",
         dateAsWritten: "ti 4.9.",
         songs: null,
-        attendingList: [],
-        notAttendingList: [],
-        unknownList: []
+        soprano: emptyAttendanceMap,
+        alto: emptyAttendanceMap,
+        tenor: emptyAttendanceMap,
+        bass: emptyAttendanceMap
       },
       {
         date: "2018-08-28",
         dateAsWritten: "ti 28.8.",
         songs: null,
-        attendingList: [],
-        notAttendingList: [],
-        unknownList: []
+        soprano: emptyAttendanceMap,
+        alto: emptyAttendanceMap,
+        tenor: emptyAttendanceMap,
+        bass: emptyAttendanceMap
       }
     ].map(ilmo => saveIlmo(ilmo));
 
@@ -68,25 +71,28 @@ describe("ilmonneet", () => {
         date: "2018-09-10",
         dateAsWritten: "ma 10.9.",
         songs: null,
-        attendingList: [],
-        notAttendingList: [],
-        unknownList: []
+        soprano: emptyAttendanceMap,
+        alto: emptyAttendanceMap,
+        tenor: emptyAttendanceMap,
+        bass: emptyAttendanceMap
       },
       {
         date: "2018-09-11",
         dateAsWritten: "ti 11.9.",
         songs: null,
-        attendingList: [],
-        notAttendingList: [],
-        unknownList: []
+        soprano: emptyAttendanceMap,
+        alto: emptyAttendanceMap,
+        tenor: emptyAttendanceMap,
+        bass: emptyAttendanceMap
       },
       {
         date: "2018-09-18",
         dateAsWritten: "ti 18.9.",
         songs: null,
-        attendingList: [],
-        notAttendingList: [],
-        unknownList: []
+        soprano: emptyAttendanceMap,
+        alto: emptyAttendanceMap,
+        tenor: emptyAttendanceMap,
+        bass: emptyAttendanceMap
       }
     ].map(ilmo => saveIlmo(ilmo));
 

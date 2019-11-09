@@ -48,9 +48,16 @@ export type SingleIlmoObject = {|
   date: string,
   dateAsWritten: string,
   songs: string | null,
-  attendingList: Array<string>,
-  notAttendingList: Array<string>,
-  unknownList: Array<string>
+  soprano: AttendanceMap,
+  alto: AttendanceMap,
+  tenor: AttendanceMap,
+  bass: AttendanceMap
+|};
+
+export type AttendanceMap = {|
+  attending: Array<string>,
+  notAttending: Array<string>,
+  unknown: Array<string>
 |};
 
 export type IlmoObject = {

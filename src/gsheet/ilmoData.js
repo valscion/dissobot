@@ -2,11 +2,16 @@
 
 import moment from "moment";
 
-import type { IlmoObject, SingleIlmoObject } from "../common/types";
+import type {
+  IlmoObject,
+  SingleIlmoObject,
+  AttendanceMap
+} from "../common/types";
 
 export function ilmoDataToObject(rawData: Array<Array<string>>): IlmoObject {
-  const columns = rawData[1];
-  const toSingleIlmo = makeToSingleIlmo(columns);
+  const vocalRangeRow = rawData[0];
+  const headingRow = rawData[1];
+  const toSingleIlmo = makeToSingleIlmo({ vocalRangeRow, headingRow });
 
   return rawData.slice(2).reduce((acc, row) => {
     const ilmo = toSingleIlmo(row);
@@ -18,25 +23,56 @@ export function ilmoDataToObject(rawData: Array<Array<string>>): IlmoObject {
   }, {});
 }
 
-function makeToSingleIlmo(
-  columns
-): (row: Array<string>) => null | [string, SingleIlmoObject] {
-  const dateColumn = columns.indexOf("Pvm");
-  const songsColumn = columns.indexOf("Biisit");
-  const singerNames = columns.filter(col => {
-    if (col === "Pvm") return false;
-    if (col === "Biisit") return false;
-    if (col === "Tulossa (x)") return false;
-    if (!col) return false;
-    return true;
+function makeToSingleIlmo({
+  vocalRangeRow,
+  headingRow
+}): (row: Array<string>) => null | [string, SingleIlmoObject] {
+  const dateColumn = headingRow.indexOf("Pvm");
+  const songsColumn = headingRow.indexOf("Biisit");
+  const singerColumns: Array<
+    "soprano" | "alto" | "tenor" | "bass" | "previous" | "skip"
+  > = vocalRangeRow.map(col => {
+    const colText = col.toLowerCase();
+    if (colText.startsWith("s")) return "soprano";
+    if (colText.startsWith("a")) return "alto";
+    if (colText.startsWith("t")) return "tenor";
+    if (colText.startsWith("b")) return "bass";
+    if (colText.trim() === "") return "previous";
+    return "skip";
   });
-  const singerNamesToColumns = singerNames.reduce(
-    (acc, name) => ({
-      ...acc,
-      [name]: columns.indexOf(name)
-    }),
-    {}
-  );
+  function findVocalRangeForColumn(
+    colIdx: number
+  ): "soprano" | "alto" | "tenor" | "bass" | "invalid" {
+    let nextIdx = colIdx;
+    while (nextIdx >= 0) {
+      const match = singerColumns[nextIdx];
+      // Stop immediately if we have a faulty singer line
+      if (match === "skip") return "invalid";
+      if (match === "previous") {
+        // Loop back to previous column
+        nextIdx--;
+      } else {
+        return match;
+      }
+    }
+    // If we get here, it means that we checked all columns
+    return "invalid";
+  }
+
+  const singerNamesAndVocalRanges: Array<{|
+    name: string,
+    vocalRange: "soprano" | "alto" | "tenor" | "bass",
+    colIdx: number
+  |}> = headingRow.reduce((acc, col, colIdx) => {
+    if (col === "Pvm") return acc;
+    if (col === "Biisit") return acc;
+    if (col === "Tulossa (x)") return acc;
+    if (!col) return acc;
+    const vocalRange = findVocalRangeForColumn(colIdx);
+    if (vocalRange === "invalid") return acc;
+    const name = headingRow[colIdx];
+    return [...acc, { name, vocalRange, colIdx }];
+  }, []);
 
   return row => {
     const dateAsWritten = row[dateColumn];
@@ -50,7 +86,7 @@ function makeToSingleIlmo(
         date,
         dateAsWritten,
         songs: row[songsColumn] || null,
-        ...getAttendees(row, singerNamesToColumns)
+        ...getAttendees(row, singerNamesAndVocalRanges)
       }
     ];
   };
@@ -58,38 +94,40 @@ function makeToSingleIlmo(
 
 function getAttendees(
   row,
-  singerNamesToColumns: {
-    [name: string]: number
-  }
-): {
-  attendingList: Array<string>,
-  notAttendingList: Array<string>,
-  unknownList: Array<string>
-} {
-  const attendingList = [];
-  const notAttendingList = [];
-  const unknownList = [];
+  singerNamesAndVocalRanges: Array<{|
+    name: string,
+    vocalRange: "soprano" | "alto" | "tenor" | "bass",
+    colIdx: number
+  |}>
+): {|
+  soprano: AttendanceMap,
+  alto: AttendanceMap,
+  tenor: AttendanceMap,
+  bass: AttendanceMap
+|} {
+  const returnValue = {
+    soprano: { attending: [], notAttending: [], unknown: [] },
+    alto: { attending: [], notAttending: [], unknown: [] },
+    tenor: { attending: [], notAttending: [], unknown: [] },
+    bass: { attending: [], notAttending: [], unknown: [] }
+  };
 
-  for (const [name, colIdx] of Object.entries(singerNamesToColumns)) {
+  singerNamesAndVocalRanges.forEach(({ name, vocalRange, colIdx }) => {
     const value = row[(colIdx: any)];
     switch (value.toLowerCase()[0]) {
       case "x":
-        attendingList.push(name);
+        returnValue[vocalRange].attending.push(name);
         break;
       // undefined means that there were no text in the column
       case undefined:
-        unknownList.push(name);
+        returnValue[vocalRange].unknown.push(name);
         break;
       default:
         // All other characters mean that the singer is not attending
-        notAttendingList.push(name);
+        returnValue[vocalRange].notAttending.push(name);
         break;
     }
-  }
+  });
 
-  return {
-    attendingList,
-    notAttendingList,
-    unknownList
-  };
+  return returnValue;
 }

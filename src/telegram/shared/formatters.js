@@ -5,13 +5,25 @@ import escapeHtml from "escape-html";
 import type { SingleIlmoObject } from "../../common/types";
 
 export function formatAttendees(ilmo: SingleIlmoObject) {
+  const attendingList = ilmo.soprano.attending
+    .concat(ilmo.alto.attending)
+    .concat(ilmo.tenor.attending)
+    .concat(ilmo.bass.attending);
+  const notAttendingList = ilmo.soprano.notAttending
+    .concat(ilmo.alto.notAttending)
+    .concat(ilmo.tenor.notAttending)
+    .concat(ilmo.bass.notAttending);
+  const unknownList = ilmo.soprano.unknown
+    .concat(ilmo.alto.unknown)
+    .concat(ilmo.tenor.unknown)
+    .concat(ilmo.bass.unknown);
   let str = header(ilmo);
   str += `\n\n`;
-  str += `<i>${ilmo.attendingList.length} coming, ${ilmo.notAttendingList.length} not coming, ${ilmo.unknownList.length} have not answered yet.</i>`;
+  str += `<i>${attendingList.length} coming, ${notAttendingList.length} not coming, ${unknownList.length} have not answered yet.</i>`;
   str += `\n`;
   str += `<i>Attendees are:</i>`;
   str += `\n`;
-  const attendeeList = ilmo.attendingList.join("\n- ").trim();
+  const attendeeList = attendingList.join("\n- ").trim();
   str += "- " + escapeHtml(attendeeList || "No attendees yet");
   return str;
 }

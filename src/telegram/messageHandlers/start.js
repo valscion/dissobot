@@ -23,9 +23,12 @@ export const start = [
           "Maybe the Treeni-ilmoke spreadsheet does not have any upcoming rehearsals?"
       });
     }
-    const possibleNames = ilmo.attendingList
-      .concat(ilmo.notAttendingList)
-      .concat(ilmo.unknownList)
+    const possibleNames = ["soprano", "alto", "tenor", "bass"]
+      .flatMap(vocalRange =>
+        ilmo[vocalRange].attending
+          .concat(ilmo[vocalRange].notAttending)
+          .concat(ilmo[vocalRange].unknown)
+      )
       .sort((a, b) => a.localeCompare(b));
 
     return await api.sendMessage({

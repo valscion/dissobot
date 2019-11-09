@@ -26,9 +26,10 @@ export async function saveIlmo(ilmo: SingleIlmoObject) {
       date: ilmo.date,
       dateAsWritten: ilmo.dateAsWritten,
       songs: ilmo.songs,
-      attendingList: ilmo.attendingList,
-      notAttendingList: ilmo.notAttendingList,
-      unknownList: ilmo.unknownList
+      soprano: ilmo.soprano,
+      alto: ilmo.alto,
+      tenor: ilmo.tenor,
+      bass: ilmo.bass
     }
   });
 }
