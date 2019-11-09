@@ -57,18 +57,23 @@ test("gsheet POST -> /ilmonneet", async () => {
     <i>2 coming, 1 not coming, 3 have not answered yet.</i>
 
     <b>Soprano</b> <i>(2/2 coming, 0 unknown)</i>
+    <i>Coming (2):</i>
     - One
     - Two
 
     <b>Alto</b> <i>(0/0 coming, 1 unknown)</i>
-    - ?? Three
+    <i>Unknown (1):</i>
+    - Three
 
     <b>Tenor</b> <i>(0/0 coming, 1 unknown)</i>
-    - ?? Four
+    <i>Unknown (1):</i>
+    - Four
 
     <b>Bass</b> <i>(0/1 coming, 1 unknown)</i>
-    - <s>Five</s>
-    - ?? Six"
+    <i>Not coming (1):</i>
+    - Five
+    <i>Unknown (1):</i>
+    - Six"
   `);
 });
 
@@ -96,17 +101,21 @@ describe("gsheet POST -> /show <date>", () => {
       <i>7 coming, 0 not coming, 0 have not answered yet.</i>
 
       <b>Soprano</b> <i>(1/1 coming, 0 unknown)</i>
+      <i>Coming (1):</i>
       - SopA
 
       <b>Alto</b> <i>(2/2 coming, 0 unknown)</i>
+      <i>Coming (2):</i>
       - AltA
       - AltB
 
       <b>Tenor</b> <i>(2/2 coming, 0 unknown)</i>
+      <i>Coming (2):</i>
       - TenA
       - TenB
 
       <b>Bass</b> <i>(2/2 coming, 0 unknown)</i>
+      <i>Coming (2):</i>
       - BasA
       - BasB"
     `);
@@ -122,19 +131,23 @@ describe("gsheet POST -> /show <date>", () => {
       <i>0 coming, 0 not coming, 7 have not answered yet.</i>
 
       <b>Soprano</b> <i>(0/0 coming, 1 unknown)</i>
-      - ?? SopA
+      <i>Unknown (1):</i>
+      - SopA
 
       <b>Alto</b> <i>(0/0 coming, 2 unknown)</i>
-      - ?? AltA
-      - ?? AltB
+      <i>Unknown (2):</i>
+      - AltA
+      - AltB
 
       <b>Tenor</b> <i>(0/0 coming, 2 unknown)</i>
-      - ?? TenA
-      - ?? TenB
+      <i>Unknown (2):</i>
+      - TenA
+      - TenB
 
       <b>Bass</b> <i>(0/0 coming, 2 unknown)</i>
-      - ?? BasA
-      - ?? BasB"
+      <i>Unknown (2):</i>
+      - BasA
+      - BasB"
     `);
   });
 
@@ -147,19 +160,23 @@ describe("gsheet POST -> /show <date>", () => {
       <i>0 coming, 7 not coming, 0 have not answered yet.</i>
 
       <b>Soprano</b> <i>(0/1 coming, 0 unknown)</i>
-      - <s>SopA</s>
+      <i>Not coming (1):</i>
+      - SopA
 
       <b>Alto</b> <i>(0/2 coming, 0 unknown)</i>
-      - <s>AltA</s>
-      - <s>AltB</s>
+      <i>Not coming (2):</i>
+      - AltA
+      - AltB
 
       <b>Tenor</b> <i>(0/2 coming, 0 unknown)</i>
-      - <s>TenA</s>
-      - <s>TenB</s>
+      <i>Not coming (2):</i>
+      - TenA
+      - TenB
 
       <b>Bass</b> <i>(0/2 coming, 0 unknown)</i>
-      - <s>BasA</s>
-      - <s>BasB</s>"
+      <i>Not coming (2):</i>
+      - BasA
+      - BasB"
     `);
   });
 
@@ -172,19 +189,26 @@ describe("gsheet POST -> /show <date>", () => {
       <i>2 coming, 2 not coming, 3 have not answered yet.</i>
 
       <b>Soprano</b> <i>(0/0 coming, 1 unknown)</i>
-      - ?? SopA
+      <i>Unknown (1):</i>
+      - SopA
 
       <b>Alto</b> <i>(1/2 coming, 0 unknown)</i>
+      <i>Coming (1):</i>
       - AltB
-      - <s>AltA</s>
+      <i>Not coming (1):</i>
+      - AltA
 
       <b>Tenor</b> <i>(0/1 coming, 1 unknown)</i>
-      - <s>TenB</s>
-      - ?? TenA
+      <i>Not coming (1):</i>
+      - TenB
+      <i>Unknown (1):</i>
+      - TenA
 
       <b>Bass</b> <i>(1/1 coming, 1 unknown)</i>
+      <i>Coming (1):</i>
       - BasB
-      - ?? BasA"
+      <i>Unknown (1):</i>
+      - BasA"
     `);
   });
 

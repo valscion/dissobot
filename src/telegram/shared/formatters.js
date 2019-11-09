@@ -43,19 +43,16 @@ function formatAttendingCount({ attending, notAttending, unknown }) {
 
 function formatVocalRangeAttendees({ attending, notAttending, unknown }) {
   const attendingStr = escapeHtml(attending.join("\n- ").trim());
-  const notAttendingStr = notAttending
-    .map(name => `<s>${escapeHtml(name)}</s>`)
-    .join("\n- ")
-    .trim();
-  const unknownStr = unknown
-    .map(name => `?? ${escapeHtml(name)}`)
-    .join("\n- ")
-    .trim();
+  const notAttendingStr = escapeHtml(notAttending.join("\n- ").trim());
+  const unknownStr = escapeHtml(unknown.join("\n- ").trim());
 
   let str = "";
-  if (attendingStr) str += `\n- ${attendingStr}`;
-  if (notAttendingStr) str += `\n- ${notAttendingStr}`;
-  if (unknownStr) str += `\n- ${unknownStr}`;
+  if (attendingStr)
+    str += `\n<i>Coming (${attending.length}):</i>\n- ${attendingStr}`;
+  if (notAttendingStr)
+    str += `\n<i>Not coming (${notAttending.length}):</i>\n- ${notAttendingStr}`;
+  if (unknownStr)
+    str += `\n<i>Unknown (${unknown.length}):</i>\n- ${unknownStr}`;
   return str;
 }
 
