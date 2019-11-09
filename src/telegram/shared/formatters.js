@@ -24,30 +24,34 @@ export function formatAttendees(ilmo: SingleIlmoObject) {
   str += `\n`;
   str += `<i>Attendees are:</i>`;
 
-  str += `\n\n<b>Soprano (${soprano.attending.length})</b>\n- `;
+  str += `\n\n<b>Soprano (${formatAttendingCount(soprano)})</b>\n- `;
   str +=
     soprano.attending.length > 0
       ? escapeHtml(soprano.attending.join("\n- ").trim())
       : "No attendees yet";
 
-  str += `\n\n<b>Alto (${alto.attending.length})</b>\n- `;
+  str += `\n\n<b>Alto (${formatAttendingCount(alto)})</b>\n- `;
   str +=
     alto.attending.length > 0
       ? escapeHtml(alto.attending.join("\n- ").trim())
       : "No attendees yet";
 
-  str += `\n\n<b>Tenor (${tenor.attending.length})</b>\n- `;
+  str += `\n\n<b>Tenor (${formatAttendingCount(tenor)})</b>\n- `;
   str +=
     tenor.attending.length > 0
       ? escapeHtml(tenor.attending.join("\n- ").trim())
       : "No attendees yet";
 
-  str += `\n\n<b>Bass (${bass.attending.length})</b>\n- `;
+  str += `\n\n<b>Bass (${formatAttendingCount(bass)})</b>\n- `;
   str +=
     bass.attending.length > 0
       ? escapeHtml(bass.attending.join("\n- ").trim())
       : "No attendees yet";
   return str;
+}
+
+function formatAttendingCount(attendanceMap) {
+  return attendanceMap.attending.length;
 }
 
 function header(ilmo: SingleIlmoObject) {
