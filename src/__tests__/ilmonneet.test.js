@@ -81,6 +81,7 @@ describe("gsheet POST -> /show <date>", () => {
       | 5.11. all     |        |             | x       | x    | x    | x       | x       | x      | x      |
       | 6.11. unknown |        |             |         |      |      |         |         |        |        |
       | 7.11. none    |        |             | -       | -    | -    | -       | -       | -      | -      |
+      | 8.11. some    |        |             |         | -    | x    |         | -       |        | x      |
     `;
     await lambdaCall(gsheetHandler, { body: sheetData });
   });
@@ -152,6 +153,28 @@ describe("gsheet POST -> /show <date>", () => {
 
       <b>Bass</b> <i>(0/2 coming, 0 unknown)</i>
       - No attendees yet"
+    `);
+  });
+
+  test("some attending", async () => {
+    expect(await replyTextFromShowCommand("8.11. some")).toMatchInlineSnapshot(`
+      "<b>8.11. some</b>
+
+      Songs not yet input
+
+      <i>2 coming, 2 not coming, 3 have not answered yet.</i>
+
+      <b>Soprano</b> <i>(0/0 coming, 1 unknown)</i>
+      - No attendees yet
+
+      <b>Alto</b> <i>(1/2 coming, 0 unknown)</i>
+      - AltB
+
+      <b>Tenor</b> <i>(0/1 coming, 1 unknown)</i>
+      - No attendees yet
+
+      <b>Bass</b> <i>(1/1 coming, 1 unknown)</i>
+      - BasB"
     `);
   });
 
