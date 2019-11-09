@@ -23,34 +23,28 @@ export function formatAttendees(ilmo: SingleIlmoObject) {
   str += `<i>${attendingCount} coming, ${notAttendingCount} not coming, ${unknownCount} have not answered yet.</i>`;
 
   str += `\n\n<b>Soprano</b> <i>(${formatAttendingCount(soprano)})</i>\n- `;
-  str +=
-    soprano.attending.length > 0
-      ? escapeHtml(soprano.attending.join("\n- ").trim())
-      : "No attendees yet";
+  str += formatVocalRangeAttendees(soprano);
 
   str += `\n\n<b>Alto</b> <i>(${formatAttendingCount(alto)})</i>\n- `;
-  str +=
-    alto.attending.length > 0
-      ? escapeHtml(alto.attending.join("\n- ").trim())
-      : "No attendees yet";
+  str += formatVocalRangeAttendees(alto);
 
   str += `\n\n<b>Tenor</b> <i>(${formatAttendingCount(tenor)})</i>\n- `;
-  str +=
-    tenor.attending.length > 0
-      ? escapeHtml(tenor.attending.join("\n- ").trim())
-      : "No attendees yet";
+  str += formatVocalRangeAttendees(tenor);
 
   str += `\n\n<b>Bass</b> <i>(${formatAttendingCount(bass)})</i>\n- `;
-  str +=
-    bass.attending.length > 0
-      ? escapeHtml(bass.attending.join("\n- ").trim())
-      : "No attendees yet";
+  str += formatVocalRangeAttendees(bass);
   return str;
 }
 
 function formatAttendingCount({ attending, notAttending, unknown }) {
   const answerCount = attending.length + notAttending.length;
   return `${attending.length}/${answerCount} coming, ${unknown.length} unknown`;
+}
+
+function formatVocalRangeAttendees({ attending }) {
+  return attending.length > 0
+    ? escapeHtml(attending.join("\n- ").trim())
+    : "No attendees yet";
 }
 
 function header(ilmo: SingleIlmoObject) {
