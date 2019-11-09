@@ -32,21 +32,29 @@ test("returns missing songs as null", () => {
 
 test("calculates attendingList", () => {
   const result = ilmoDataToObject(fakePayload);
-  expect(result[`${y}-12-31`].attendingList).toEqual([
-    "Singer 1",
-    "Singer 2",
-    "Singer 3"
-  ]);
+  const attendingList = result[`${y}-12-31`].soprano.attending
+    .concat(result[`${y}-12-31`].alto.attending)
+    .concat(result[`${y}-12-31`].tenor.attending)
+    .concat(result[`${y}-12-31`].bass.attending);
+  expect(attendingList).toEqual(["Singer 1", "Singer 2", "Singer 3"]);
 });
 
 test("calculates notAttendingList", () => {
   const result = ilmoDataToObject(fakePayload);
-  expect(result[`${y}-11-05`].notAttendingList).toEqual(["Singer 1"]);
+  const notAttendingList = result[`${y}-11-05`].soprano.notAttending
+    .concat(result[`${y}-11-05`].alto.notAttending)
+    .concat(result[`${y}-11-05`].tenor.notAttending)
+    .concat(result[`${y}-11-05`].bass.notAttending);
+  expect(notAttendingList).toEqual(["Singer 1"]);
 });
 
 test("calculates unknownList", () => {
   const result = ilmoDataToObject(fakePayload);
-  expect(result[`${y}-11-05`].unknownList).toEqual([
+  const unknownList = result[`${y}-11-05`].soprano.unknown
+    .concat(result[`${y}-11-05`].alto.unknown)
+    .concat(result[`${y}-11-05`].tenor.unknown)
+    .concat(result[`${y}-11-05`].bass.unknown);
+  expect(unknownList).toEqual([
     "Singer 2",
     "Singer 4",
     "Singer 5",

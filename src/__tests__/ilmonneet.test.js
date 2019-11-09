@@ -55,9 +55,25 @@ test("gsheet POST -> /ilmonneet", async () => {
     First songs
 
     <i>2 coming, 1 not coming, 3 have not answered yet.</i>
-    <i>Attendees are:</i>
+
+    <b>Soprano</b>
+    <i>Coming (2):</i>
     - One
-    - Two"
+    - Two
+
+    <b>Alto</b>
+    <i>Unknown (1):</i>
+    - Three
+
+    <b>Tenor</b>
+    <i>Unknown (1):</i>
+    - Four
+
+    <b>Bass</b>
+    <i>Not coming (1):</i>
+    - Five
+    <i>Unknown (1):</i>
+    - Six"
   `);
 });
 
@@ -65,12 +81,13 @@ describe("gsheet POST -> /show <date>", () => {
   beforeEach(async () => {
     advanceTo(new Date(2018, 8, 2, 0, 0, 0)); // 2018-09-02
     const sheetData = md`
-      |               |        |             | Soprano | Alto | Alto | Tenor 2 | Tenor 1 | Bass 1 | Bass 2 |
+      |               |        |             | Soprano | Alto |      | Tenor 2 | Tenor 1 | Bass 1 | Bass 2 |
       | ------------- | ------ | ----------- | ------- | ---- | ---- | ------- | ------- | ------ | ------ |
       | Pvm           | Biisit | Tulossa (x) | SopA    | AltA | AltB | TenA    | TenB    | BasA   | BasB   |
       | 5.11. all     |        |             | x       | x    | x    | x       | x       | x      | x      |
       | 6.11. unknown |        |             |         |      |      |         |         |        |        |
       | 7.11. none    |        |             | -       | -    | -    | -       | -       | -      | -      |
+      | 8.11. some    |        |             |         | -    | x    |         | -       |        | x      |
     `;
     await lambdaCall(gsheetHandler, { body: sheetData });
   });
@@ -82,12 +99,23 @@ describe("gsheet POST -> /show <date>", () => {
       Songs not yet input
 
       <i>7 coming, 0 not coming, 0 have not answered yet.</i>
-      <i>Attendees are:</i>
+
+      <b>Soprano</b>
+      <i>Coming (1):</i>
       - SopA
+
+      <b>Alto</b>
+      <i>Coming (2):</i>
       - AltA
       - AltB
+
+      <b>Tenor</b>
+      <i>Coming (2):</i>
       - TenA
       - TenB
+
+      <b>Bass</b>
+      <i>Coming (2):</i>
       - BasA
       - BasB"
     `);
@@ -101,8 +129,25 @@ describe("gsheet POST -> /show <date>", () => {
       Songs not yet input
 
       <i>0 coming, 0 not coming, 7 have not answered yet.</i>
-      <i>Attendees are:</i>
-      - No attendees yet"
+
+      <b>Soprano</b>
+      <i>Unknown (1):</i>
+      - SopA
+
+      <b>Alto</b>
+      <i>Unknown (2):</i>
+      - AltA
+      - AltB
+
+      <b>Tenor</b>
+      <i>Unknown (2):</i>
+      - TenA
+      - TenB
+
+      <b>Bass</b>
+      <i>Unknown (2):</i>
+      - BasA
+      - BasB"
     `);
   });
 
@@ -113,8 +158,57 @@ describe("gsheet POST -> /show <date>", () => {
       Songs not yet input
 
       <i>0 coming, 7 not coming, 0 have not answered yet.</i>
-      <i>Attendees are:</i>
-      - No attendees yet"
+
+      <b>Soprano</b>
+      <i>Not coming (1):</i>
+      - SopA
+
+      <b>Alto</b>
+      <i>Not coming (2):</i>
+      - AltA
+      - AltB
+
+      <b>Tenor</b>
+      <i>Not coming (2):</i>
+      - TenA
+      - TenB
+
+      <b>Bass</b>
+      <i>Not coming (2):</i>
+      - BasA
+      - BasB"
+    `);
+  });
+
+  test("some attending", async () => {
+    expect(await replyTextFromShowCommand("8.11. some")).toMatchInlineSnapshot(`
+      "<b>8.11. some</b>
+
+      Songs not yet input
+
+      <i>2 coming, 2 not coming, 3 have not answered yet.</i>
+
+      <b>Soprano</b>
+      <i>Unknown (1):</i>
+      - SopA
+
+      <b>Alto</b>
+      <i>Coming (1):</i>
+      - AltB
+      <i>Not coming (1):</i>
+      - AltA
+
+      <b>Tenor</b>
+      <i>Not coming (1):</i>
+      - TenB
+      <i>Unknown (1):</i>
+      - TenA
+
+      <b>Bass</b>
+      <i>Coming (1):</i>
+      - BasB
+      <i>Unknown (1):</i>
+      - BasA"
     `);
   });
 
