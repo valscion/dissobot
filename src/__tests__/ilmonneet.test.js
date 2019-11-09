@@ -57,17 +57,17 @@ test("gsheet POST -> /ilmonneet", async () => {
     <i>2 coming, 1 not coming, 3 have not answered yet.</i>
     <i>Attendees are:</i>
 
-    <b>Soprano</b> <i>(2)</i>
+    <b>Soprano</b> <i>(2/2 coming, 0 unknown)</i>
     - One
     - Two
 
-    <b>Alto</b> <i>(0)</i>
+    <b>Alto</b> <i>(0/0 coming, 1 unknown)</i>
     - No attendees yet
 
-    <b>Tenor</b> <i>(0)</i>
+    <b>Tenor</b> <i>(0/0 coming, 1 unknown)</i>
     - No attendees yet
 
-    <b>Bass</b> <i>(0)</i>
+    <b>Bass</b> <i>(0/1 coming, 1 unknown)</i>
     - No attendees yet"
   `);
 });
@@ -95,18 +95,18 @@ describe("gsheet POST -> /show <date>", () => {
       <i>7 coming, 0 not coming, 0 have not answered yet.</i>
       <i>Attendees are:</i>
 
-      <b>Soprano</b> <i>(1)</i>
+      <b>Soprano</b> <i>(1/1 coming, 0 unknown)</i>
       - SopA
 
-      <b>Alto</b> <i>(2)</i>
+      <b>Alto</b> <i>(2/2 coming, 0 unknown)</i>
       - AltA
       - AltB
 
-      <b>Tenor</b> <i>(2)</i>
+      <b>Tenor</b> <i>(2/2 coming, 0 unknown)</i>
       - TenA
       - TenB
 
-      <b>Bass</b> <i>(2)</i>
+      <b>Bass</b> <i>(2/2 coming, 0 unknown)</i>
       - BasA
       - BasB"
     `);
@@ -122,16 +122,16 @@ describe("gsheet POST -> /show <date>", () => {
       <i>0 coming, 0 not coming, 7 have not answered yet.</i>
       <i>Attendees are:</i>
 
-      <b>Soprano</b> <i>(0)</i>
+      <b>Soprano</b> <i>(0/0 coming, 1 unknown)</i>
       - No attendees yet
 
-      <b>Alto</b> <i>(0)</i>
+      <b>Alto</b> <i>(0/0 coming, 2 unknown)</i>
       - No attendees yet
 
-      <b>Tenor</b> <i>(0)</i>
+      <b>Tenor</b> <i>(0/0 coming, 2 unknown)</i>
       - No attendees yet
 
-      <b>Bass</b> <i>(0)</i>
+      <b>Bass</b> <i>(0/0 coming, 2 unknown)</i>
       - No attendees yet"
     `);
   });
@@ -145,16 +145,16 @@ describe("gsheet POST -> /show <date>", () => {
       <i>0 coming, 7 not coming, 0 have not answered yet.</i>
       <i>Attendees are:</i>
 
-      <b>Soprano</b> <i>(0)</i>
+      <b>Soprano</b> <i>(0/1 coming, 0 unknown)</i>
       - No attendees yet
 
-      <b>Alto</b> <i>(0)</i>
+      <b>Alto</b> <i>(0/2 coming, 0 unknown)</i>
       - No attendees yet
 
-      <b>Tenor</b> <i>(0)</i>
+      <b>Tenor</b> <i>(0/2 coming, 0 unknown)</i>
       - No attendees yet
 
-      <b>Bass</b> <i>(0)</i>
+      <b>Bass</b> <i>(0/2 coming, 0 unknown)</i>
       - No attendees yet"
     `);
   });

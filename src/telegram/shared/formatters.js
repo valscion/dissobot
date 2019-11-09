@@ -50,8 +50,9 @@ export function formatAttendees(ilmo: SingleIlmoObject) {
   return str;
 }
 
-function formatAttendingCount(attendanceMap) {
-  return attendanceMap.attending.length;
+function formatAttendingCount({ attending, notAttending, unknown }) {
+  const answerCount = attending.length + notAttending.length;
+  return `${attending.length}/${answerCount} coming, ${unknown.length} unknown`;
 }
 
 function header(ilmo: SingleIlmoObject) {
