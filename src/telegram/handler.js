@@ -32,7 +32,9 @@ export default async function telegramHandler(
   }
 
   const update: Update = JSON.parse(event.body);
-  console.log("Handling telegram update: " + JSON.stringify(update));
+  if (process.env.NODE_ENV !== "test") {
+    console.log("Handling telegram update: " + JSON.stringify(update));
+  }
   const { message, callback_query: callbackQuery } = update;
   if (message) {
     try {
