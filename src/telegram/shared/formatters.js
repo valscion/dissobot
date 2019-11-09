@@ -21,8 +21,6 @@ export function formatAttendees(ilmo: SingleIlmoObject) {
   let str = header(ilmo);
   str += `\n\n`;
   str += `<i>${attendingCount} coming, ${notAttendingCount} not coming, ${unknownCount} have not answered yet.</i>`;
-  str += `\n`;
-  str += `<i>Attendees are:</i>`;
 
   str += `\n\n<b>Soprano</b> <i>(${formatAttendingCount(soprano)})</i>\n- `;
   str +=

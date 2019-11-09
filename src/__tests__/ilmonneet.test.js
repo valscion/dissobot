@@ -55,7 +55,6 @@ test("gsheet POST -> /ilmonneet", async () => {
     First songs
 
     <i>2 coming, 1 not coming, 3 have not answered yet.</i>
-    <i>Attendees are:</i>
 
     <b>Soprano</b> <i>(2/2 coming, 0 unknown)</i>
     - One
@@ -93,7 +92,6 @@ describe("gsheet POST -> /show <date>", () => {
       Songs not yet input
 
       <i>7 coming, 0 not coming, 0 have not answered yet.</i>
-      <i>Attendees are:</i>
 
       <b>Soprano</b> <i>(1/1 coming, 0 unknown)</i>
       - SopA
@@ -120,7 +118,6 @@ describe("gsheet POST -> /show <date>", () => {
       Songs not yet input
 
       <i>0 coming, 0 not coming, 7 have not answered yet.</i>
-      <i>Attendees are:</i>
 
       <b>Soprano</b> <i>(0/0 coming, 1 unknown)</i>
       - No attendees yet
@@ -143,7 +140,6 @@ describe("gsheet POST -> /show <date>", () => {
       Songs not yet input
 
       <i>0 coming, 7 not coming, 0 have not answered yet.</i>
-      <i>Attendees are:</i>
 
       <b>Soprano</b> <i>(0/1 coming, 0 unknown)</i>
       - No attendees yet
