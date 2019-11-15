@@ -11,6 +11,11 @@ const data = {
   USERS_TABLE: { Items: {} }
 };
 
+beforeEach(() => {
+  data.ILMOS_TABLE = { Items: {} };
+  data.USERS_TABLE = { Items: {} };
+});
+
 export const deleteItem: realDeleteItem = ({ TableName, Key }) => {
   delete data[TableName].Items[Key];
   return Promise.resolve();
