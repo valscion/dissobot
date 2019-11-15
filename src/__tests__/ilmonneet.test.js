@@ -221,6 +221,57 @@ describe("gsheet POST -> /show <date>", () => {
   });
 });
 
+describe("gsheet POST -> /show", () => {
+  beforeEach(async () => {
+    advanceTo(new Date(2018, 8, 2, 0, 0, 0)); // 2018-09-02
+    const sheetData = md`
+      |                     |        |             | Soprano | Alto | Tenor | Bass |
+      | ------------------- | ------ | ----------- | ------- | ---- | ----- | ---- |
+      | Pvm                 | Biisit | Tulossa (x) | SopA    | AltA | TenA  | BasA |
+      | 5.8. history        |        |             |         |      |       |      |
+      | 8.11. future        |        |             |         |      |       |      |
+      | 8.12.2018 same year |        |             |         |      |       |      |
+      | 8.3.2019 next year  |        |             |         |      |       |      |
+    `;
+    await lambdaCall(gsheetHandler, { body: sheetData });
+  });
+
+  it("lists only future rehearsals", async () => {
+    await lambdaCall(telegramHandler, {
+      body: showCommand(""),
+      path: "/telegram/TELEGRAM_URL_SECRET"
+    });
+    expect(tgSendMessage).toHaveBeenCalledTimes(1);
+    const sendMessagePayload = tgSendMessage.mock.calls[0][0];
+    expect(sendMessagePayload).toMatchInlineSnapshot(`
+      Object {
+        "chat_id": 200,
+        "reply_markup": Object {
+          "keyboard": Array [
+            Array [
+              Object {
+                "text": "/close",
+              },
+            ],
+            Array [
+              Object {
+                "text": "/show 8.11. future",
+              },
+            ],
+            Array [
+              Object {
+                "text": "/show 8.12.2018 same year",
+              },
+            ],
+          ],
+          "one_time_keyboard": true,
+        },
+        "text": "Which upcoming ilmolist would you like to see?",
+      }
+    `);
+  });
+});
+
 function ilmonneetCommand(): Update {
   return {
     update_id: 1,
