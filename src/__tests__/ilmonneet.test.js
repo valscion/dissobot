@@ -253,7 +253,7 @@ function showCommand(rowText: string): Update {
       date: Date.now(),
       chat: {
         id: 200,
-        type: "group"
+        type: "private"
       },
       text: `/show ${rowText}`
     }
