@@ -263,6 +263,11 @@ describe("gsheet POST -> /show", () => {
                 "text": "/show 8.12.2018 same year",
               },
             ],
+            Array [
+              Object {
+                "text": "/show 8.3.2019 next year",
+              },
+            ],
           ],
           "one_time_keyboard": true,
         },

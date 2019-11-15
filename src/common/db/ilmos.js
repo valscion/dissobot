@@ -63,7 +63,7 @@ function _sortUpcomingIlmos(ilmoList: $ReadOnlyArray<SingleIlmoObject>) {
   return ilmoList
     .filter(ilmo =>
       moment
-        .utc(ilmo.dateAsWritten, "D.M.")
+        .utc(ilmo.date, "YYYY-MM-DD", true)
         .set({
           hour: 0,
           minute: 0,
@@ -75,8 +75,8 @@ function _sortUpcomingIlmos(ilmoList: $ReadOnlyArray<SingleIlmoObject>) {
         )
     )
     .sort((a, b) => {
-      const mA = moment.utc(a.dateAsWritten, "D.M.");
-      const mB = moment.utc(b.dateAsWritten, "D.M.");
+      const mA = moment.utc(a.date, "YYYY-MM-DD", true);
+      const mB = moment.utc(b.date, "YYYY-MM-DD", true);
       if (mA.isBefore(mB)) return -1;
       if (mB.isBefore(mA)) return 1;
       return 0;

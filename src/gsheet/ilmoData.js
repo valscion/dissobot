@@ -76,7 +76,14 @@ function makeToSingleIlmo({
 
   return row => {
     const dateAsWritten = row[dateColumn];
-    const parsedDate = moment.utc(dateAsWritten, "D.M.");
+    // First try parsing with a year, as next year's ilmos need to
+    // put a year to the data to differ them from current year
+    let parsedDate = moment.utc(dateAsWritten, "D.M.YYYY");
+    if (!parsedDate.isValid()) {
+      // Then let's try without a year.
+      parsedDate = moment.utc(dateAsWritten, "D.M.");
+    }
+    // If the date still isn't valid, we skip the ilmo row as malformed.
     if (!parsedDate.isValid()) return null;
     const date = parsedDate.format("YYYY-MM-DD");
 
