@@ -63,7 +63,7 @@ function songs(ilmo: SingleIlmoObject) {
   const ilmoSongs = (ilmo.songs && ilmo.songs.trim()) || "";
   let str = "";
   if (ilmoSongs.length > 0) {
-    str += `Songs:\n${escapeHtml(ilmoSongs)}`;
+    str += `<b>Songs:</b>\n${escapeHtml(ilmoSongs)}`;
   } else {
     str += `Songs not yet input`;
   }
