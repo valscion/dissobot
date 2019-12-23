@@ -55,6 +55,10 @@ function header(ilmo: SingleIlmoObject) {
   let str = "";
   str += `<b>${escapeHtml(ilmo.dateAsWritten)}</b>`;
   str += `\n\n`;
+  if (ilmo.details) {
+    str += escapeHtml(ilmo.details);
+    str += `\n\n`;
+  }
   str += songs(ilmo);
   return str;
 }

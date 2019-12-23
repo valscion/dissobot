@@ -25,6 +25,11 @@ test("parses song names", () => {
   );
 });
 
+test("parses details", () => {
+  const result = ilmoDataToObject(fakePayload);
+  expect(result[`${y}-11-05`].details).toEqual("Some details");
+});
+
 test("returns missing songs as null", () => {
   const result = ilmoDataToObject(fakePayload);
   expect(result[`${y}-11-12`].songs).toEqual(null);
