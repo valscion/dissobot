@@ -47,6 +47,7 @@ export type ProxyResult = {
 export type SingleIlmoObject = {|
   date: string,
   dateAsWritten: string,
+  details: string | null,
   songs: string | null,
   soprano: AttendanceMap,
   alto: AttendanceMap,

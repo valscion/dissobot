@@ -28,6 +28,7 @@ function makeToSingleIlmo({
   headingRow
 }): (row: Array<string>) => null | [string, SingleIlmoObject] {
   const dateColumn = headingRow.indexOf("Pvm");
+  const detailsColumn = headingRow.indexOf("Details");
   const songsColumn = headingRow.indexOf("Biisit");
   const singerColumns: Array<
     "soprano" | "alto" | "tenor" | "bass" | "previous" | "skip"
@@ -89,6 +90,7 @@ function makeToSingleIlmo({
       {
         date,
         dateAsWritten,
+        details: row[detailsColumn] || null,
         songs: row[songsColumn] || null,
         ...getAttendees(row, singerNamesAndVocalRanges)
       }

@@ -19,6 +19,7 @@ describe("ilmonneet", () => {
       {
         date: "2018-10-06",
         dateAsWritten: "la 6.10.",
+        details: null,
         songs: null,
         soprano: emptyAttendanceMap,
         alto: emptyAttendanceMap,
@@ -28,6 +29,7 @@ describe("ilmonneet", () => {
       {
         date: "2018-09-04",
         dateAsWritten: "ti 4.9.",
+        details: null,
         songs: null,
         soprano: emptyAttendanceMap,
         alto: emptyAttendanceMap,
@@ -37,6 +39,7 @@ describe("ilmonneet", () => {
       {
         date: "2018-08-28",
         dateAsWritten: "ti 28.8.",
+        details: null,
         songs: null,
         soprano: emptyAttendanceMap,
         alto: emptyAttendanceMap,
@@ -70,6 +73,7 @@ describe("ilmonneet", () => {
       {
         date: "2018-09-10",
         dateAsWritten: "ma 10.9.",
+        details: null,
         songs: null,
         soprano: emptyAttendanceMap,
         alto: emptyAttendanceMap,
@@ -79,6 +83,7 @@ describe("ilmonneet", () => {
       {
         date: "2018-09-11",
         dateAsWritten: "ti 11.9.",
+        details: null,
         songs: null,
         soprano: emptyAttendanceMap,
         alto: emptyAttendanceMap,
@@ -88,6 +93,7 @@ describe("ilmonneet", () => {
       {
         date: "2018-09-18",
         dateAsWritten: "ti 18.9.",
+        details: null,
         songs: null,
         soprano: emptyAttendanceMap,
         alto: emptyAttendanceMap,
