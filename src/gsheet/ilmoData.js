@@ -64,9 +64,6 @@ function makeToSingleIlmo({
     vocalRange: "soprano" | "alto" | "tenor" | "bass",
     colIdx: number
   |}> = headingRow.reduce((acc, col, colIdx) => {
-    if (col === "Pvm") return acc;
-    if (col === "Biisit") return acc;
-    if (col === "Tulossa (x)") return acc;
     if (!col) return acc;
     const vocalRange = findVocalRangeForColumn(colIdx);
     if (vocalRange === "invalid") return acc;
