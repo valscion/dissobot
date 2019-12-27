@@ -27,9 +27,9 @@ function makeToSingleIlmo({
   vocalRangeRow,
   headingRow
 }): (row: Array<string>) => null | [string, SingleIlmoObject] {
-  const dateColumn = headingRow.indexOf("Pvm");
+  const dateColumn = headingRow.indexOf("Date");
   const detailsColumn = headingRow.indexOf("Details");
-  const songsColumn = headingRow.indexOf("Biisit");
+  const songsColumn = headingRow.indexOf("Songs");
   const singerColumns: Array<
     "soprano" | "alto" | "tenor" | "bass" | "previous" | "skip"
   > = vocalRangeRow.map(col => {

@@ -3,9 +3,9 @@
 const fakePayload = [
   ["", "", "", "Soprano", "", "Alto", "", "Tenor", "Bass", ""],
   [
-    "Pvm",
+    "Date",
     "Details",
-    "Biisit",
+    "Songs",
     "Singer 1",
     "Singer 2",
     "Singer 3",

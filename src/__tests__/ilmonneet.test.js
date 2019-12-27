@@ -22,7 +22,7 @@ test("gsheet POST -> /ilmonneet", async () => {
   const sheetData = md`
     |          |         |             | Soprano |     | Alto  | Tenor | Bass |     |
     | -------- | ------- | ----------- | ------- | --- | ----- | ----- | ---- | --- |
-    | Pvm      | Details | Biisit      | One     | Two | Three | Four  | Five | Six |
+    | Date     | Details | Songs       | One     | Two | Three | Four  | Five | Six |
     | ti 5.11. | Helloo  | First songs | x       | x   |       |       | ?    |     |
   `;
   await lambdaCall(gsheetHandler, { body: sheetData });
@@ -82,13 +82,13 @@ describe("gsheet POST -> /show <date>", () => {
   beforeEach(async () => {
     advanceTo(new Date(2018, 8, 2, 0, 0, 0)); // 2018-09-02
     const sheetData = md`
-      |               |         |        | Soprano | Alto |      | Tenor 2 | Tenor 1 | Bass 1 | Bass 2 |
-      | ------------- | ------- | ------ | ------- | ---- | ---- | ------- | ------- | ------ | ------ |
-      | Pvm           | Details | Biisit | SopA    | AltA | AltB | TenA    | TenB    | BasA   | BasB   |
-      | 5.11. all     |         |        | x       | x    | x    | x       | x       | x      | x      |
-      | 6.11. unknown |         |        |         |      |      |         |         |        |        |
-      | 7.11. none    |         |        | -       | -    | -    | -       | -       | -      | -      |
-      | 8.11. some    |         |        |         | -    | x    |         | -       |        | x      |
+      |               |         |       | Soprano | Alto |      | Tenor 2 | Tenor 1 | Bass 1 | Bass 2 |
+      | ------------- | ------- | ----- | ------- | ---- | ---- | ------- | ------- | ------ | ------ |
+      | Date          | Details | Songs | SopA    | AltA | AltB | TenA    | TenB    | BasA   | BasB   |
+      | 5.11. all     |         |       | x       | x    | x    | x       | x       | x      | x      |
+      | 6.11. unknown |         |       |         |      |      |         |         |        |        |
+      | 7.11. none    |         |       | -       | -    | -    | -       | -       | -      | -      |
+      | 8.11. some    |         |       |         | -    | x    |         | -       |        | x      |
     `;
     await lambdaCall(gsheetHandler, { body: sheetData });
   });
@@ -226,13 +226,13 @@ describe("gsheet POST -> /show", () => {
   beforeEach(async () => {
     advanceTo(new Date(2018, 8, 2, 0, 0, 0)); // 2018-09-02
     const sheetData = md`
-      |                     |         |        | Soprano | Alto | Tenor | Bass |
-      | ------------------- | ------- | ------ | ------- | ---- | ----- | ---- |
-      | Pvm                 | Details | Biisit | SopA    | AltA | TenA  | BasA |
-      | 5.8. history        |         |        |         |      |       |      |
-      | 8.11. future        |         |        |         |      |       |      |
-      | 8.12.2018 same year |         |        |         |      |       |      |
-      | 8.3.2019 next year  |         |        |         |      |       |      |
+      |                     |         |       | Soprano | Alto | Tenor | Bass |
+      | ------------------- | ------- | ----- | ------- | ---- | ----- | ---- |
+      | Date                | Details | Songs | SopA    | AltA | TenA  | BasA |
+      | 5.8. history        |         |       |         |      |       |      |
+      | 8.11. future        |         |       |         |      |       |      |
+      | 8.12.2018 same year |         |       |         |      |       |      |
+      | 8.3.2019 next year  |         |       |         |      |       |      |
     `;
     await lambdaCall(gsheetHandler, { body: sheetData });
   });
