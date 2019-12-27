@@ -27,8 +27,9 @@ function makeToSingleIlmo({
   vocalRangeRow,
   headingRow
 }): (row: Array<string>) => null | [string, SingleIlmoObject] {
-  const dateColumn = headingRow.indexOf("Pvm");
-  const songsColumn = headingRow.indexOf("Biisit");
+  const dateColumn = headingRow.indexOf("Date");
+  const detailsColumn = headingRow.indexOf("Details");
+  const songsColumn = headingRow.indexOf("Songs");
   const singerColumns: Array<
     "soprano" | "alto" | "tenor" | "bass" | "previous" | "skip"
   > = vocalRangeRow.map(col => {
@@ -64,9 +65,6 @@ function makeToSingleIlmo({
     vocalRange: "soprano" | "alto" | "tenor" | "bass",
     colIdx: number
   |}> = headingRow.reduce((acc, col, colIdx) => {
-    if (col === "Pvm") return acc;
-    if (col === "Biisit") return acc;
-    if (col === "Tulossa (x)") return acc;
     if (!col) return acc;
     const vocalRange = findVocalRangeForColumn(colIdx);
     if (vocalRange === "invalid") return acc;
@@ -92,6 +90,7 @@ function makeToSingleIlmo({
       {
         date,
         dateAsWritten,
+        details: row[detailsColumn] || null,
         songs: row[songsColumn] || null,
         ...getAttendees(row, singerNamesAndVocalRanges)
       }

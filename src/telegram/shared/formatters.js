@@ -54,6 +54,10 @@ function formatVocalRangeAttendees({ attending, notAttending, unknown }) {
 function header(ilmo: SingleIlmoObject) {
   let str = "";
   str += `<b>${escapeHtml(ilmo.dateAsWritten)}</b>`;
+  if (ilmo.details) {
+    str += `\n`;
+    str += escapeHtml(ilmo.details);
+  }
   str += `\n\n`;
   str += songs(ilmo);
   return str;
@@ -63,7 +67,7 @@ function songs(ilmo: SingleIlmoObject) {
   const ilmoSongs = (ilmo.songs && ilmo.songs.trim()) || "";
   let str = "";
   if (ilmoSongs.length > 0) {
-    str += `Songs:\n${escapeHtml(ilmoSongs)}`;
+    str += `<b>Songs:</b>\n${escapeHtml(ilmoSongs)}`;
   } else {
     str += `Songs not yet input`;
   }

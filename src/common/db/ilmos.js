@@ -25,6 +25,7 @@ export async function saveIlmo(ilmo: SingleIlmoObject) {
     Item: {
       date: ilmo.date,
       dateAsWritten: ilmo.dateAsWritten,
+      details: ilmo.details,
       songs: ilmo.songs,
       soprano: ilmo.soprano,
       alto: ilmo.alto,

@@ -3,9 +3,9 @@
 const fakePayload = [
   ["", "", "", "Soprano", "", "Alto", "", "Tenor", "Bass", ""],
   [
-    "Pvm",
-    "Biisit",
-    "Tulossa (x)",
+    "Date",
+    "Details",
+    "Songs",
     "Singer 1",
     "Singer 2",
     "Singer 3",
@@ -16,8 +16,8 @@ const fakePayload = [
   ],
   [
     "ti 5.11.",
+    "Some details",
     "Hello\nIs there anybody in there?\nIt's not like you can't hear me",
-    "1\nSinger 3",
     "- [bot]",
     "",
     "x",
@@ -26,11 +26,11 @@ const fakePayload = [
     "",
     ""
   ],
-  ["ti 12.11.", "", "1\nSinger 2", "", "x 12.11. singer2", "", "", "", "", ""],
+  ["ti 12.11.", "", "", "", "x 12.11. singer2", "", "", "", "", ""],
   [
     "Konsertti ti 31.12.",
     "Yess the concert",
-    "3\nSinger 1\nSinger 2\nSinger 3",
+    "Songs here",
     "x",
     "x",
     "x",
