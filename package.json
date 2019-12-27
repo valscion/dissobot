@@ -12,6 +12,7 @@
   "scripts": {
     "test": "jest",
     "lint": "eslint .",
+    "prettier:all": "prettier --write {*,src/**/*}",
     "flow": "flow",
     "flow:test": "flow --max-warnings 0"
   },
