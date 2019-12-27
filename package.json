@@ -20,7 +20,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "aws-sdk": "^2.542.0",
+    "aws-sdk": "^2.596.0",
     "escape-html": "^1.0.3",
     "moment": "^2.23.0",
     "node-fetch": "^2.3.0",
@@ -29,26 +29,26 @@
     "telegram-typings": "^3.6.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.6.2",
-    "@babel/parser": "^7.6.2",
-    "@babel/plugin-proposal-object-rest-spread": "^7.6.2",
-    "@babel/preset-env": "^7.6.2",
-    "@babel/preset-flow": "^7.0.0",
+    "@babel/core": "^7.7.7",
+    "@babel/parser": "^7.7.7",
+    "@babel/plugin-proposal-object-rest-spread": "^7.7.7",
+    "@babel/preset-env": "^7.7.7",
+    "@babel/preset-flow": "^7.7.4",
     "babel-eslint": "^10.0.3",
     "babel-jest": "^24.9.0",
     "babel-loader": "^8.0.6",
-    "core-js": "^3.2.1",
+    "core-js": "^3.6.1",
     "eslint": "^5.16.0",
     "eslint-plugin-flowtype": "^3.13.0",
     "flow-bin": "0.109.0",
     "jest": "^24.9.0",
     "jest-date-mock": "^1.0.6",
     "markdown-tables-to-json": "^0.1.4",
-    "prettier": "^1.18.2",
+    "prettier": "^1.19.1",
     "serverless-dynamodb-local": "^0.2.38",
     "serverless-offline": "^3.31.3",
     "serverless-webpack": "^5.3.1",
-    "webpack": "^4.41.0",
+    "webpack": "^4.41.4",
     "webpack-node-externals": "^1.7.2"
   }
 }
