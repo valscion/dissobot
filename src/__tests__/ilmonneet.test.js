@@ -50,7 +50,6 @@ test("gsheet POST -> /ilmonneet", async () => {
   });
   expect(tgSendMessage.mock.calls[0][0].text).toMatchInlineSnapshot(`
     "<b>ti 5.11.</b>
-
     Helloo
 
     <b>Songs:</b>

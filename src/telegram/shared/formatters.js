@@ -54,11 +54,11 @@ function formatVocalRangeAttendees({ attending, notAttending, unknown }) {
 function header(ilmo: SingleIlmoObject) {
   let str = "";
   str += `<b>${escapeHtml(ilmo.dateAsWritten)}</b>`;
-  str += `\n\n`;
   if (ilmo.details) {
+    str += `\n`;
     str += escapeHtml(ilmo.details);
-    str += `\n\n`;
   }
+  str += `\n\n`;
   str += songs(ilmo);
   return str;
 }
