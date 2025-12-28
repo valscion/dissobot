@@ -6,10 +6,10 @@ Telegram bot for signups for Dissonanssi choir rehearsals.
 
 ```bash
 # Deploy to development
-npm run sls -- deploy
+NODE_OPTIONS=--openssl-legacy-provider npm run sls -- deploy
 
 # Deploy to production
-npm run sls -- deploy --stage production
+NODE_OPTIONS=--openssl-legacy-provider npm run sls -- deploy --stage production
 ```
 
 ```bash
