@@ -6,18 +6,20 @@ Telegram bot for signups for Dissonanssi choir rehearsals.
 
 ```bash
 # Deploy to development
-sls deploy
+NODE_OPTIONS=--openssl-legacy-provider npm run sls -- deploy
 
 # Deploy to production
-sls deploy --stage production
+NODE_OPTIONS=--openssl-legacy-provider npm run sls -- deploy --stage production
 ```
 
 ```bash
 # View logs
-sls logs --stage production --tail -f telegram
+npm run sls -- logs --stage production --tail -f telegram
 ```
 
 ## Local development
+
+NOTE: This information was valid in May 2019 and has since been outdated.
 
 ```
 npm install -g serverless

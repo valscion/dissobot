@@ -2,10 +2,15 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: circleci/node:10.6
+      - image: cimg/node:24.12
     steps:
       - checkout
       - run: npm install
       - run: npm test
       - run: npm run flow:test
       - run: npm run lint
+
+workflows:
+  ci:
+    jobs:
+      - build
