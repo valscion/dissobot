@@ -12,6 +12,7 @@
   "scripts": {
     "test": "jest",
     "lint": "eslint .",
+    "sls": "sls",
     "prettier:all": "prettier --write {*,src/**/*}",
     "flow": "flow",
     "flow:test": "flow --max-warnings 0"
@@ -45,6 +46,7 @@
     "jest-date-mock": "^1.0.6",
     "markdown-tables-to-json": "^0.1.4",
     "prettier": "^1.19.1",
+    "serverless": "^1.83.3",
     "serverless-dynamodb-local": "^0.2.38",
     "serverless-offline": "^3.31.3",
     "serverless-webpack": "^5.3.1",
